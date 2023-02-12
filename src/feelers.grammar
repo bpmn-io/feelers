@@ -1,0 +1,18 @@
+@top Feelers { 
+  ( "=" Feel ) | 
+  ( SimpleTextBlock | Insert | spanner )* 
+}
+
+spanner { ( ConditionalSpanner | LoopSpanner ) }
+
+ConditionalSpanner { "{{#if " FeelBlock "}}" ( SimpleTextBlock | Insert | spanner )* "{{/if}}" }
+
+LoopSpanner { "{{#loop " FeelBlock "}}" ( SimpleTextBlock | Insert | spanner )* "{{/loop}}" }
+
+Insert { "{{" "="? FeelBlock "}}" }
+
+@external tokens feel from "./tokens" { Feel }
+@external tokens feelBlock from "./tokens" { FeelBlock }
+@external tokens simpleTextBlock from "./tokens" { SimpleTextBlock }
+
+@external propSource feelersHighlighting from "./highlight"

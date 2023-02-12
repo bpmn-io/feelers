@@ -1,0 +1,6 @@
+{
+  "extends": "plugin:bpmn-io/recommended",
+  "parserOptions": {
+    "ecmaVersion": 2019
+  }
+}
