@@ -1,3 +1,4 @@
-src/parser*.js
+src/grammar/feelers/parser*.js
 .github
 dist
+karma.conf.js

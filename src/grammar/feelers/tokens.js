@@ -10,7 +10,7 @@ import {
   ExternalTokenizer
 } from '@lezer/lr';
 
-const LOG_PARSE_DEBUG = true;
+const LOG_PARSE_DEBUG = false;
 
 const CHAR_TABLE = {
   '{': 123,

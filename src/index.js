@@ -1,1 +1,3 @@
-export * from './parser';
+import FeelersEditor from './editor';
+
+export { FeelersEditor };

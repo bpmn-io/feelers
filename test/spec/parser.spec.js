@@ -1,10 +1,5 @@
-import {
-  parser
-} from '../../src/parser.js';
-
-import {
-  expect
-} from 'chai';
+import { parser } from '../../src/grammar/feelers/parser';
+import { expect } from 'chai';
 
 describe('parser should parse', () => {
 
@@ -60,8 +55,6 @@ describe('parser should parse', () => {
     // when
     const result = parser.parse(stringInput);
 
-    console.log(JSON.stringify(result));
-
     // then
     expect(result.children.length).to.equal(1);
     expect(result.children[0].type.name).to.equal('Insert');
@@ -87,7 +80,7 @@ describe('parser should parse', () => {
     // when
     const result = parser.parse(stringInput);
 
-    console.log(JSON.stringify(result));
+    throw new Error('Not implemented');
 
   });
 
