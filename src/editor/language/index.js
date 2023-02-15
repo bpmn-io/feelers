@@ -1,4 +1,4 @@
 import { LanguageSupport } from '@codemirror/language';
-import language from '../../grammar/feelersLang';
+import mixedParser from './mixedParser';
 
-export const feelersMixedLanguage = new LanguageSupport(language, []);
+export const feelersMixedLanguage = new LanguageSupport(mixedParser, []);
