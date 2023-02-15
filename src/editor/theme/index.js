@@ -1,3 +1,4 @@
-import { theme, baseTheme, syntaxClasses } from './theme';
+import { customSyntaxHighlighting } from './theme';
+import { palenightEditorTheme, palenightSyntaxHighlighting } from './palettes/palenight.js';
 
-export default [ theme, baseTheme, syntaxClasses ];
+export default [ palenightEditorTheme, customSyntaxHighlighting, palenightSyntaxHighlighting ];
