@@ -5,6 +5,37 @@ import { diagnosticCount, forceLinting } from '@codemirror/lint';
 import { currentCompletions, startCompletion } from '@codemirror/autocomplete';
 import { domify } from 'min-dom';
 
+const textSample = `There are {{= 2 + 2}} apples in the basket.
+
+{{#if true}}
+This should render
+{{/if}}
+
+{{#if false}}
+This should not render
+{{/if}}
+
+{{#loop ["an apple", "a mystery to solve", "working iteration"]}}
+I have {{this}}
+{{/loop}}
+
+# Markdown highlighting
+## Should work
+### For many cases
+#### But sadly
+##### It 
+###### Cannot {{ "be" }} perfect
+
+It was a **bold** move to put so much *emphasis* on style
+
+\`form-js\` is about to get weird :eyes:
+
+\`\`\`
+while (workIsLeft) {
+  type++;
+}
+\`\`\``;
+
 
 // eslint-disable-next-line no-undef
 const singleStart = window.__env__ && window.__env__.SINGLE_START;
@@ -21,7 +52,7 @@ describe('CodeEditor', function() {
   (singleStart ? it.only : it)('should render', async function() {
 
     // when
-    const initialValue = 'There are {{= 2 + 2}} apples in the basket.';
+    const initialValue = textSample;
 
     const editor = new FeelersEditor({
       container,

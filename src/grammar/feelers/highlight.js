@@ -1,7 +1,7 @@
 import { styleTags, tags as t } from '@lezer/highlight';
 
 export const feelersHighlighting = styleTags({
-  ConditionalSpanner: t.special(t.string),
-  LoopSpanner: t.special(t.string),
-  Insert: t.special(t.string),
+  ConditionalSpanner: t.special(t.bracket),
+  LoopSpanner: t.special(t.bracket),
+  Insert: t.special(t.bracket),
 });
