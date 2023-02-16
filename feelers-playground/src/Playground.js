@@ -63,15 +63,13 @@ export default function Playground() {
       const start = target.selectionStart;
       const end = target.selectionEnd;
       target.setRangeText("   ", start, end, "end");
-
     }
 
     if (autoclose[e.key]) {
       e.preventDefault();
       const target = e.target;
-      const start = target.selectionStart;
-      const end = target.selectionEnd;
-      target.setRangeText(e.key + autoclose[e.key], start, end, "end");
+      target.setRangeText(e.key, target.selectionStart, target.selectionEnd, "end");
+      target.setRangeText(autoclose[e.key], target.selectionStart, target.selectionEnd, "start");
     }
 
   }
