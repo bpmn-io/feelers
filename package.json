@@ -9,6 +9,7 @@
     "build": "rollup -c",
     "test": "karma start",
     "start": "cross-env SINGLE_START=true npm run dev",
+    "start:playground": "npm run --prefix feelers-playground dev",
     "dev": "npm test -- --auto-watch --no-single-run"
   },
   "author": {
