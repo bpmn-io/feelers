@@ -1,0 +1,60 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	line-height: 19.6px;
+	font-weight: 400px;
+	font: 'Consolas', 'Consolas Bold'
+
+}
+
+html, body {
+	font-weight: 400;
+}
+
+
+textarea {
+	resize: none;
+}
+
+.root {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.col {
+	flex: 1;
+	display: flex;
+  flex-direction: column;
+}
+
+#template, #context, #output {
+	flex: 1;
+	overflow: auto;
+	border: 3px solid rgb(23, 29, 27);
+	outline: none;
+}
+
+#context {
+	background-color: rgb(14, 48, 78);
+	padding: 5px;
+	color: #afd1d6;
+}
+
+#output {
+	background-color: rgb(26, 39, 51);
+	padding: 5px;
+	color: #8d8ee2;
+}
+
+#context.invalid {
+	background-color: rgb(64, 6, 6);
+	color: #e99e9e;
+}
+
+#output.invalid {
+	background-color: rgb(26, 13, 13);
+	color: #833a3a;
+}
