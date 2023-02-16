@@ -5,11 +5,12 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "scripts": {
-    "generate": "lezer-generator src/feelers.grammar -o src/parser",
+    "generate:parser": "lezer-generator src/grammar/feelers.grammar -o src/grammar/parser",
     "build": "rollup -c",
     "test": "karma start",
     "start": "cross-env SINGLE_START=true npm run dev",
     "start:playground": "npm run --prefix feelers-playground dev",
+    "deploy:playground": "npm run generate:parser && npm run --prefix feelers-playground build",
     "dev": "npm test -- --auto-watch --no-single-run"
   },
   "author": {
