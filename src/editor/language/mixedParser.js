@@ -1,6 +1,6 @@
 import { parser as feelParser } from 'lezer-feel';
 import { parser as markdownParser } from '@lezer/markdown';
-import { parser as templateParser } from '../../grammar/feelers/parser.js';
+import { parser as templateParser } from '../../grammar/parser.js';
 import { parseMixed } from '@lezer/common';
 import { LRLanguage } from '@codemirror/language';
 

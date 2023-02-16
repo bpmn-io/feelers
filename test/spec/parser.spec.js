@@ -1,4 +1,4 @@
-import { parser } from '../../src/grammar/feelers/parser';
+import { parser } from '../../src/grammar/parser';
 import { expect } from 'chai';
 
 describe('parser should parse', () => {
