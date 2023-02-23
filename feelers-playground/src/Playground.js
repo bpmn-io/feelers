@@ -6,8 +6,8 @@ import evaluate from '../../src/interpreter';
 
 export default function Playground() {
 
-  const [ templateEditorState, setTemplateEditorState ] = useState(initialTemplate);
-  const [ templateContext, setTemplateContext ] = useState(JSON.stringify(initialContext, null, 3));
+  const [ templateEditorState, setTemplateEditorState ] = useState();
+  const [ templateContext, setTemplateContext ] = useState(null);
   const [ outputIsInvalid, setOutputIsInvalid ] = useState(false);
 
   const editorRef = useRef();
@@ -20,6 +20,9 @@ export default function Playground() {
       value: initialTemplate,
       onChange: (value) => setTemplateEditorState(value)
     });
+
+    setTemplateEditorState(initialTemplate);
+    setTemplateContext(JSON.stringify(initialContext, null, 3));
 
   }, [])
 
@@ -63,6 +66,7 @@ export default function Playground() {
       const start = target.selectionStart;
       const end = target.selectionEnd;
       target.setRangeText("   ", start, end, "end");
+
     }
 
     if (autoclose[e.key]) {
