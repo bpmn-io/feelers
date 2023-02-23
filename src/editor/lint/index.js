@@ -1,6 +1,4 @@
-// TODO: Implement linting
+import { cmFeelLinter } from '@bpmn-io/feel-lint';
+import { linter } from '@codemirror/lint';
 
-// import { cmFeelLinter } from '@bpmn-io/feel-lint';
-// import { linter } from '@codemirror/lint';
-
-// export default [ linter(cmFeelLinter()) ];
+export default linter(cmFeelLinter());

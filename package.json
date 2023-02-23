@@ -10,7 +10,7 @@
     "test": "karma start",
     "start": "cross-env SINGLE_START=true npm run dev",
     "start:playground": "npm run --prefix feelers-playground dev",
-    "deploy:playground": "npm run generate:parser && npm run --prefix feelers-playground build",
+    "deploy:playground": "npm run generate:parser && npm run build && npm run --prefix feelers-playground build",
     "dev": "npm test -- --auto-watch --no-single-run"
   },
   "author": {
@@ -26,6 +26,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@bpmn-io/feel-lint": "^0.1.1",
     "@codemirror/autocomplete": "^6.3.2",
     "@codemirror/commands": "^6.1.2",
     "@codemirror/language": "^6.3.1",

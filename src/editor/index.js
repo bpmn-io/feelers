@@ -6,6 +6,7 @@ import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, tooltips } from '@codemirror/view';
 
 import { feelersMixedLanguage } from './language';
+import lint from './lint';
 import theme from './theme';
 
 
@@ -81,6 +82,7 @@ export default function FeelersEditor({
       ...defaultKeymap,
     ]),
     feelersMixedLanguage,
+    lint,
     lintHandler,
     tooltipLayout,
     theme
