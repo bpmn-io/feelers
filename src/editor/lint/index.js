@@ -1,4 +1,4 @@
-import { cmFeelLinter } from '@bpmn-io/feel-lint';
 import { linter } from '@codemirror/lint';
+import { cmFeelersLinter } from './cmFeelersLinter.js';
 
-export default linter(cmFeelLinter());
+export default linter(cmFeelersLinter());
