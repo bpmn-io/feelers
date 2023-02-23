@@ -4,15 +4,15 @@ import {feel, feelBlock, simpleTextBlock} from "./tokens"
 import {feelersHighlighting} from "./highlight"
 export const parser = LRParser.deserialize({
   version: 14,
-  states: "$[QQOXOOOcOTO'#CaOkOSO'#CbOpOSO'#CcOOOW'#Ci'#CiOOOW'#Cd'#CdQuOXOOO!TOQOOO!YOPO,58{O!_OSO,58{O!dOPO,58|O!iOPO,58}OOOW-E6b-E6bQOOOOOOOOW1G.g1G.gO!nOPO1G.gO!sOXO1G.hO#UOXO1G.iOOOW7+$R7+$ROOOW7+$S7+$SO#gOXO7+$SOOOW7+$T7+$TO#xOXO7+$TOOOW<<Gn<<GnOOOW<<Go<<Go",
-  stateData: "$Z~ORTOYVOZPO^QO`RO~OQWOYXO~OQYO~OQZO~ORTOZPO^QO`RO~OP]O~O[^O~OQ_O~O[`O~O[aO~O[bO~ORTOZPO^QO_cO`RO~ORTOZPO^QO`ROaeO~ORTOZPO^QO_gO`RO~ORTOZPO^QO`ROahO~O",
-  goto: "}^PPPPP_ggoPPPP_]TOU`adf]SOU`adfQUOU[UdfQd`Rfa",
-  nodeNames: "⚠ Feel FeelBlock SimpleTextBlock Feelers Insert ConditionalSpanner LoopSpanner",
-  maxTerm: 17,
+  states: "$bOQOXOOOfOTO'#CbOOOW'#Ci'#CiOqOSO'#CcOvOSO'#CdOOOW'#Cl'#ClOOOW'#Ce'#CeO{OXO'#ChO!dOQOOQOOOOOO!iOPO,58{O!nOTO,58|OOOW,58|,58|O!vOPO,58}O!{OPO,59OOOOW-E6c-E6cOOOW1G.g1G.gO#QOPO1G.gOOOW1G.h1G.hO#VOXO1G.iO#hOXO1G.jOOOW7+$R7+$RO#yOPO7+$TO$OOPO7+$UOOOW<<Go<<GoOOOW<<Gp<<Gp",
+  stateData: "$T~ORUOZWO^POaROcSOY[P~OQYOZZO_[O~OQ]O~OQ^O~ORUO^POaROcSOY[Xb[Xd[X~OPXO~O_`O~OQaO_bO~O_cO~O_dO~O_eO~ORUO^POaROcSOb[P~ORUO^POaROcSOd[P~ObhO~OdiO~O",
+  goto: "!VaPPPPPbbhhnPPv!PPP!PXQOVcdXTOVcdUVOcdR_VQXOQfcRgdXUOVcd",
+  nodeNames: "⚠ Feel FeelBlock SimpleTextBlock Feelers Insert EmptyInsert ConditionalSpanner LoopSpanner",
+  maxTerm: 20,
   propSources: [feelersHighlighting],
   skippedNodes: [0],
   repeatNodeCount: 1,
-  tokenData: "$m~RR!_!`[#o#pa#q#r$b~aOY~~dP#o#pg~lQZ~str!P!Q!{~uQ#]#^{#`#a!^~!OP#Y#Z!R~!UPpq!X~!^O^~~!aP#c#d!d~!gP#c#d!j~!mP#d#e!p~!sPpq!v~!{O`~~#OQ#]#^#U#`#a#m~#XP#Y#Z#[~#_P#q#r#b~#eP#q#r#h~#mO_~~#pP#c#d#s~#vP#c#d#y~#|P#d#e$P~$SP#q#r$V~$YP#q#r$]~$bOa~~$eP#q#r$h~$mO[~",
+  tokenData: "$m~RR!_!`[#o#pa#q#r$b~aOZ~~dP#o#pg~lQ^~str!P!Q!{~uQ#]#^{#`#a!^~!OP#Y#Z!R~!UPpq!X~!^Oa~~!aP#c#d!d~!gP#c#d!j~!mP#d#e!p~!sPpq!v~!{Oc~~#OQ#]#^#U#`#a#m~#XP#Y#Z#[~#_P#q#r#b~#eP#q#r#h~#mOb~~#pP#c#d#s~#vP#c#d#y~#|P#d#e$P~$SP#q#r$V~$YP#q#r$]~$bOd~~$eP#q#r$h~$mO_~",
   tokenizers: [0, feel, feelBlock, simpleTextBlock],
   topRules: {"Feelers":[0,4]},
   tokenPrec: 0

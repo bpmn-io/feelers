@@ -5,5 +5,6 @@ export const
   SimpleTextBlock = 3,
   Feelers = 4,
   Insert = 5,
-  ConditionalSpanner = 6,
-  LoopSpanner = 7
+  EmptyInsert = 6,
+  ConditionalSpanner = 7,
+  LoopSpanner = 8

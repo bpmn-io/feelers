@@ -27,6 +27,9 @@ const evaluateNode = (node, context = {}) => {
   case 'Insert':
     return evaluateFeel(node.children[0].content, context);
 
+  case 'EmptyInsert':
+    return '';
+
   case 'FeelBlock':
     return evaluateFeel(node.content, context);
 

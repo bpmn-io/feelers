@@ -1,13 +1,19 @@
 @top Feelers { 
   ( "=" Feel ) | 
-  ( SimpleTextBlock | Insert | spanner )* 
+  blockScope 
 }
+
+blockScope { ( SimpleTextBlock | insert | spanner )* }
 
 spanner { ( ConditionalSpanner | LoopSpanner ) }
 
-ConditionalSpanner { "{{#if " FeelBlock "}}" ( SimpleTextBlock | Insert | spanner )* "{{/if}}" }
+ConditionalSpanner { "{{#if " FeelBlock "}}" blockScope "{{/if}}" }
 
-LoopSpanner { "{{#loop " FeelBlock "}}" ( SimpleTextBlock | Insert | spanner )* "{{/loop}}" }
+LoopSpanner { "{{#loop " FeelBlock "}}" blockScope "{{/loop}}" }
+
+insert { Insert | EmptyInsert }
+
+EmptyInsert { "{{" "="? "}}" }
 
 Insert { "{{" "="? FeelBlock "}}" }
 
