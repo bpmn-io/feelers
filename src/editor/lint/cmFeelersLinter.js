@@ -47,7 +47,7 @@ export function cmFeelersLinter() {
       ...feelMessages,
       ...feelersMessages.map(message => ({
         ...message,
-        source: 'feelers'
+        source: 'feelers linter'
       }))
     ];
   };

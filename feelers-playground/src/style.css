@@ -4,14 +4,12 @@
 	font-size: 14px;
 	line-height: 19.6px;
 	font-weight: 400px;
-	font: 'Consolas', 'Consolas Bold'
-
+	font-family: 'Consolas', 'Consolas Bold'
 }
 
 html, body {
 	font-weight: 400;
 }
-
 
 textarea {
 	resize: none;
