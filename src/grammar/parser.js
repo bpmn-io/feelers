@@ -4,16 +4,16 @@ import {feel, feelBlock, simpleTextBlock} from "./tokens"
 import {feelersHighlighting} from "./highlight"
 export const parser = LRParser.deserialize({
   version: 14,
-  states: "$bOQOXOOOfOTO'#CbOOOW'#Ci'#CiOqOSO'#CcOvOSO'#CdOOOW'#Cl'#ClOOOW'#Ce'#CeO{OXO'#ChO!dOQOOQOOOOOO!iOPO,58{O!nOTO,58|OOOW,58|,58|O!vOPO,58}O!{OPO,59OOOOW-E6c-E6cOOOW1G.g1G.gO#QOPO1G.gOOOW1G.h1G.hO#VOXO1G.iO#hOXO1G.jOOOW7+$R7+$RO#yOPO7+$TO$OOPO7+$UOOOW<<Go<<GoOOOW<<Gp<<Gp",
-  stateData: "$T~ORUOZWO^POaROcSOY[P~OQYOZZO_[O~OQ]O~OQ^O~ORUO^POaROcSOY[Xb[Xd[X~OPXO~O_`O~OQaO_bO~O_cO~O_dO~O_eO~ORUO^POaROcSOb[P~ORUO^POaROcSOd[P~ObhO~OdiO~O",
+  states: "$bOQOaOOOfOXO'#CbOOO`'#Ci'#CiOqOWO'#CcOvOWO'#CdOOO`'#Cl'#ClOOO`'#Ce'#CeO{OaO'#ChO!dOSOOQOOOOOO!iOPO,58{O!nOXO,58|OOO`,58|,58|O!vOQO,58}O!{OQO,59OOOO`-E6c-E6cOOO`1G.g1G.gO#QOPO1G.gOOO`1G.h1G.hO#VOaO1G.iO#hOaO1G.jOOO`7+$R7+$RO#yOPO7+$TO$OOPO7+$UOOO`<<Go<<GoOOO`<<Gp<<Gp",
+  stateData: "$T~ORUOZWO^POaROdSOY[P~OQYOZZO_[O~OQ]O~OQ^O~ORUO^POaROdSOY[Xc[Xe[X~OPXO~O_`O~OQaO_bO~ObcO~ObdO~O_eO~ORUO^POaROdSOc[P~ORUO^POaROdSOe[P~OchO~OeiO~O",
   goto: "!VaPPPPPbbhhnPPv!PPP!PXQOVcdXTOVcdUVOcdR_VQXOQfcRgdXUOVcd",
   nodeNames: "⚠ Feel FeelBlock SimpleTextBlock Feelers Insert EmptyInsert ConditionalSpanner LoopSpanner",
-  maxTerm: 20,
+  maxTerm: 21,
   propSources: [feelersHighlighting],
   skippedNodes: [0],
   repeatNodeCount: 1,
-  tokenData: "$m~RR!_!`[#o#pa#q#r$b~aOZ~~dP#o#pg~lQ^~str!P!Q!{~uQ#]#^{#`#a!^~!OP#Y#Z!R~!UPpq!X~!^Oa~~!aP#c#d!d~!gP#c#d!j~!mP#d#e!p~!sPpq!v~!{Oc~~#OQ#]#^#U#`#a#m~#XP#Y#Z#[~#_P#q#r#b~#eP#q#r#h~#mOb~~#pP#c#d#s~#vP#c#d#y~#|P#d#e$P~$SP#q#r$V~$YP#q#r$]~$bOd~~$eP#q#r$h~$mO_~",
-  tokenizers: [0, feel, feelBlock, simpleTextBlock],
+  tokenData: "%X~RR!_!`[#o#pa#q#r$r~aOZ~~dP#o#pg~lQ^~str!P!Q!{~uQ#]#^{#`#a!^~!OP#Y#Z!R~!UPpq!X~!^Oa~~!aP#c#d!d~!gP#c#d!j~!mP#d#e!p~!sPpq!v~!{Od~~#OQ#]#^#U#`#a#u~#XP#Y#Z#[~#_P#q#r#b~#eP#q#r#h~#mPc~YZ#p~#uOc~~#xP#c#d#{~$OP#c#d$R~$UP#d#e$X~$[P#q#r$_~$bP#q#r$e~$jPe~YZ$m~$rOe~R$uP#q#r$xR%PP_PbQYZ%SQ%XObQ",
+  tokenizers: [0, 1, feel, feelBlock, simpleTextBlock],
   topRules: {"Feelers":[0,4]},
   tokenPrec: 0
 })
