@@ -4,6 +4,11 @@ import { parser as templateParser } from '../../grammar/parser.js';
 import { parseMixed } from '@lezer/common';
 import { LRLanguage, foldNodeProp, foldInside } from '@codemirror/language';
 
+const foldMetadata = {
+  ConditionalSpanner: foldInside,
+  LoopSpanner: foldInside
+};
+
 const _mixedParser = templateParser.configure({
 
   wrap: parseMixed(node => {
@@ -24,10 +29,5 @@ const _mixedParser = templateParser.configure({
   ]
 
 });
-
-const foldMetadata = {
-  ConditionalSpanner: foldInside,
-  LoopSpanner: foldInside
-};
 
 export default LRLanguage.define({ parser: _mixedParser });
