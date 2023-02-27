@@ -45,6 +45,7 @@ const buildNodeEvaluator = (debug, strict) => {
     case 'EmptyInsert':
       return '';
 
+    case 'Feel':
     case 'FeelBlock':
       return evaluateFeel(node.content, context);
 
