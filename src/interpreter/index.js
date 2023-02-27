@@ -1,24 +1,34 @@
 import { parser, buildSimpleTree } from '../grammar/';
 import { evaluate as evaluateFeel } from 'feelin';
 
-const evaluate = (templateString, context = {}, debug = true, strict = false) => {
+/**
+ * @param {string} templateString - the template string to evaluate
+ * @param {object} context - the context object to evaluate the template string against
+ * @param {boolean} strict - whether to expect strict data types out of our FEEL expression, e.g. boolean for conditionals
+ * @param {boolean} debug - whether to enable debug mode, which displays errors inline instead of throwing them
+ * @param {function} buildDebugString - a function that takes an error and returns a string to display in debug mode
+ *
+ * @returns {string}
+ */
+
+const evaluate = (templateString, context = {}, strict = false, debug = false, buildDebugString = (e) => `{{ ${e.message.toLowerCase()} }}`) => {
 
   const parseTree = parser.parse(templateString);
 
   const simpleTreeRoot = buildSimpleTree(parseTree, templateString);
 
-  const evaluateNode = buildNodeEvaluator(debug, strict);
+  const evaluateNode = buildNodeEvaluator(debug, buildDebugString, strict);
 
   return evaluateNode(simpleTreeRoot, context);
 
 };
 
-const buildNodeEvaluator = (debug, strict) => {
+const buildNodeEvaluator = (debug, buildDebugString, strict) => {
 
   const errorHandler = (error) => {
 
     if (debug) {
-      return `{{ ${error.message.toLowerCase()} }}`;
+      return buildDebugString(error);
     }
 
     throw error;
