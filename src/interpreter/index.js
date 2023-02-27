@@ -2,16 +2,25 @@ import { parser, buildSimpleTree } from '../grammar/';
 import { evaluate as evaluateFeel } from 'feelin';
 
 /**
- * @param {string} templateString - the template string to evaluate
- * @param {object} context - the context object to evaluate the template string against
- * @param {boolean} strict - whether to expect strict data types out of our FEEL expression, e.g. boolean for conditionals
- * @param {boolean} debug - whether to enable debug mode, which displays errors inline instead of throwing them
- * @param {function} buildDebugString - a function that takes an error and returns a string to display in debug mode
- *
- * @returns {string}
+ * @typedef {object} EvaluationOptions
+ * @property {boolean} [debug=false] - whether to enable debug mode, which displays errors inline instead of throwing them
+ * @property {function} [buildDebugString=(e) => `{{ ${e.message.toLowerCase()} }}`] - function that takes an error and returns the string to display in debug mode
+ * @property {boolean} [strict=false] - whether to expect strict data types out of our FEEL expression, e.g. boolean for conditionals
  */
 
-const evaluate = (templateString, context = {}, strict = false, debug = false, buildDebugString = (e) => `{{ ${e.message.toLowerCase()} }}`) => {
+/**
+ * @param {string} templateString - the template string to evaluate
+ * @param {object} [context={}] - the context object to evaluate the template string against
+ * @param {EvaluationOptions} [options={}] - options to configure the evaluation
+ * @return {string} the evaluated template string
+ */
+const evaluate = (templateString, context = {}, options = {}) => {
+
+  const {
+    debug = false,
+    buildDebugString = (e) => `{{ ${e.message.toLowerCase()} }}`,
+    strict = false
+  } = options;
 
   const parseTree = parser.parse(templateString);
 
@@ -56,8 +65,14 @@ const buildNodeEvaluator = (debug, buildDebugString, strict) => {
       return '';
 
     case 'Feel':
-    case 'FeelBlock':
-      return evaluateFeel(node.content, context);
+    case 'FeelBlock': {
+      try {
+        return evaluateFeel(node.content, context);
+      }
+      catch {
+        return errorHandler(new Error(`FEEL expression ${node.content} couldn't be evaluated`));
+      }
+    }
 
     case 'Feelers':
       return node.children.map(child => evaluateNode(child, context)).join('');
