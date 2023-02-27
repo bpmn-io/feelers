@@ -101,7 +101,7 @@ const buildNodeEvaluator = (debug, strict) => {
       const childrenToLoop = node.children.slice(1);
 
       const evaluateChild = (item, parentContext) => {
-        const subContext = typeof (item) === 'object' ? { ...item, this: item, parent: parentContext } : { this: item, parent: parentContext };
+        const subContext = typeof (item) === 'object' ? { this: item, parent: parentContext, ...item, _this_: item, _parent_: parentContext } : { this: item, parent: parentContext, _this_: item, _parent_: parentContext };
         return childrenToLoop.map(child => evaluateNode(child, subContext)).join('');
       };
 
