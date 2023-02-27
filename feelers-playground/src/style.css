@@ -1,10 +1,15 @@
-* {
+#template *, #context *, #output * {
+
+	font-family: 'Consolas', 'Consolas Bold'
+}
+
+#context *, #output *, body, .root, .col, textarea {
 	margin: 0;
 	padding: 0;
-	font-size: 14px;
-	line-height: 19.6px;
-	font-weight: 400px;
-	font-family: 'Consolas', 'Consolas Bold'
+}
+
+.markup * {
+	font-family: 'Sergoe UI', 'Sergoe UI Semibold';
 }
 
 html, body {
@@ -28,20 +33,31 @@ textarea {
   flex-direction: column;
 }
 
-#template, #context, #output {
+.cm-editor, #context, #output {
+	font-size: 14px;
+	line-height: 19.6px;
+}
+
+#template, #context, #output, .markup {
 	flex: 1;
 	overflow: auto;
 	border: 3px solid rgb(23, 29, 27);
 	outline: none;
 }
 
+.cm-editor {
+	min-height: 100%;
+}
+
 #context {
+	font-size: 14px;
 	background-color: rgb(14, 48, 78);
 	padding: 5px;
 	color: #afd1d6;
 }
 
 #output {
+	font-size: 14px;
 	background-color: rgb(26, 39, 51);
 	padding: 5px;
 	color: #8d8ee2;
@@ -55,4 +71,8 @@ textarea {
 #output.invalid {
 	background-color: rgb(26, 13, 13);
 	color: #833a3a;
+}
+
+.markup {
+	padding: 5px;
 }

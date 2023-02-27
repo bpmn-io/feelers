@@ -3,6 +3,8 @@ import { initialContext, initialTemplate } from '../../test/testData';
 import { useMemo, useState, useRef, useEffect } from 'preact/hooks';
 import FeelersEditor from '../../src/editor';
 import evaluate from '../../src/interpreter';
+import Markup from 'preact-markup';
+import showdown from 'showdown';
 
 export default function Playground() {
 
@@ -11,6 +13,7 @@ export default function Playground() {
   const [ outputIsInvalid, setOutputIsInvalid ] = useState(false);
 
   const editorRef = useRef();
+  const converter = useRef(new showdown.Converter());
   const containerRef = useRef();
 
   useEffect(() => {
@@ -58,6 +61,10 @@ export default function Playground() {
     }
   }, [templateEditorState, contextJSON]);
 
+  const htmlOutput = useMemo(() => {
+    return converter.current.makeHtml(computedOutput);
+  }, [computedOutput]);
+
   const onContextKeyDown = (e) => {
     
     if (e.key == 'Tab') {
@@ -95,6 +102,9 @@ export default function Playground() {
           class={!outputIsInvalid ? "" : "invalid"}
           value={computedOutput}
           readonly />
+      </div>
+      <div className="col">
+        <Markup markup={htmlOutput} />
       </div>
     </div>
   );
