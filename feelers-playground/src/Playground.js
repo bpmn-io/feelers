@@ -51,7 +51,7 @@ export default function Playground() {
     }
     else {
       try {
-        const evaluation = evaluate(templateEditorState, contextJSON);
+        const evaluation = evaluate(templateEditorState, contextJSON, { debug: true, buildDebugString: (e) => { return `<span class='error'>⚠<span class='error-message'>${e.message}</span></span>` }});
         setOutputIsInvalid(false);
         return evaluation;
       } catch (e) {

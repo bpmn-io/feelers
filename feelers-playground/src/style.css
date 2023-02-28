@@ -76,3 +76,26 @@ textarea {
 .markup {
 	padding: 5px;
 }
+
+.error {
+	color: #e12d2d;
+	background-color: #530d0d;
+	border-radius: 3px;
+	padding: 2px 5px;
+	margin: 0px 4px;
+}
+
+.error .error-message {
+	width: 0;
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: middle;
+	text-align: center;
+	margin-bottom: 4px;
+	margin-left: 2px;
+}
+
+.error:hover .error-message {
+	width: auto;
+}
