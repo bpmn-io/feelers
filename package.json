@@ -5,13 +5,13 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "scripts": {
-    "generate:parser": "lezer-generator src/grammar/feelers.grammar -o src/grammar/parser",
-    "build": "rollup -c",
     "test": "karma start",
+    "generate:parser": "lezer-generator src/grammar/feelers.grammar -o src/grammar/parser",
+    "dev": "npm test -- --auto-watch --no-single-run",
+    "build": "rollup -c",
     "start": "cross-env SINGLE_START=true npm run dev",
-    "start:playground": "npm run --prefix feelers-playground dev",
-    "deploy:playground": "npm run generate:parser && npm run build && npm run --prefix feelers-playground build",
-    "dev": "npm test -- --auto-watch --no-single-run"
+    "build:playground": "npm run generate:parser && npm run build && npm run --prefix feelers-playground build",
+    "start:playground": "npm run generate:parser && npm run build && npm run --prefix feelers-playground dev"
   },
   "author": {
     "name": "Valentin Serra",
