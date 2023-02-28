@@ -568,6 +568,161 @@ describe('interpreter', () => {
   });
 
 
+  describe('special accessors', () => {
+
+    it('should evaluate `this` accessor', () => {
+
+      // given
+      const stringInput = '{{this}}';
+      const context = 'This is this!';
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('This is this!');
+
+    });
+
+
+    it('should evaluate property through `this` accessor', () => {
+
+      // given
+      const stringInput = '{{this.prop}}';
+      const context = { prop: 'Weee!' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('Weee!');
+
+    });
+
+
+    it('should let `this` accessor be overwritten if literally defined', () => {
+
+      // given
+      const stringInput = '{{this.prop}}';
+      const context = { this: { prop: 'Nested prop' }, prop: 'Root prop' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('Nested prop');
+
+    });
+
+
+    it('should evaluate `_this_` accessor', () => {
+
+      // given
+      const stringInput = '{{_this_}}';
+      const context = 'This is this!';
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('This is this!');
+
+    });
+
+
+    it('should evaluate property through `_this_` accessor', () => {
+
+      // given
+      const stringInput = '{{_this_.prop}}';
+      const context = { prop: 'Weee!' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('Weee!');
+
+    });
+
+
+    it('should not let `_this_` accessor be overwritten if literally defined', () => {
+
+      // given
+      const stringInput = '{{_this_.prop}}';
+      const context = { _this_: { prop: 'Nested prop' }, prop: 'Root prop' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('Root prop');
+
+    });
+
+
+    it('should evaluate `parent` accessor', () => {
+
+      // given
+      const stringInput = '{{#loop items}}\n{{parent.prefix + this}}\n{{/loop}}';
+      const context = { items: [ '1', '2', '3' ], prefix: '$' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('$1\n$2\n$3\n');
+
+    });
+
+
+    it('should let `parent` accessor be overwritten if literally defined', () => {
+
+      // given
+      const stringInput = '{{#loop items}}\n{{parent.prefix + item}}\n{{/loop}}';
+      const context = { items: [ { item: '1', parent: { prefix: '£' } }, { item: '2' }, { item: '3' } ], prefix: '$' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('£1\n$2\n$3\n');
+
+    });
+
+
+    it('should evaluate `_parent_` accessor', () => {
+
+      // given
+      const stringInput = '{{#loop items}}\n{{_parent_.prefix + this}}\n{{/loop}}';
+
+      const context = { items: [ '1', '2', '3' ], prefix: '$' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('$1\n$2\n$3\n');
+
+    });
+
+
+    it('should not let `_parent_` accessor be overwritten if literally defined', () => {
+
+      // given
+      const stringInput = '{{#loop items}}\n{{_parent_.prefix + item}}\n{{/loop}}';
+      const context = { items: [ { item: '1', _parent_: { prefix: '£' } }, { item: '2' }, { item: '3' } ], prefix: '$' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('$1\n$2\n$3\n');
+
+    });
+
+  });
+
+
   describe('errors', () => {
 
     it('should output custom debug error inserts', () => {

@@ -28,7 +28,7 @@ const evaluate = (templateString, context = {}, options = {}) => {
 
   const evaluateNode = buildNodeEvaluator(debug, buildDebugString, strict);
 
-  return evaluateNode(simpleTreeRoot, context);
+  return evaluateNode(simpleTreeRoot, enhanceContext(context, null));
 
 };
 
@@ -101,59 +101,66 @@ const buildNodeEvaluator = (debug, buildDebugString, strict) => {
 
     case 'LoopSpanner': {
       const feel = node.children[0].content;
-      let iteratorArray;
+      let loopArray;
 
       try {
-        iteratorArray = evaluateFeel(feel, context);
+        loopArray = evaluateFeel(feel, context);
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
       }
 
-      if (!Array.isArray(iteratorArray)) {
+      if (!Array.isArray(loopArray)) {
 
         if (strict) {
           return errorHandler(new Error(`FEEL expression ${feel} expected to evaluate to an array`));
         }
-        else if (iteratorArray === undefined || iteratorArray === null) {
-          iteratorArray = [];
+
+        // if not strict, we treat undefined/null as an empty array
+        else if (loopArray === undefined || loopArray === null) {
+          loopArray = [];
         }
+
+        // if not strict, we treat a single item as an array with one item
         else {
-          iteratorArray = [ iteratorArray ];
+          loopArray = [ loopArray ];
         }
 
       }
 
       const childrenToLoop = node.children.slice(1);
 
-      const evaluateChild = (item, parentContext) => {
-        const subContext = typeof (item) === 'object' ? { this: item, parent: parentContext, ...item, _this_: item, _parent_: parentContext } : { this: item, parent: parentContext, _this_: item, _parent_: parentContext };
-        return childrenToLoop.map(child => evaluateNode(child, subContext)).join('');
+      const evaluateChildren = (arrayElement, parentContext) => {
+        const childContext = enhanceContext(arrayElement, parentContext);
+        return childrenToLoop.map(child => evaluateNode(child, childContext)).join('');
       };
 
-      return iteratorArray.map(item => evaluateChild(item, context)).join('');
+      return loopArray.map(arrayElement => evaluateChildren(arrayElement, context)).join('');
     }}
 
   };
 
   const evaluateNode = (node, context = {}) => {
-
-    if (!(typeof (context) === 'object')) {
-      return errorHandler(new Error('Context must be an object'));
-    }
-
-    context.this = context.this || context;
-
     try {
       return evaluateNodeValue(node, context);
     } catch (error) {
       return errorHandler(error);
     }
-
   };
 
   return evaluateNode;
 
 };
+
+const enhanceContext = (context, parentContext) => {
+
+  if (typeof(context) === 'object') {
+    return { this: context, parent: parentContext, ...context, _this_: context, _parent_: parentContext };
+  }
+
+  return { this: context, parent: parentContext, _this_: context, _parent_: parentContext };
+
+};
+
 
 export default evaluate;
