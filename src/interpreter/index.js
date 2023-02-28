@@ -93,7 +93,13 @@ const buildNodeEvaluator = (debug, buildDebugString, strict) => {
       }
 
       if (shouldRender) {
-        return node.children.slice(1).map(child => evaluateNode(child, context)).join('');
+        const children = node.children.slice(1, node.children.length - 1);
+        const innerRender = children.map(child => evaluateNode(child, context)).join('');
+
+        const closeNode = node.children[node.children.length - 1];
+        const shouldAddNewline = closeNode.name.endsWith('Nl') && !innerRender.endsWith('\n');
+
+        return innerRender + (shouldAddNewline ? '\n' : '');
       }
 
       return '';
@@ -128,14 +134,18 @@ const buildNodeEvaluator = (debug, buildDebugString, strict) => {
 
       }
 
-      const childrenToLoop = node.children.slice(1);
+      const childrenToLoop = node.children.slice(1, node.children.length - 1);
 
       const evaluateChildren = (arrayElement, parentContext) => {
         const childContext = enhanceContext(arrayElement, parentContext);
         return childrenToLoop.map(child => evaluateNode(child, childContext)).join('');
       };
 
-      return loopArray.map(arrayElement => evaluateChildren(arrayElement, context)).join('');
+      const innerRender = loopArray.map(arrayElement => evaluateChildren(arrayElement, context)).join('');
+      const closeNode = node.children[node.children.length - 1];
+      const shouldAddNewline = closeNode.name.endsWith('Nl') && !innerRender.endsWith('\n');
+
+      return innerRender + (shouldAddNewline ? '\n' : '');
     }}
 
   };

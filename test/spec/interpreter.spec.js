@@ -356,6 +356,19 @@ describe('interpreter', () => {
 
     });
 
+    it('should not swallow newlines when evaluating two initial inline conditional inserts', () => {
+
+      // given
+      const stringInput = '{{#if true}}Hello{{/if}}\n{{#if true}}Newline{{/if}}';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal('Hello \nNewline');
+
+    });
+
 
     it('should evaluate simple multiline conditional inserts without creating extra lines', () => {
 
@@ -490,6 +503,20 @@ describe('interpreter', () => {
 
       // then
       expect(result).to.equal('Hello 123456 World');
+
+    });
+
+
+    it('should evaluate two inline loops without swallowing newline', () => {
+
+      // given
+      const stringInput = '{{#loop ["a", "b", "c"]}}{{this}}{{/loop}}\n{{#loop ["a", "b", "c"]}}{{this}}{{/loop}}';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal('abc\nabc');
 
     });
 

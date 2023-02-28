@@ -7,9 +7,9 @@ blockScope { ( SimpleTextBlock | insert | spanner )* }
 
 spanner { ( ConditionalSpanner | LoopSpanner ) }
 
-ConditionalSpanner { conditionOpen FeelBlock spanOpenClose blockScope conditionClose }
+ConditionalSpanner { conditionalSpannerOpen FeelBlock spannerOpenClose blockScope ( ConditionalSpannerClose | ConditionalSpannerCloseNl ) }
 
-LoopSpanner { loopOpen FeelBlock spanOpenClose blockScope loopClose }
+LoopSpanner { loopSpannerOpen FeelBlock spannerOpenClose blockScope ( LoopSpannerClose | LoopSpannerCloseNl ) }
 
 insert { Insert | EmptyInsert }
 
@@ -18,11 +18,14 @@ EmptyInsert { "{{" "="? "}}" }
 Insert { "{{" "="? FeelBlock "}}" }
 
 @tokens {
-  conditionOpen { "{{#if " }
-  loopOpen { "{{#loop " }
-  loopClose { "{{/loop}}" | "{{/loop}}\n"  }
-  conditionClose { "{{/if}}" | "{{/if}}\n" }
-  spanOpenClose { "}}" | "}}\n" }
+  loopSpannerOpen { "{{#loop " }
+  conditionalSpannerOpen { "{{#if " }
+  spannerOpenClose { "}}" | "}}\n" }
+
+  LoopSpannerClose { "{{/loop}}"  }
+  LoopSpannerCloseNl { "{{/loop}}\n"  }
+  ConditionalSpannerClose { "{{/if}}" }
+  ConditionalSpannerCloseNl { "{{/if}}\n" }
 }
 
 @external tokens feel from "./tokens" { Feel }

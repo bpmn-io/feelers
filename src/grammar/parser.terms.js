@@ -7,4 +7,8 @@ export const
   Insert = 5,
   EmptyInsert = 6,
   ConditionalSpanner = 7,
-  LoopSpanner = 8
+  ConditionalSpannerClose = 8,
+  ConditionalSpannerCloseNl = 9,
+  LoopSpanner = 10,
+  LoopSpannerClose = 11,
+  LoopSpannerCloseNl = 12
