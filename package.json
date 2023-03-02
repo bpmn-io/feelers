@@ -24,6 +24,9 @@
     "Grammer",
     "Parser"
   ],
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "dependencies": {
     "@bpmn-io/feel-lint": "^0.1.1",
