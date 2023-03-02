@@ -13,14 +13,40 @@ Like moustache / handlebars but with FEEL.
 ## Usage 
 ...
 
-## Feelers templating 
+## Feelers templating language features
 ...
 
-## Features
-...
+## Build and run
 
-## Build and Run
-...
+Build the project in a Posix environment. On Windows, that is [Git Bash](https://gitforwindows.org/) or WSL. 
+
+Note we currently support development environments with Node.js version 16 (and npm version 8). We encourage you to use a Node.js version manager (e.g., [`nvm`](https://github.com/nvm-sh/nvm) or [`n`](https://github.com/tj/n)) to set up the needed versions.
+
+Prepare the project by installing all dependencies:
+
+```sh
+npm install
+```
+
+Then, depending on your use-case you may run any of the following commands:
+
+```sh
+# run all tests
+npm run test
+
+# runs single-start test case for development
+npm start
+npm run start
+
+# generate the lezer parser from its grammar definition
+npm run generate:parser
+
+# build all dependencies locally and spool up playground
+npm run start:playground
+
+# build all dependencies locally and build playground
+npm run build:playground
+```
 
 ## Related
 
