@@ -365,7 +365,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('Hello \nNewline');
+      expect(result).to.equal('Hello\nNewline');
 
     });
 
