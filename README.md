@@ -1,5 +1,7 @@
 # feelers
 
+![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
+
 A templating solution built on top of [DMN](https://www.omg.org/spec/DMN/) FEEL. 
 Like moustache / handlebars but with FEEL.
 
@@ -9,6 +11,9 @@ Like moustache / handlebars but with FEEL.
 - An editor for feelers, build from [codemirror](https://codemirror.net/)
 - An interpreter to fill your templates with data, powered by [feelin](https://github.com/nikku/feelin)
 - A simple playground to showcase the language 
+
+
+
 
 ## Usage 
 ...
