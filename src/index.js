@@ -1,5 +1,4 @@
-import FeelersEditor from './editor';
-import mixedParser from './editor/language/mixedParser';
-import { parser } from './grammar/parser.js';
+export { default as evaluate } from './interpreter';
+export { default as FeelersEditor } from './editor';
 
-export { FeelersEditor, parser, mixedParser };
+export * from './grammar';
