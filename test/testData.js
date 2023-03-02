@@ -17,11 +17,13 @@ const initialTemplate = `# Employees
 {{#if false}}This should not display{{/if}}
 {{#if true}}This should display{{/if}}
 
+*Some italic text*
+**Some bold text**
 
 # Prices
 
 | Item | Category | Price | Stock |
-| -- | --:| --:|
+| -- | --:| --:| --:|
 {{#loop prices}}
 | {{name}} | {{category}} | {{parent.currencySymbol}}{{price}} | {{stock}} |
 {{/loop}}

@@ -86,16 +86,13 @@ textarea {
 }
 
 .error .error-message {
-	width: 0;
-	display: inline-block;
+	display: none;
 	overflow: hidden;
-	white-space: nowrap;
 	vertical-align: middle;
-	text-align: center;
 	margin-bottom: 4px;
 	margin-left: 2px;
 }
 
 .error:hover .error-message {
-	width: auto;
+	display: inline-block;
 }
