@@ -21,6 +21,8 @@ import { lightTheme, darkTheme } from './theme';
  * @param {Function} [config.onLint]
  * @param {Boolean} [config.readOnly]
  * @param {String} [config.value]
+ * @param {Boolean} [config.enableGutters]
+ * @param {Boolean} [config.darkMode]
  * @param {Variable[]} [config.variables]
  *
  * @returns {Object} editor
