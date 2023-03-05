@@ -3,11 +3,11 @@ import { defaultKeymap } from '@codemirror/commands';
 import { bracketMatching, indentOnInput } from '@codemirror/language';
 import { setDiagnosticsEffect } from '@codemirror/lint';
 import { EditorState } from '@codemirror/state';
-import { EditorView, keymap, tooltips } from '@codemirror/view';
+import { EditorView, keymap, tooltips, lineNumbers } from '@codemirror/view';
 
 import { feelersMixedLanguage } from './language';
 import lint from './lint';
-import theme from './theme';
+import { lightTheme, darkTheme } from './theme';
 
 
 /**
@@ -32,7 +32,9 @@ export default function FeelersEditor({
   onKeyDown = () => { },
   onLint = () => { },
   readOnly = false,
-  value = ''
+  value = '',
+  enableGutters = false,
+  darkMode = false
 }) {
 
   const changeHandler = EditorView.updateListener.of((update) => {
@@ -85,7 +87,12 @@ export default function FeelersEditor({
     lint,
     lintHandler,
     tooltipLayout,
-    theme
+    darkMode ? darkTheme : lightTheme,
+    ...(enableGutters ? [
+
+      // todo: adjust folding boundaries first foldGutter(),
+      lineNumbers()
+    ] : [])
   ];
 
   if (readOnly) {

@@ -1,4 +1,8 @@
 import { customTheme, customSyntaxHighlighting } from './theme';
 import { palenightEditorTheme, palenightSyntaxHighlighting } from './palettes/palenight.js';
+import { basicLightTheme, basicLightHighlightStyle } from './palettes/basiclight';
 
-export default [ customTheme, palenightEditorTheme, customSyntaxHighlighting, palenightSyntaxHighlighting ];
+const lightTheme = [ customTheme, basicLightTheme, basicLightHighlightStyle ];
+const darkTheme = [ customTheme, palenightEditorTheme, customSyntaxHighlighting, palenightSyntaxHighlighting ];
+
+export { lightTheme, darkTheme };
