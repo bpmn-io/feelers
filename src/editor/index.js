@@ -23,7 +23,6 @@ import { lightTheme, darkTheme } from './theme';
  * @param {String} [config.value]
  * @param {Boolean} [config.enableGutters]
  * @param {Boolean} [config.darkMode]
- * @param {Variable[]} [config.variables]
  *
  * @returns {Object} editor
  */
