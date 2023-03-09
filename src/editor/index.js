@@ -32,6 +32,7 @@ export default function FeelersEditor({
   onChange = () => { },
   onKeyDown = () => { },
   onLint = () => { },
+  contentAttributes = { },
   readOnly = false,
   value = '',
   enableGutters = false,
@@ -58,6 +59,8 @@ export default function FeelersEditor({
     onLint(messages);
   });
 
+  const contentAttributesExtension = EditorView.contentAttributes.of(contentAttributes);
+
   const keyHandler = EditorView.domEventHandlers(
     {
       keydown: onKeyDown
@@ -78,6 +81,7 @@ export default function FeelersEditor({
   const extensions = [
     bracketMatching(),
     changeHandler,
+    contentAttributesExtension,
     closeBrackets(),
     indentOnInput(),
     keyHandler,

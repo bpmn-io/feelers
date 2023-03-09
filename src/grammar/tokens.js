@@ -80,9 +80,6 @@ export const feel = new ExternalTokenizer((input, stack) => {
   while (input.peek(lookAhead) !== -1) { lookAhead++; }
 
   if (lookAhead > 0) {
-
-    console.log(lookAhead);
-
     input.advance(lookAhead);
     input.acceptToken(Feel);
   }

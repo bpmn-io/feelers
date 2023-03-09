@@ -5,9 +5,7 @@ import { diagnosticCount, forceLinting } from '@codemirror/lint';
 import { currentCompletions, startCompletion } from '@codemirror/autocomplete';
 import { domify } from 'min-dom';
 
-// todo: convert those ripped tests
-describe.skip('CodeEditor', function() {
-
+describe('FeelersEditor', function() {
 
   let container;
 
@@ -28,9 +26,39 @@ describe.skip('CodeEditor', function() {
 
     // then
     expect(editor).to.exist;
-
   });
 
+
+  it('should allow content attribute extensions', async function() {
+
+    // when
+    const initialValue = 'There are {{= 2 + 2}} apples in the basket.';
+
+    const editor = new FeelersEditor({
+      container,
+      value: initialValue,
+      contentAttributes: { 'data-foo': 'bar' }
+    });
+
+    // then
+    expect(editor).to.exist;
+
+    const content = container.querySelector('.cm-content');
+    expect(content).to.exist;
+    expect(content.getAttribute('data-foo')).to.equal('bar');
+  });
+
+});
+
+
+// todo: convert those ripped tests
+describe.skip('CodeEditor', function() {
+
+  let container;
+
+  beforeEach(function() {
+    container = TestContainer.get(this);
+  });
 
   it('should use supplied document', async function() {
 
