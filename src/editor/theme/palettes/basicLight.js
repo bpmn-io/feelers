@@ -10,7 +10,6 @@ const base00 = '#2e3440', // black
       base03 = '#4c566a'; // grey
 
 // Snow Storm
-// eslint-disable-next-line no-unused-vars
 const base04 = '#d8dee9', // grey
       base05 = '#e5e9f0', // off white
       base06 = '#eceff4'; // white
@@ -71,7 +70,7 @@ export const basicLightTheme = EditorView.theme(
     '.cm-selectionMatch': { backgroundColor: base05 },
 
     '&.cm-focused .cm-matchingBracket, &.cm-focused .cm-nonmatchingBracket': {
-      outline: `1px solid ${base03}`
+      outline: `1px solid ${base04}`
     },
 
     '&.cm-focused .cm-matchingBracket': {
