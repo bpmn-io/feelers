@@ -12,7 +12,8 @@ Like moustache / handlebars but with FEEL.
 - An interpreter to fill your templates with data, powered by [feelin](https://github.com/nikku/feelin)
 - A simple playground to showcase the language 
 
-
+> **Warning**  
+> This package is in early phases of development and is not yet considered stable. Community contributions are very welcome, as always ;)
 
 
 ## Usage 
