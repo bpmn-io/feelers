@@ -4,33 +4,33 @@ import { tags as t } from '@lezer/highlight';
 
 // Colors from https://www.nordtheme.com/docs/colors-and-palettes
 // Polar Night
-const base00 = '#2e3440', // black
-      base01 = '#3b4252', // dark grey
-      base02 = '#434c5e',
-      base03 = '#4c566a'; // grey
+const base00 = '#1f2b36', // black
+      base01 = '#2f3d58', // dark grey
+      base02 = '#364056',
+      base03 = '#404a5c'; // grey
 
 // Snow Storm
-const base04 = '#d8dee9', // grey
-      base05 = '#e5e9f0', // off white
-      base06 = '#eceff4'; // white
+const base04 = '#c5d1e5', // grey
+      base05 = '#d9e0f5', // off white
+      base06 = '#eaf1ff'; // white
 
 // Frost
-const base07 = '#8fbcbb', // moss green
-      base08 = '#88c0d0', // ice blue
-      base09 = '#81a1c1', // water blue
-      base0A = '#5e81ac'; // deep blue
+const base07 = '#7ab6aa', // moss green
+      base08 = '#6cbfd8', // ice blue
+      base09 = '#699bca', // water blue
+      base0A = '#4d6e9d'; // deep blue
 
 // Aurora
-const base0B = '#bf616a', // red
-      base0C = '#d08770', // orange
-      base0D = '#ebcb8b', // yellow
-      base0E = '#a3be8c', // green
-      base0F = '#b48ead'; // purple
+const base0B = '#ad4d5a', // red
+      base0C = '#c2765d', // orange
+      base0D = '#debd71', // yellow
+      base0E = '#93b57e', // green
+      base0F = '#a36b9c'; // purple
 
-const base0BUrl = '%23bf616a',
-      base0DUrl = '%23ebcb8b';
+const base0BUrl = '%23ad4d5a',
+      base0DUrl = '%23debd71';
 
-const invalid = '#d30102',
+const invalid = '#b40000',
       darkBackground = base06,
       highlightBackground = darkBackground,
       background = '#ffffff',
@@ -141,7 +141,7 @@ export const basicLightHighlightStyle = syntaxHighlighting(HighlightStyle.define
   { tag: t.keyword, color: base0A },
   {
     tag: [ t.name, t.deleted, t.character, t.propertyName, t.macroName, t.variableName ],
-    color: base0C
+    color: base0B
   },
   { tag: [ t.function(t.variableName) ], color: base0A },
   { tag: [ t.labelName ], color: base09 },
@@ -199,21 +199,21 @@ export const basicLightHighlightStyle = syntaxHighlighting(HighlightStyle.define
   { tag: t.strong, fontWeight: 'bold', color: base0A },
   { tag: t.emphasis, fontStyle: 'italic', color: base0A },
   { tag: t.strikethrough, textDecoration: 'line-through' },
-  { tag: t.heading, fontWeight: 'bold', color: base0A },
-  { tag: t.special(t.heading1), fontWeight: 'bold', color: base0A },
+  { tag: t.heading, fontWeight: 'bold', color: base03 },
+  { tag: t.special(t.heading1), fontWeight: 'bold', color: base01 },
   {
     tag: [ t.heading1, t.heading2, t.heading3, t.heading4 ],
     fontWeight: 'bold',
-    color: base0A
+    color: base03
   },
   {
     tag: [ t.heading5, t.heading6 ],
-    color: base0A
+    color: base03
   },
   { tag: [ t.atom, t.bool, t.special(t.variableName) ], color: base0C },
   {
     tag: [ t.processingInstruction, t.inserted ],
-    color: base07
+    color: base03
   },
   {
     tag: [ t.contentSeparator ],

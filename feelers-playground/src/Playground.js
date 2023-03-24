@@ -21,6 +21,7 @@ export default function Playground() {
     editorRef.current = new FeelersEditor({
       container: containerRef.current,
       hostLanguage: 'markdown',
+      darkMode: false,
       value: initialTemplate,
       onChange: (value) => setTemplateEditorState(value)
     });
