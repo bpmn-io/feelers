@@ -5,30 +5,37 @@ import { setDiagnosticsEffect } from '@codemirror/lint';
 import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, tooltips, lineNumbers } from '@codemirror/view';
 
-import { feelersMixedLanguage } from './language';
+import { parser as markdownParser } from '@lezer/markdown';
+import { createFeelersLanguageSupport } from './language';
+
 import lint from './lint';
 import { lightTheme, darkTheme } from './theme';
 
 
 /**
- * Creates a Feelers editor in the supplied container
+ * Creates a Feelers editor in the supplied container.
  *
- * @param {Object} config
- * @param {DOMNode} config.container
- * @param {DOMNode|String} [config.tooltipContainer]
- * @param {Function} [config.onChange]
- * @param {Function} [config.onKeyDown]
- * @param {Function} [config.onLint]
- * @param {Boolean} [config.readOnly]
- * @param {String} [config.value]
- * @param {Boolean} [config.enableGutters]
- * @param {Boolean} [config.darkMode]
+ * @param {Object} config Configuration options for the Feelers editor.
+ * @param {DOMNode} [config.container] The DOM node that will contain the editor.
+ * @param {DOMNode|String} [config.tooltipContainer] The DOM node or CSS selector string for the tooltip container.
+ * @param {String} [config.hostLanguage] The host language for the editor (e.g., 'markdown').
+ * @param {Object} [config.hostLanguageParser] A custom parser for the host language.
+ * @param {Function} [config.onChange] Callback function that is called when the editor's content changes.
+ * @param {Function} [config.onKeyDown] Callback function that is called when a key is pressed within the editor.
+ * @param {Function} [config.onLint] Callback function that is called when linting messages are available.
+ * @param {Object} [config.contentAttributes] Additional attributes to set on the editor's content element.
+ * @param {Boolean} [config.readOnly] Set to true to make the editor read-only.
+ * @param {String} [config.value] Initial value of the editor.
+ * @param {Boolean} [config.enableGutters] Set to true to enable gutter decorations (e.g., line numbers).
+ * @param {Boolean} [config.darkMode] Set to true to use the dark theme for the editor.
  *
- * @returns {Object} editor
+ * @returns {Object} editor An instance of the FeelersEditor class.
  */
 export default function FeelersEditor({
   container,
   tooltipContainer,
+  hostLanguage,
+  hostLanguageParser,
   onChange = () => { },
   onKeyDown = () => { },
   onLint = () => { },
@@ -78,6 +85,17 @@ export default function FeelersEditor({
     }
   }) : [];
 
+  const _getHostLanguageParser = (hostLanguage) => {
+    switch (hostLanguage) {
+    case 'markdown':
+      return markdownParser;
+    default:
+      return null;
+    }
+  };
+
+  const feelersLanguageSupport = createFeelersLanguageSupport(hostLanguageParser || hostLanguage && _getHostLanguageParser(hostLanguage));
+
   const extensions = [
     bracketMatching(),
     changeHandler,
@@ -88,7 +106,7 @@ export default function FeelersEditor({
     keymap.of([
       ...defaultKeymap,
     ]),
-    feelersMixedLanguage,
+    feelersLanguageSupport,
     lint,
     lintHandler,
     tooltipLayout,
