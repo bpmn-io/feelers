@@ -20,6 +20,7 @@ export default function Playground() {
 
     editorRef.current = new FeelersEditor({
       container: containerRef.current,
+      hostLanguage: 'markdown',
       value: initialTemplate,
       onChange: (value) => setTemplateEditorState(value)
     });
@@ -66,7 +67,7 @@ export default function Playground() {
   }, [computedOutput]);
 
   const onContextKeyDown = (e) => {
-    
+
     if (e.key == 'Tab') {
       e.preventDefault();
       const target = e.target;

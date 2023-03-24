@@ -11,8 +11,8 @@ Like moustache / handlebars but with FEEL.
 
 **Package includes:**
 - A [lezer](https://lezer.codemirror.net/) grammar and consequently parser for the templating language
-- A parseMixed language definition which brings markdown, lezer and FEEL parsing all into one
-- An editor for feelers, build from [codemirror](https://codemirror.net/)
+- A parseMixed language definition which brings `feelers` templating, `feel` parsing and an optional host language together
+- An editor for feelers, build on top of [codemirror](https://codemirror.net/)
 - An interpreter to fill your templates with data, powered by [feelin](https://github.com/nikku/feelin)
 - A simple playground to showcase the language 
 
