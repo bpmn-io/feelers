@@ -133,8 +133,8 @@ export const palenightSyntaxHighlighting = syntaxHighlighting(HighlightStyle.def
   { tag: t.bracket, color: '#a2a1a4' },
   { tag: t.meta, color: '#ffcb6b' },
   { tag: t.special(t.string), color: peach },
-  { tag: t.propertyName, color: peach },
-  { tag: t.variableName, color: peach },
+  { tag: t.propertyName, color: pastelOrange },
+  { tag: t.variableName, color: pastelOrange },
   { tag: t.attributeName, color: peach },
   { tag: t.className, color: peach },
   { tag: t.invalid, color: invalid }
