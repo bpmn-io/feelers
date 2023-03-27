@@ -9,8 +9,7 @@ import { parser as markdownParser } from '@lezer/markdown';
 import { createFeelersLanguageSupport } from './language';
 
 import lint from './lint';
-import { lightTheme, darkTheme } from './theme';
-
+import { lightTheme, darkTheme } from '@bpmn-io/cm-theme';
 
 /**
  * Creates a Feelers editor in the supplied container.
