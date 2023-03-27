@@ -6,6 +6,11 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.1.0-alpha.5
+
+- `FEAT`: parameterized the editor host language (markdown is now opt-in)
+- `FIX`: adjusted themes to match variable and bracket color
+
 ## 0.1.0-alpha.4
 
 - `FEAT`: added content attribute extension to API 
