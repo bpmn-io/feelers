@@ -6,7 +6,7 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
-## 0.1.0-alpha.7
+## 0.1.0-alpha.8
 
 - `FEAT`: added single line mode
 
