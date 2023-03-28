@@ -42,6 +42,7 @@ export default function FeelersEditor({
   readOnly = false,
   value = '',
   enableGutters = false,
+  singleLine = false,
   darkMode = false
 }) {
 
@@ -114,11 +115,18 @@ export default function FeelersEditor({
 
       // todo: adjust folding boundaries first foldGutter(),
       lineNumbers()
+    ] : []),
+    ...(singleLine ? [
+      EditorState.transactionFilter.of(tr => tr.newDoc.lines > 1 ? [] : tr)
     ] : [])
   ];
 
   if (readOnly) {
     extensions.push(EditorView.editable.of(false));
+  }
+
+  if (singleLine && value) {
+    value = value.toString().split('\n')[0];
   }
 
   this._cmEditor = new EditorView({
