@@ -6,6 +6,10 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+## 0.1.0-alpha.6
+
+- `FEAT`: higher contrast light theme
+
 ## 0.1.0-alpha.5
 
 - `FEAT`: parameterized the editor host language (markdown is now opt-in)
