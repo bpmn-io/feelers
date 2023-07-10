@@ -282,7 +282,7 @@ describe('interpreter', () => {
     it('should error on invalid feel', () => {
 
       // given
-      const stringInput = 'Hello {{= iff (a + 1 = 2) then "Hello World" else "Goodbye World"}} World {{iff()}}';
+      const stringInput = 'Hello {{= iff (a + 1 = 2) then "Hello World" else "Goodbye World"}} World {{iff () then "Hello World" else "Goodbye World"}}';
       const context = { a: 1 };
 
       // when
