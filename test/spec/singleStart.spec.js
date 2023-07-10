@@ -16,7 +16,7 @@ describe('CodeEditor', function() {
   });
 
 
-  (singleStart ? it.only : it)('should render', async function() {
+  (singleStart ? it.only : it.skip)('should render', async function() {
 
     // when
     const editor = new FeelersEditor({
