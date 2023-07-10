@@ -6,6 +6,10 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+### Breaking
+
+- `DEPS`: bumped feelin to `1.0.0`, which no longer supports expression list evaluation, as per the DMN FEEL specification. This is unlikely to have affected many people, if any.   
+
 ## 0.1.0-alpha.8
 
 - `FEAT`: added single line mode
