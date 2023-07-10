@@ -10,6 +10,7 @@
     "bundle": "rollup -c",
     "dev": "npm test -- --auto-watch --no-single-run",
     "build": "npm run generate:parser && npm run bundle",
+    "lint": "eslint",
     "start": "cross-env SINGLE_START=true npm run dev",
     "build:playground": "npm run build && npm run --prefix feelers-playground build",
     "start:playground": "npm run build && npm run --prefix feelers-playground dev"
