@@ -1,6 +1,6 @@
 {
   "name": "feelers",
-  "version": "0.1.0-alpha.8",
+  "version": "0.1.0",
   "description": "FEELers grammar and editor for the Lezer parser system.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
