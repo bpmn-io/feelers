@@ -1,7 +1,3 @@
-> **Warning**  
-> This package is in early phases of development and is not yet considered stable. Community contributions are very welcome, as always ;)
-
-
 # feelers
 
 ![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
