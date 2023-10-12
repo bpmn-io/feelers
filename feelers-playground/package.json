@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env preact build",
+    "build": "cross-env preact build --no-prerender",
     "serve": "sirv build --port 8080 --cors --single",
-    "dev": "cross-env preact watch",
+    "dev": "cross-env preact watch --no-prerender --no-refresh",
     "lint": "eslint src"
   },
   "eslintConfig": {
@@ -17,13 +17,12 @@
   ],
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "preact-cli": "^3.5.0",
+    "preact-cli": "^4.0.0-next.2",
     "sirv-cli": "^1.0.3"
   },
   "dependencies": {
     "preact": "^10.18.1",
     "preact-markup": "^2.1.1",
-    "preact-render-to-string": "^6.2.2",
     "showdown": "^2.1.0"
   }
 }
