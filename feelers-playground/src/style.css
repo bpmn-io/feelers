@@ -1,6 +1,5 @@
 #template *, #context *, #output * {
-
-	font-family: 'Consolas', 'Consolas Bold'
+	font-family: 'Consolas', 'Consolas Bold', 'monospace';
 }
 
 #context *, #output *, body, .root, .col, textarea {
