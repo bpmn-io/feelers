@@ -16,7 +16,7 @@ ___Note:__ Yet to be released changes appear here._
 
 ## 0.1.0
 
-### Breaking
+### Breaking Changes
 
 * `DEPS`: bumped feelin to `1.0.0`, which no longer supports expression list evaluation, as per the DMN FEEL specification. This is unlikely to have affected many people, if any.
 
