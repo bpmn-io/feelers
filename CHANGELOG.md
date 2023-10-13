@@ -5,7 +5,15 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 ## Unreleased
 
 ___Note:__ Yet to be released changes appear here._
- 
+
+## 1.0.0
+
+* `FIX`: expose module using `mjs` extension ([#21](https://github.com/bpmn-io/feelers/pull/21))
+* `FIX`: correct playground not bundling ([#21](https://github.com/bpmn-io/feelers/pull/21))
+* `DEPS`: update to `lezer-feel@1.2.0`
+* `DEPS`: update to `feelin@1.2.0`
+* `DEPS`: update `lezer*` dependencies
+
 ## 0.1.0
 
 ### Breaking
