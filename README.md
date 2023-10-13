@@ -1,16 +1,21 @@
 # feelers
 
-![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
+[![CI](https://github.com/bpmn-io/feelers/actions/workflows/CI.yml/badge.svg)](https://github.com/bpmn-io/feelers/actions/workflows/CI.yml)
 
 A templating solution built on top of [DMN](https://www.omg.org/spec/DMN/) FEEL. 
 Like moustache / handlebars but with FEEL.
 
-**Package includes:**
-- A [lezer](https://lezer.codemirror.net/) grammar and consequently parser for the templating language
-- A parseMixed language definition which brings `feelers` templating, `feel` parsing and an optional host language together
-- An editor for feelers, build on top of [codemirror](https://codemirror.net/)
-- An interpreter to fill your templates with data, powered by [feelin](https://github.com/nikku/feelin)
-- A simple playground to showcase the language 
+![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
+
+
+## What is inside
+
+* A [lezer](https://lezer.codemirror.net/) grammar and consequently parser for the templating language
+* A parseMixed language definition which brings `feelers` templating, `feel` parsing and an optional host language together
+* An editor for feelers, build on top of [codemirror](https://codemirror.net/)
+* An interpreter to fill your templates with data, powered by [feelin](https://github.com/nikku/feelin)
+* A simple playground to showcase the language 
+
 
 ## Usage 
 ...
@@ -54,7 +59,6 @@ npm run build:playground
 
 * [lezer-feel](https://github.com/nikku/lezer-feel) - FEEL language definition for the [Lezer](https://lezer.codemirror.net/) parser system
 * [feel-playground](https://github.com/nikku/feel-playground) - Interactive playground to learn the FEEL language
-* ...
 
 ## License
 
