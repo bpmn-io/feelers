@@ -6,6 +6,10 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.1.0
+
+* `DEPS`: update to `@bpmn-io/feel-lint@1.1.0`
+
 ## 1.0.0
 
 * `FIX`: expose module using `mjs` extension ([#21](https://github.com/bpmn-io/feelers/pull/21))
