@@ -18,36 +18,36 @@ ___Note:__ Yet to be released changes appear here._
 
 ### Breaking
 
-- `DEPS`: bumped feelin to `1.0.0`, which no longer supports expression list evaluation, as per the DMN FEEL specification. This is unlikely to have affected many people, if any.
+* `DEPS`: bumped feelin to `1.0.0`, which no longer supports expression list evaluation, as per the DMN FEEL specification. This is unlikely to have affected many people, if any.
 
 ## 0.1.0-alpha.8
 
-- `FEAT`: added single line mode
+* `FEAT`: added single line mode
 
 ## 0.1.0-alpha.6
 
-- `FEAT`: higher contrast light theme
+* `FEAT`: higher contrast light theme
 
 ## 0.1.0-alpha.5
 
-- `FEAT`: parameterized the editor host language (markdown is now opt-in)
-- `FIX`: adjusted themes to match variable and bracket color
+* `FEAT`: parameterized the editor host language (markdown is now opt-in)
+* `FIX`: adjusted themes to match variable and bracket color
 
 ## 0.1.0-alpha.4
 
-- `FEAT`: added content attribute extension to API 
+* `FEAT`: added content attribute extension to API
 
 ## 0.1.0-alpha.3
 
-- `FIX`: differentiated cursor from bracket match outlines in light mode
+* `FIX`: differentiated cursor from bracket match outlines in light mode
 
 ## 0.1.0-alpha.2
 
-- `FEAT`: implemented light mode
+* `FEAT`: implemented light mode
 
 ## 0.1.0-alpha.1
 
-- `FIX`: fixed exports 
+* `FIX`: fixed exports
 
 ## 0.1.0-alpha.0
 
