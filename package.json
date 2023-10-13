@@ -20,6 +20,9 @@
     "name": "Valentin Serra",
     "url": "https://github.com/skaiir"
   },
+  "engines": {
+    "node": "*"
+  },
   "keywords": [
     "FEEL",
     "FEELers",
