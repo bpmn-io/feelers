@@ -76,6 +76,34 @@ describe('interpreter', () => {
 
     });
 
+
+    it('should return objects unmodified', () => {
+
+      // given
+      const stringInput = '{ "a": 1, "b": 2 }';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal(stringInput);
+
+    });
+
+
+    it('should return function keywords unmodified', () => {
+
+      // given
+      const stringInput = 'date';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal(stringInput);
+
+    });
+
   });
 
 
@@ -171,6 +199,65 @@ describe('interpreter', () => {
 
       // then
       expect(result).to.equal('Goodbye World');
+    });
+
+
+    it('should stringify objects', () => {
+
+      // given
+      const stringInput = '= { "a": 1, "b": 2 }';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal('{a: 1, b: 2}');
+
+    });
+
+
+    it('should stringify arrays', () => {
+
+      // given
+      const stringInput = '= [ 1, 2, 3 ]';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal('[1, 2, 3]');
+
+    });
+
+
+    it('should stringify nested objects', () => {
+
+      // given
+      const stringInput = '= { "a": { "b": 2 } }';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal('{a: {b: 2}}');
+
+    });
+
+
+    it('should error on function keywords', () => {
+
+      // given
+      const stringInput = '= date';
+
+      // when
+      const result = evaluate(stringInput, {}, {
+        debug: true,
+        buildDebugString: (e) => ERROR_CHAR
+      });
+
+      // then
+      expect(result).to.equal(ERROR_CHAR);
+
     });
 
   });
@@ -279,6 +366,34 @@ describe('interpreter', () => {
     });
 
 
+    it('should stringify objects', () => {
+
+      // given
+      const stringInput = 'Hello {{= { "a": 1, "b": 2 } }} World';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal('Hello {a: 1, b: 2} World');
+
+    });
+
+
+    it('should stringify arrays', () => {
+
+      // given
+      const stringInput = 'Hello {{= [ 1, 2, 3 ] }} World';
+
+      // when
+      const result = evaluate(stringInput);
+
+      // then
+      expect(result).to.equal('Hello [1, 2, 3] World');
+
+    });
+
+
     it('should error on invalid feel', () => {
 
       // given
@@ -293,6 +408,23 @@ describe('interpreter', () => {
 
       // then
       expect(result).to.equal(`Hello ${ERROR_CHAR} World ${ERROR_CHAR}`);
+
+    });
+
+
+    it('should error on function keywords', () => {
+
+      // given
+      const stringInput = 'Hello {{= date}} World';
+
+      // when
+      const result = evaluate(stringInput, {}, {
+        debug: true,
+        buildDebugString: (e) => ERROR_CHAR
+      });
+
+      // then
+      expect(result).to.equal(`Hello ${ERROR_CHAR} World`);
 
     });
 
