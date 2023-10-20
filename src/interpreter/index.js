@@ -54,7 +54,7 @@ const buildNodeEvaluator = (debug, buildDebugString, strict) => {
       const feel = node.children[0].content;
 
       try {
-        return evaluateFeel(feel, context);
+        return evaluateFeel(`string(${feel})`, context);
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
@@ -66,11 +66,13 @@ const buildNodeEvaluator = (debug, buildDebugString, strict) => {
 
     case 'Feel':
     case 'FeelBlock': {
+      const feel = node.content;
+
       try {
-        return evaluateFeel(node.content, context);
+        return evaluateFeel(`string(${feel})`, context);
       }
-      catch {
-        return errorHandler(new Error(`FEEL expression ${node.content} couldn't be evaluated`));
+      catch (e) {
+        return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
       }
     }
 
