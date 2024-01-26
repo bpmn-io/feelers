@@ -6,6 +6,7 @@ import { evaluate as evaluateFeel } from 'feelin';
  * @property {boolean} [debug=false] - whether to enable debug mode, which displays errors inline instead of throwing them
  * @property {function} [buildDebugString=(e) => `{{ ${e.message.toLowerCase()} }}`] - function that takes an error and returns the string to display in debug mode
  * @property {boolean} [strict=false] - whether to expect strict data types out of our FEEL expression, e.g. boolean for conditionals
+ * @property {function} [sanitizer] - function to sanitize individual FEEL evaluation results
  */
 
 /**
@@ -18,21 +19,29 @@ const evaluate = (templateString, context = {}, options = {}) => {
 
   const {
     debug = false,
+    strict = false,
     buildDebugString = (e) => `{{ ${e.message.toLowerCase()} }}`,
-    strict = false
+    sanitizer
   } = options;
 
   const parseTree = parser.parse(templateString);
 
   const simpleTreeRoot = buildSimpleTree(parseTree, templateString);
 
-  const evaluateNode = buildNodeEvaluator(debug, buildDebugString, strict);
+  const evaluateNode = buildNodeEvaluator({ debug, strict, buildDebugString, sanitizer });
 
   return evaluateNode(simpleTreeRoot, enhanceContext(context, null));
 
 };
 
-const buildNodeEvaluator = (debug, buildDebugString, strict) => {
+const buildNodeEvaluator = (options) => {
+
+  const {
+    debug,
+    strict,
+    buildDebugString,
+    sanitizer
+  } = options;
 
   const errorHandler = (error) => {
 
@@ -54,7 +63,8 @@ const buildNodeEvaluator = (debug, buildDebugString, strict) => {
       const feel = node.children[0].content;
 
       try {
-        return evaluateFeel(`string(${feel})`, context);
+        const result = evaluateFeel(`string(${feel})`, context);
+        return sanitizer ? sanitizer(result) : result;
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
@@ -69,7 +79,8 @@ const buildNodeEvaluator = (debug, buildDebugString, strict) => {
       const feel = node.content;
 
       try {
-        return evaluateFeel(`string(${feel})`, context);
+        const result = evaluateFeel(`string(${feel})`, context);
+        return sanitizer ? sanitizer(result) : result;
       }
       catch (e) {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
