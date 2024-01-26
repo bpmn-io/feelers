@@ -260,6 +260,21 @@ describe('interpreter', () => {
 
     });
 
+
+    it('should sanitize according to sanitizer function', () => {
+
+      // given
+      const stringInput = '= 1 + 1';
+      const sanitizer = (result) => `Sanitized ${result}`;
+
+      // when
+      const result = evaluate(stringInput, {}, { sanitizer });
+
+      // then
+      expect(result).to.equal('Sanitized 2');
+
+    });
+
   });
 
 
@@ -428,6 +443,21 @@ describe('interpreter', () => {
 
     });
 
+
+    it('should sanitize according to sanitizer function', () => {
+
+      // given
+      const stringInput = 'Hello {{= 1 + 1}} World';
+      const sanitizer = (result) => `Sanitized ${result}`;
+
+      // when
+      const result = evaluate(stringInput, {}, { sanitizer });
+
+      // then
+      expect(result).to.equal('Hello Sanitized 2 World');
+
+    });
+
   });
 
 
@@ -574,6 +604,37 @@ describe('interpreter', () => {
 
     });
 
+
+    it('should evaluate nested simple inserts', () => {
+
+      // given
+      const stringInput = 'Hello {{#if pho_exists}}Delicious {{= ramen}} {{/if}}World';
+      const context = { pho_exists: true, ramen: 'Umami' };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('Hello Delicious Umami World');
+
+    });
+
+
+    it('should evaluate nested simple inserts with sanitization', () => {
+
+      // given
+      const stringInput = 'Hello {{#if pho_exists}}Delicious {{= ramen}} {{/if}}World';
+      const context = { pho_exists: true, ramen: 'Umami' };
+      const sanitizer = (result) => `Sanitized ${result}`;
+
+      // when
+      const result = evaluate(stringInput, context, { sanitizer });
+
+      // then
+      expect(result).to.equal('Hello Delicious Sanitized Umami World');
+
+    });
+
   });
 
 
@@ -604,6 +665,21 @@ describe('interpreter', () => {
 
       // then
       expect(result).to.equal('Hello abc World');
+
+    });
+
+
+    it('should evaluate simple loop inserts with primitive array context and sanitizer', () => {
+
+      // given
+      const stringInput = 'Hello {{#loop items}}{{this}}{{/loop}} World';
+      const context = { items: [ 'a', 'b', 'c' ] };
+
+      // when
+      const result = evaluate(stringInput, context, { sanitizer: (result) => `|${result}` });
+
+      // then
+      expect(result).to.equal('Hello |a|b|c World');
 
     });
 
