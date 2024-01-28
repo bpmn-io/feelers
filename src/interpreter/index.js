@@ -34,6 +34,10 @@ const evaluate = (templateString, context = {}, options = {}) => {
 
 };
 
+/**
+ * @param {EvaluationOptions} options - options to configure the evaluation
+ * @return {function} a function that takes a node and context and evaluates it
+ */
 const buildNodeEvaluator = (options) => {
 
   const {
