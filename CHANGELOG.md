@@ -6,6 +6,13 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.3.0
+
+* `FEAT`: feat: add sanitizer option to feelers ([#27](https://github.com/bpmn-io/feelers/pull/27))
+* `DEPS`: update to `feelin@3.0.0`
+* `DEPS`: update to `lezer-feel@1.2.4`
+* `DEPS`: update to `@bpmn-io/feel-lint@1.2.0`
+
 ## 1.2.0
 
 * `FEAT`: evaluate expressions with feel native string conversion ([#6a30a7c8](https://github.com/bpmn-io/feelers/commit/6a30a7c85a21d5215dead7e1d2639d0aea3f79dc))
