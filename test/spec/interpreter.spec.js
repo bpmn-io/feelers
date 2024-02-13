@@ -444,6 +444,20 @@ describe('interpreter', () => {
     });
 
 
+    it('should support builtins overrides', () => {
+
+      // given
+      const stringInput = 'Hello {{= user}}, it has been {{= duration}} since your last login.';
+
+      // when
+      const result = evaluate(stringInput, { user: 'John Doe', duration: '2 days' });
+
+      // then
+      expect(result).to.equal('Hello John Doe, it has been 2 days since your last login.');
+
+    });
+
+
     it('should sanitize according to sanitizer function', () => {
 
       // given
