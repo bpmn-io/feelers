@@ -3,7 +3,15 @@
   "extends": [
     "github>bpmn-io/renovate-config:recommended"
   ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^feelin$", "^lezer-feel$", "^@bpmn-io/cm-theme$", "^@bpmn-io/feel-lint$"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "stabilityDays": 0,
+      "prCreation": "immediate"
+    }
+  ],
   "reviewers": [
-    "team:hto-dev"
+    "Skaiir"
   ]
 }
