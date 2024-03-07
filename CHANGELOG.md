@@ -6,6 +6,10 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.3.1
+
+* `FIX`: allow context overrides for builtins ([aa20cbba](https://github.com/bpmn-io/feelers/commit/aa20cbbadaf101ebbcc596a17accd3f687846770))
+
 ## 1.3.0
 
 * `FEAT`: add sanitizer option to feelers ([#27](https://github.com/bpmn-io/feelers/pull/27))
