@@ -18,7 +18,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "preact-cli": "^4.0.0-next.6",
-    "sirv-cli": "^1.0.3"
+    "sirv-cli": "^2.0.0"
   },
   "dependencies": {
     "preact": "^10.18.1",
