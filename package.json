@@ -49,7 +49,7 @@
     "@lezer/markdown": "^1.1.0",
     "feelin": "^3.0.1",
     "lezer-feel": "^1.2.4",
-    "min-dom": "^4.1.0"
+    "min-dom": "^5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.0",
