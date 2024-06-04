@@ -21,7 +21,8 @@ describe('CodeEditor', function() {
     // when
     const editor = new FeelersEditor({
       container: container,
-      value: initialTemplate
+      value: initialTemplate,
+      lineWrap: true,
     });
 
     // then

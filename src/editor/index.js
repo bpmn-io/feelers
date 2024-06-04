@@ -26,6 +26,8 @@ import { lightTheme, darkTheme } from '@bpmn-io/cm-theme';
  * @param {Boolean} [config.readOnly] Set to true to make the editor read-only.
  * @param {String} [config.value] Initial value of the editor.
  * @param {Boolean} [config.enableGutters] Set to true to enable gutter decorations (e.g., line numbers).
+ * @param {Boolean} [config.singleLine] Set to true to limit the editor to a single line.
+ * @param {Boolean} [config.lineWrap] Set to true to enable line wrapping.
  * @param {Boolean} [config.darkMode] Set to true to use the dark theme for the editor.
  *
  * @returns {Object} editor An instance of the FeelersEditor class.
@@ -43,6 +45,7 @@ export default function FeelersEditor({
   value = '',
   enableGutters = false,
   singleLine = false,
+  lineWrap = false,
   darkMode = false
 }) {
 
@@ -118,6 +121,9 @@ export default function FeelersEditor({
     ] : []),
     ...(singleLine ? [
       EditorState.transactionFilter.of(tr => tr.newDoc.lines > 1 ? [] : tr)
+    ] : []),
+    ...(lineWrap ? [
+      EditorView.lineWrapping
     ] : [])
   ];
 
