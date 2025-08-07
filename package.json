@@ -14,7 +14,9 @@
     "lint": "eslint",
     "start": "cross-env SINGLE_START=true npm run dev",
     "build:playground": "npm run build && npm run --prefix feelers-playground build",
-    "start:playground": "npm run build && npm run --prefix feelers-playground dev"
+    "start:playground": "npm run build && npm run --prefix feelers-playground dev",
+    "build:compiler-playground": "npm run build && npm run --prefix feelers-compiler-playground build",
+    "start:compiler-playground": "npm run build && npm run --prefix feelers-compiler-playground dev"
   },
   "author": {
     "name": "Valentin Serra",
@@ -36,7 +38,9 @@
   "license": "MIT",
   "dependencies": {
     "@bpmn-io/cm-theme": "^0.1.0-alpha.2",
+    "@bpmn-io/feel-editor": "^1.11.0",
     "@bpmn-io/feel-lint": "^1.2.0",
+    "@camunda/feel-builtins": "^0.2.0",
     "@codemirror/autocomplete": "^6.10.1",
     "@codemirror/commands": "^6.3.0",
     "@codemirror/language": "^6.9.1",
@@ -48,6 +52,7 @@
     "@lezer/lr": "^1.3.13",
     "@lezer/markdown": "^1.1.0",
     "feelin": "^4.0.0",
+    "lang-feel": "^2.3.0",
     "lezer-feel": "^1.2.4",
     "min-dom": "^5.0.0"
   },
@@ -84,7 +89,8 @@
   },
   "workspaces": {
     "packages": [
-      "feelers-playground"
+      "feelers-playground",
+      "feelers-compiler-playground"
     ]
   }
 }
