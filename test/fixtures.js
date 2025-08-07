@@ -1,5 +1,3 @@
-// Fixtures rewritten to use JavaScript template literals for **all** `template` and `expected` fields
-
 export const complexLoopsAndConditionalsFixture = {
   name: 'complexLoopsAndConditionals',
   template: `# Employees
