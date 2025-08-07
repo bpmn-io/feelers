@@ -29,12 +29,18 @@ module.exports = function (karma) {
       [suite]: ['webpack', 'env']
     },
 
-    reporters: ['progress'].concat(coverage ? 'coverage' : []),
+    reporters: ['mocha'].concat(coverage ? 'coverage' : []),
 
     coverageReporter: {
       reporters: [
         { type: 'lcov', subdir: '.' }
       ]
+    },
+
+    mochaReporter: {
+      output: 'autowatch',
+      showDiff: true,
+      ignoreSkipped: true
     },
 
     browsers: browsers,
