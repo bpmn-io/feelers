@@ -1,27 +1,24 @@
 export const complexLoopsAndConditionalsFixture = {
   name: 'complexLoopsAndConditionals',
-  template: `# Employees
+  template: `
+    # Employees
     
-    ## Alice
-    *Currently 30 years old, contact* [@alice30](https://twitter.com/alice30)
-    
-    ### Skills
-    - JavaScript
-    - React
-    - Node.js
-    
-    ## Bob
-    *Currently 22 years old, contact* [@bobby22](https://twitter.com/bobby22)
-    
-    ### Skills
-    - Python
-    - Django
+    {{#loop users}}
+    ## {{name}}
+    *Currently {{age}} years old, contact* [@{{twitter}}]({{"https://twitter.com/" + twitter}})
+
+    {{#loop skills}}
+    - {{this}}
+    {{/loop}}
+  
+    {{/loop}}
     
     # Some conditions
     
-    There are multiple users
-    This should display
-    
+    {{#if count(users) > 1}}There are multiple users{{/if}}
+    {{#if false}}This should not display{{/if}}
+    {{#if true}}This should display{{/if}}
+
     *Some italic text*
     **Some bold text**
     
@@ -29,8 +26,10 @@ export const complexLoopsAndConditionalsFixture = {
     
     | Item | Category | Price | Stock |
     | -- | --:| --:| --:|
-    | Laptop | Electronics | $1249.99 | 4 |
-    | Coffee Beans | Grocery | $11.5 | 42 |`,
+    {{#loop prices}}
+    | {{name}} | {{category}} | {{parent.currencySymbol}}{{price}} | {{stock}} |
+    {{/loop}}
+`,
   context: {
     users: [
       {
@@ -52,7 +51,8 @@ export const complexLoopsAndConditionalsFixture = {
     ],
     currencySymbol: '$',
   },
-  expected: `# Employees
+  expected: `
+    # Employees
     
     ## Alice
     *Currently 30 years old, contact* [@alice30](https://twitter.com/alice30)
@@ -115,10 +115,8 @@ export const inlineIfThenElseFixture = {
 
 export const conditionalSectionsFixture = {
   name: 'conditionalSections',
-  template: `
-{{#if isAdmin}}🛡️  Welcome, admin {{user}}!{{/if}}
-{{#if not isAdmin}}⛔️  Access denied for {{user}}.{{/if}}
-    `,
+  template: `{{#if isAdmin}}🛡️  Welcome, admin {{user}}!{{/if}}
+{{#if not(isAdmin)}}⛔️  Access denied for {{user}}.{{/if}}`,
   context: { user: 'Eve', isAdmin: false },
   expected: '⛔️  Access denied for Eve.',
 };
