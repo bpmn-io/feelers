@@ -3,7 +3,7 @@
 [![CI](https://github.com/bpmn-io/feelers/actions/workflows/CI.yml/badge.svg)](https://github.com/bpmn-io/feelers/actions/workflows/CI.yml)
 
 A templating solution built on top of [DMN](https://www.omg.org/spec/DMN/) FEEL. 
-Like moustache / handlebars but with FEEL.
+Like [mustache](https://mustache.github.io/) / [handlebars](https://handlebarsjs.com/) but with FEEL.
 
 ![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
 
