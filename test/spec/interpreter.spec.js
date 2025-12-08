@@ -1,4 +1,4 @@
-import evaluate from '../../src/interpreter';
+import { evaluate } from '../../src/interpreter';
 import { expect } from 'chai';
 
 const ERROR_CHAR = '⚠';

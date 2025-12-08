@@ -6,7 +6,7 @@ import evaluate from '../../src/interpreter';
 import Markup from 'preact-markup';
 import showdown from 'showdown';
 
-export default function Playground() {
+export function Playground() {
 
   const [ templateEditorState, setTemplateEditorState ] = useState();
   const [ templateContext, setTemplateContext ] = useState(null);

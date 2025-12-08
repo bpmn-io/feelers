@@ -8,7 +8,7 @@ import { EditorView, keymap, tooltips, lineNumbers } from '@codemirror/view';
 import { parser as markdownParser } from '@lezer/markdown';
 import { createFeelersLanguageSupport } from './language';
 
-import lint from './lint';
+import { feelersLinter } from './lint';
 import { lightTheme, darkTheme } from '@bpmn-io/cm-theme';
 
 /**
@@ -32,7 +32,7 @@ import { lightTheme, darkTheme } from '@bpmn-io/cm-theme';
  *
  * @returns {Object} editor An instance of the FeelersEditor class.
  */
-export default function FeelersEditor({
+export function FeelersEditor({
   container,
   tooltipContainer,
   hostLanguage,
@@ -109,7 +109,7 @@ export default function FeelersEditor({
       ...defaultKeymap,
     ]),
     feelersLanguageSupport,
-    lint,
+    feelersLinter,
     lintHandler,
     tooltipLayout,
     darkMode ? darkTheme : lightTheme,
