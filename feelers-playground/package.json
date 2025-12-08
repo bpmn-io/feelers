@@ -9,12 +9,6 @@
     "dev": "cross-env preact watch --no-prerender --no-refresh",
     "lint": "eslint src"
   },
-  "eslintConfig": {
-    "extends": "preact"
-  },
-  "eslintIgnore": [
-    "build/*"
-  ],
   "devDependencies": {
     "cross-env": "^7.0.3",
     "preact-cli": "^4.0.0-next.6",
