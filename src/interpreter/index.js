@@ -15,7 +15,7 @@ import { evaluate as evaluateFeel } from 'feelin';
  * @param {EvaluationOptions} [options={}] - options to configure the evaluation
  * @return {string} the evaluated template string
  */
-const evaluate = (templateString, context = {}, options = {}) => {
+export const evaluate = (templateString, context = {}, options = {}) => {
 
   const {
     debug = false,
@@ -188,6 +188,3 @@ const enhanceContext = (context, parentContext) => {
   return { this: context, parent: parentContext, _this_: context, _parent_: parentContext };
 
 };
-
-
-export default evaluate;

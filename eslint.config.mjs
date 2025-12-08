@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import bpmnPlugin from 'eslint-plugin-bpmn-io';
 import mochaPlugin from 'eslint-plugin-mocha';
 import reactPlugin from 'eslint-plugin-react';
+import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
 
 const baseParserOptions = {
@@ -25,6 +26,8 @@ export default [
     ]
   },
   js.configs.recommended,
+  
+  // source files
   {
     files: [
       'src/**/*.js',
@@ -43,10 +46,12 @@ export default [
     },
     plugins: {
       'bpmn-io': bpmnPlugin,
-      react: reactPlugin
+      react: reactPlugin,
+      import: importPlugin
     },
     rules: {
       ...bpmnRules,
+      'import/no-default-export': 'error',
       'react/jsx-uses-vars': 'error',
       'react/jsx-uses-react': 'off',
       'no-unused-vars': ['error', {
@@ -59,6 +64,35 @@ export default [
     }]
     }
   },
+
+  // test files
+  {
+    files: [
+      'test/spec/**/*.js'
+    ],
+    languageOptions: {
+      parserOptions: {
+        ...baseParserOptions
+      },
+      globals: {
+        ...globals.mocha,
+        ...globals.browser,
+        sinon: 'readonly',
+        expect: 'readonly',
+        FeelEditor: 'readonly'
+      }
+    },
+    plugins: {
+      mocha: mochaPlugin
+    },
+    rules: {
+      ...mochaRules,
+      'no-unused-vars': 'off',
+      'no-undef': 'off'
+    }
+  },
+
+  // config files
   {
     files: [
       'rollup.config.js'
@@ -85,31 +119,6 @@ export default [
       globals: {
         require: 'readonly'
       }
-    }
-  },
-  {
-    files: [
-      'test/spec/**/*.js'
-    ],
-    languageOptions: {
-      parserOptions: {
-        ...baseParserOptions
-      },
-      globals: {
-        ...globals.mocha,
-        ...globals.browser,
-        sinon: 'readonly',
-        expect: 'readonly',
-        FeelEditor: 'readonly'
-      }
-    },
-    plugins: {
-      mocha: mochaPlugin
-    },
-    rules: {
-      ...mochaRules,
-      'no-unused-vars': 'off',
-      'no-undef': 'off'
     }
   }
 ];
