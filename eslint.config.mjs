@@ -48,7 +48,15 @@ export default [
     rules: {
       ...bpmnRules,
       'react/jsx-uses-vars': 'error',
-      'react/jsx-uses-react': 'off'
+      'react/jsx-uses-react': 'off',
+      'no-unused-vars': ['error', {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: true,
+        varsIgnorePattern: '^_',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'none'
+    }]
     }
   },
   {
