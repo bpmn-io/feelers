@@ -1,5 +1,3 @@
-/* eslint-disable array-bracket-spacing */
-
 import { buildSimpleTree, parser } from '../../src/grammar';
 import { expect } from 'chai';
 

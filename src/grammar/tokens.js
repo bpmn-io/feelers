@@ -1,5 +1,3 @@
-/* global console */
-
 import {
   Feel,
   FeelBlock,
@@ -28,7 +26,7 @@ const isClosingFeelScope = (input, offset = 0) => {
 
 };
 
-export const feelBlock = new ExternalTokenizer((input, stack) => {
+export const feelBlock = new ExternalTokenizer((input, _stack) => {
 
   LOG_PARSE_DEBUG && console.log('%s: T <feelBlock>', input.pos);
 
@@ -54,7 +52,7 @@ const isClosingTextScope = (input, offset = 0) => {
 };
 
 
-export const simpleTextBlock = new ExternalTokenizer((input, stack) => {
+export const simpleTextBlock = new ExternalTokenizer((input, _stack) => {
 
   LOG_PARSE_DEBUG && console.log('%s: T <simpleTextBlock>', input.pos);
 
@@ -71,7 +69,7 @@ export const simpleTextBlock = new ExternalTokenizer((input, stack) => {
 });
 
 // Anytime this tokenizer is run, simply tag the rest of the input as FEEL
-export const feel = new ExternalTokenizer((input, stack) => {
+export const feel = new ExternalTokenizer((input, _stack) => {
 
   LOG_PARSE_DEBUG && console.log('%s: T <feel>', input.pos);
 

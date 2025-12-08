@@ -375,7 +375,6 @@ describe.skip('CodeEditor', function() {
       });
 
       // when
-      // eslint-disable-next-line no-undef
       const event = new KeyboardEvent('keydown');
       editor._cmEditor.contentDOM.dispatchEvent(event);
 
@@ -761,7 +760,6 @@ function getCm(editor) {
 
 async function expectEventually(fn) {
   const nextFrame = () => new Promise(resolve => {
-    // eslint-disable-next-line no-undef
     requestAnimationFrame(resolve);
   });
 

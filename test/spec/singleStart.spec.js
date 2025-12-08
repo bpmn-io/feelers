@@ -4,7 +4,6 @@ import TestContainer from 'mocha-test-container-support';
 import { initialContext, initialTemplate } from '../testData';
 
 
-// eslint-disable-next-line no-undef
 const singleStart = window.__env__ && window.__env__.SINGLE_START;
 
 describe('CodeEditor', function() {

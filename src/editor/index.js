@@ -78,7 +78,6 @@ export default function FeelersEditor({
   );
 
   if (typeof tooltipContainer === 'string') {
-    // eslint-disable-next-line no-undef
     tooltipContainer = document.querySelector(tooltipContainer);
   }
 

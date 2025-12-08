@@ -86,7 +86,7 @@ const buildNodeEvaluator = (options) => {
         const result = evaluateFeel(`string(${feel})`, context);
         return sanitizer ? sanitizer(result) : result;
       }
-      catch (e) {
+      catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
       }
     }

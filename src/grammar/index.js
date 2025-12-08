@@ -6,7 +6,7 @@ export function buildSimpleTree(parseTree, templateString) {
   const isLeafNode = (node) => [ 'SimpleTextBlock', 'Feel', 'FeelBlock' ].includes(node.type.name);
 
   parseTree.iterate({
-    enter: (node, pos, type) => {
+    enter: (node, _pos, _type) => {
 
       const nodeRepresentation = {
         name: node.type.name,
@@ -19,7 +19,7 @@ export function buildSimpleTree(parseTree, templateString) {
 
       stack.push(nodeRepresentation);
     },
-    leave: (node, pos, type) => {
+    leave: (_node, _pos, _type) => {
       const result = stack.pop();
       const parent = stack[stack.length - 1];
       result.parent = parent;

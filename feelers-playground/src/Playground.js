@@ -29,22 +29,22 @@ export default function Playground() {
     setTemplateEditorState(initialTemplate);
     setTemplateContext(JSON.stringify(initialContext, null, 3));
 
-  }, [])
+  }, []);
 
   const autoclose = {
     '[': ']',
     '{': '}',
     '(': ')',
     '"': '"',
-  }
+  };
 
   const contextJSON = useMemo(() => {
     try {
       return JSON.parse(templateContext);
-    } catch (e) {
+    } catch {
       return null;
     }
-  }, [templateContext]);
+  }, [ templateContext ]);
 
   const computedOutput = useMemo(() => {
     if (!contextJSON) {
@@ -53,7 +53,7 @@ export default function Playground() {
     }
     else {
       try {
-        const evaluation = evaluate(templateEditorState, contextJSON, { debug: true, buildDebugString: (e) => { return `<span class='error'>⚠<span class='error-message'>${e.message}</span></span>` }});
+        const evaluation = evaluate(templateEditorState, contextJSON, { debug: true, buildDebugString: (e) => { return `<span class='error'>⚠<span class='error-message'>${e.message}</span></span>`; } });
         setOutputIsInvalid(false);
         return evaluation;
       } catch (e) {
@@ -61,11 +61,11 @@ export default function Playground() {
         return e.message;
       }
     }
-  }, [templateEditorState, contextJSON]);
+  }, [ templateEditorState, contextJSON ]);
 
   const htmlOutput = useMemo(() => {
     return converter.current.makeHtml(computedOutput);
-  }, [computedOutput]);
+  }, [ computedOutput ]);
 
   const onContextKeyDown = (e) => {
 
@@ -74,18 +74,18 @@ export default function Playground() {
       const target = e.target;
       const start = target.selectionStart;
       const end = target.selectionEnd;
-      target.setRangeText("   ", start, end, "end");
+      target.setRangeText('   ', start, end, 'end');
 
     }
 
     if (autoclose[e.key]) {
       e.preventDefault();
       const target = e.target;
-      target.setRangeText(e.key, target.selectionStart, target.selectionEnd, "end");
-      target.setRangeText(autoclose[e.key], target.selectionStart, target.selectionEnd, "start");
+      target.setRangeText(e.key, target.selectionStart, target.selectionEnd, 'end');
+      target.setRangeText(autoclose[e.key], target.selectionStart, target.selectionEnd, 'start');
     }
 
-  }
+  };
 
   return (
     <div className="root">
@@ -94,14 +94,14 @@ export default function Playground() {
         <textarea
           id="context"
           value={templateContext}
-          class={contextJSON ? "" : "invalid"}
+          class={contextJSON ? '' : 'invalid'}
           onKeyDown={ (e) => onContextKeyDown(e) }
           onInput={e => setTemplateContext(e.target.value)} />
       </div>
       <div className="col">
         <textarea
           id="output"
-          class={!outputIsInvalid ? "" : "invalid"}
+          class={!outputIsInvalid ? '' : 'invalid'}
           value={computedOutput}
           readonly />
       </div>
