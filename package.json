@@ -36,7 +36,7 @@
   "license": "MIT",
   "dependencies": {
     "@bpmn-io/cm-theme": "^0.1.0-alpha.2",
-    "@bpmn-io/feel-lint": "^1.2.0",
+    "@bpmn-io/feel-lint": "^3.0.0",
     "@codemirror/autocomplete": "^6.10.1",
     "@codemirror/commands": "^6.3.0",
     "@codemirror/language": "^6.9.1",
