@@ -1,17 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "github>bpmn-io/renovate-config:recommended"
-  ],
+  "extends": ["github>bpmn-io/renovate-config:recommended"],
   "packageRules": [
     {
-      "matchPackagePatterns": ["^feelin$", "^lezer-feel$", "^@bpmn-io/cm-theme$", "^@bpmn-io/feel-lint$"],
+      "groupName": "bpmn.io feel deps",
+      "matchPackagePatterns": [
+        "^feelin$",
+        "^lezer-feel$",
+        "^@bpmn-io/cm-theme$",
+        "^@bpmn-io/feel-lint$"
+      ],
       "matchUpdateTypes": ["major", "minor", "patch"],
       "stabilityDays": 0,
       "prCreation": "immediate"
     }
   ],
-  "reviewers": [
-    "Skaiir"
-  ]
+  "reviewers": ["Skaiir"]
 }
