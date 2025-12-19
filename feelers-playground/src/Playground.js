@@ -1,8 +1,8 @@
 import './style';
 import { initialContext, initialTemplate } from '../../test/testData';
 import { useMemo, useState, useRef, useEffect } from 'preact/hooks';
-import FeelersEditor from '../../src/editor';
-import evaluate from '../../src/interpreter';
+import { FeelersEditor } from '../../src/editor';
+import { evaluate } from '../../src/interpreter';
 import Markup from 'preact-markup';
 import showdown from 'showdown';
 

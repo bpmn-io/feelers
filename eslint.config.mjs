@@ -52,6 +52,8 @@ export default [
     rules: {
       ...bpmnRules,
       'import/no-default-export': 'error',
+      'import/default': 'error',
+      'import/named': 'error',
       'react/jsx-uses-vars': 'error',
       'react/jsx-uses-react': 'off',
       'no-unused-vars': ['error', {
