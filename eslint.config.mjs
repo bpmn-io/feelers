@@ -21,7 +21,6 @@ export default [
       'feelers-playground/dist/**',
       'src/grammar/parser*.js',
       '.github/**',
-      'karma.conf.js',
       'eslint.config.mjs'
     ]
   },
@@ -94,32 +93,37 @@ export default [
     }
   },
 
-  // config files
+  // test setup files
   {
     files: [
-      'rollup.config.js'
+      'test/setup.js',
+      'test/testContainer.js'
     ],
     languageOptions: {
       parserOptions: {
-        ...baseParserOptions,
-        sourceType: 'commonjs'
+        ...baseParserOptions
       },
       globals: {
-        ...globals.node
+        ...globals.node,
+        ...globals.browser,
+        document: 'readonly'
       }
     }
   },
+
+  // config files
   {
     files: [
-      'test/testBundle.js'
+      'vite.config.js',
+      'vitest.config.js'
     ],
     languageOptions: {
       parserOptions: {
-        ...baseParserOptions,
-        sourceType: 'commonjs'
+        ...baseParserOptions
       },
       globals: {
-        require: 'readonly'
+        ...globals.node,
+        __dirname: 'readonly'
       }
     }
   }
