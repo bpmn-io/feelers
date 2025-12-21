@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "scripts": {
-    "all": "run-s lint test build",
+    "all": "run-s lint test:headless build",
+    "test:headless": "vitest run --project node",
     "test": "vitest run",
     "generate:parser": "lezer-generator src/grammar/feelers.grammar -o src/grammar/parser",
     "bundle": "vite build",
