@@ -6,13 +6,14 @@
   "module": "dist/index.mjs",
   "scripts": {
     "all": "run-s lint test build",
-    "test": "karma start",
+    "test:headless": "vitest run --project node",
+    "test": "vitest run",
     "generate:parser": "lezer-generator src/grammar/feelers.grammar -o src/grammar/parser",
-    "bundle": "rollup -c",
-    "dev": "npm test -- --auto-watch --no-single-run",
+    "bundle": "vite build",
+    "dev": "vitest watch",
     "build": "npm run generate:parser && npm run bundle",
     "lint": "eslint .",
-    "start": "cross-env SINGLE_START=true npm run dev",
+    "start": "vitest singleStart --ui",
     "build:playground": "npm run build && npm run --prefix feelers-playground build",
     "start:playground": "npm run build && npm run --prefix feelers-playground dev"
   },
@@ -21,7 +22,8 @@
     "url": "https://github.com/skaiir"
   },
   "engines": {
-    "node": "*"
+    "node": ">=20",
+    "npm": ">=10"
   },
   "keywords": [
     "FEEL",
@@ -41,7 +43,7 @@
     "@codemirror/commands": "^6.3.0",
     "@codemirror/language": "^6.9.1",
     "@codemirror/lint": "^6.4.2",
-    "@codemirror/state": "^6.3.0",
+    "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.21.3",
     "@lezer/common": "^1.1.0",
     "@lezer/highlight": "^1.1.6",
@@ -52,39 +54,21 @@
     "min-dom": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.23.0",
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
     "@eslint/js": "^9.39.1",
     "@lezer/generator": "^1.5.1",
-    "@rollup/plugin-commonjs": "^29.0.0",
-    "@rollup/plugin-json": "^6.0.1",
-    "@types/chai": "^4.3.8",
-    "@types/mocha": "^10.0.2",
-    "chai": "^4.3.10",
-    "cross-env": "^10.0.0",
+    "@vitest/browser-preview": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
     "eslint": "^9.39.1",
     "eslint-plugin-bpmn-io": "^2.2.0",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-vitest": "^0.5.4",
     "globals": "^16.5.0",
-    "karma": "^6.4.2",
-    "karma-chrome-launcher": "^3.2.0",
-    "karma-debug-launcher": "^0.0.5",
-    "karma-env-preprocessor": "^0.1.1",
-    "karma-firefox-launcher": "^2.1.2",
-    "karma-mocha": "^2.0.1",
-    "karma-sinon-chai": "^2.0.2",
-    "karma-webpack": "^5.0.0",
-    "mocha": "^10.2.0",
-    "mocha-test-container-support": "^0.2.0",
+    "jsdom": "^27.3.0",
     "npm-run-all2": "^8.0.0",
-    "puppeteer": "^24.0.0",
-    "rollup": "^4.0.0",
-    "sinon": "^16.1.0",
-    "sinon-chai": "^3.7.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vite": "^7.3.0",
+    "vitest": "^4.0.16"
   },
   "workspaces": {
     "packages": [

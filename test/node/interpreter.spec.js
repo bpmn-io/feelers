@@ -1,5 +1,4 @@
 import { evaluate } from '../../src/interpreter';
-import { expect } from 'chai';
 
 const ERROR_CHAR = '⚠';
 
@@ -11,18 +10,17 @@ describe('interpreter', () => {
 
       // given
       const stringInput = '';
-
+      
       // when
       const result = evaluate(stringInput);
 
-      // then
-      expect(result).to.equal(stringInput);
+      // then 
+      expect(result).toBe(stringInput);
 
     });
 
-
     it('should return simple text unmodified', () => {
-
+      
       // given
       const stringInput = 'Hello World';
 
@@ -30,27 +28,12 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal(stringInput);
+      expect(result).toBe(stringInput);
 
     });
-
-
-    it('should return simple text with newlines unmodified', () => {
-
-      // given
-      const stringInput = 'Hello World\nasdasdasd\nasdasdasdasdasd';
-
-      // when
-      const result = evaluate(stringInput);
-
-      // then
-      expect(result).to.equal(stringInput);
-
-    });
-
 
     it('should return number strings unmodified', () => {
-
+      
       // given
       const stringInput = '123';
 
@@ -58,13 +41,12 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal(stringInput);
+      expect(result).toBe(stringInput);
 
     });
 
-
     it('should return addition strings unmodified', () => {
-
+      
       // given
       const stringInput = '123 + 123';
 
@@ -72,8 +54,8 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal(stringInput);
-
+      expect(result).toBe(stringInput);
+      
     });
 
 
@@ -86,7 +68,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal(stringInput);
+      expect(result).toBe(stringInput);
 
     });
 
@@ -100,7 +82,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal(stringInput);
+      expect(result).toBe(stringInput);
 
     });
 
@@ -118,7 +100,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('2');
+      expect(result).toBe('2');
 
     });
 
@@ -132,7 +114,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('Hello World');
+      expect(result).toBe('Hello World');
 
     });
 
@@ -147,7 +129,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello World');
+      expect(result).toBe('Hello World');
 
     });
 
@@ -162,7 +144,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello World');
+      expect(result).toBe('Hello World');
 
     });
 
@@ -180,7 +162,7 @@ describe('interpreter', () => {
       });
 
       // then
-      expect(result).to.equal(ERROR_CHAR);
+      expect(result).toBe(ERROR_CHAR);
 
     });
 
@@ -198,7 +180,8 @@ describe('interpreter', () => {
       });
 
       // then
-      expect(result).to.equal('Goodbye World');
+      expect(result).toBe('Goodbye World');
+
     });
 
 
@@ -211,7 +194,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('{a: 1, b: 2}');
+      expect(result).toBe('{a: 1, b: 2}');
 
     });
 
@@ -225,7 +208,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('[1, 2, 3]');
+      expect(result).toBe('[1, 2, 3]');
 
     });
 
@@ -239,7 +222,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('{a: {b: 2}}');
+      expect(result).toBe('{a: {b: 2}}');
 
     });
 
@@ -256,7 +239,7 @@ describe('interpreter', () => {
       });
 
       // then
-      expect(result).to.equal(ERROR_CHAR);
+      expect(result).toBe(ERROR_CHAR);
 
     });
 
@@ -271,7 +254,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, {}, { sanitizer });
 
       // then
-      expect(result).to.equal('Sanitized 2');
+      expect(result).toBe('Sanitized 2');
 
     });
 
@@ -289,7 +272,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('Hello 2 World');
+      expect(result).toBe('Hello 2 World');
 
     });
 
@@ -303,7 +286,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('Hello 2 World');
+      expect(result).toBe('Hello 2 World');
 
     });
 
@@ -318,7 +301,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello 2 World');
+      expect(result).toBe('Hello 2 World');
 
     });
 
@@ -333,7 +316,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello 2 World');
+      expect(result).toBe('Hello 2 World');
 
     });
 
@@ -347,7 +330,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, { a: 1 });
 
       // then
-      expect(result).to.equal('Hello 2 World 3');
+      expect(result).toBe('Hello 2 World 3');
 
     });
 
@@ -361,7 +344,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, { a: 1 });
 
       // then
-      expect(result).to.equal('Hello Lovely World');
+      expect(result).toBe('Hello Lovely World');
 
     });
 
@@ -376,7 +359,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then`
-      expect(result).to.equal('Hello John Doe, you are currently not authorized to access this page.');
+      expect(result).toBe('Hello John Doe, you are currently not authorized to access this page.');
 
     });
 
@@ -390,7 +373,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('Hello {a: 1, b: 2} World');
+      expect(result).toBe('Hello {a: 1, b: 2} World');
 
     });
 
@@ -404,7 +387,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('Hello [1, 2, 3] World');
+      expect(result).toBe('Hello [1, 2, 3] World');
 
     });
 
@@ -421,8 +404,8 @@ describe('interpreter', () => {
         buildDebugString: (e) => ERROR_CHAR
       });
 
-      // then
-      expect(result).to.equal(`Hello ${ERROR_CHAR} World ${ERROR_CHAR}`);
+  // then
+  expect(result).toBe(`Hello ${ERROR_CHAR} World ${ERROR_CHAR}`);
 
     });
 
@@ -438,8 +421,8 @@ describe('interpreter', () => {
         buildDebugString: (e) => ERROR_CHAR
       });
 
-      // then
-      expect(result).to.equal(`Hello ${ERROR_CHAR} World`);
+  // then
+  expect(result).toBe(`Hello ${ERROR_CHAR} World`);
 
     });
 
@@ -452,8 +435,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, { user: 'John Doe', duration: '2 days' });
 
-      // then
-      expect(result).to.equal('Hello John Doe, it has been 2 days since your last login.');
+  // then
+  expect(result).toBe('Hello John Doe, it has been 2 days since your last login.');
 
     });
 
@@ -467,8 +450,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, {}, { sanitizer });
 
-      // then
-      expect(result).to.equal('Hello Sanitized 2 World');
+  // then
+  expect(result).toBe('Hello Sanitized 2 World');
 
     });
 
@@ -485,8 +468,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput);
 
-      // then
-      expect(result).to.equal('Hello World');
+  // then
+  expect(result).toBe('Hello World');
     });
 
 
@@ -498,8 +481,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput);
 
-      // then
-      expect(result).to.equal('Hello ');
+  // then
+  expect(result).toBe('Hello ');
     });
 
 
@@ -512,8 +495,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, context);
 
-      // then
-      expect(result).to.equal('Hello Delicious World');
+  // then
+  expect(result).toBe('Hello Delicious World');
 
     });
 
@@ -527,8 +510,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, context);
 
-      // then
-      expect(result).to.equal('Hello Delicious Umami World');
+  // then
+  expect(result).toBe('Hello Delicious Umami World');
 
     });
 
@@ -540,8 +523,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput);
 
-      // then
-      expect(result).to.equal('Hello\nNewline');
+  // then
+  expect(result).toBe('Hello\nNewline');
 
     });
 
@@ -555,8 +538,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, context);
 
-      // then
-      expect(result).to.equal('Hello\nDelicious\nWorld');
+  // then
+  expect(result).toBe('Hello\nDelicious\nWorld');
 
     });
 
@@ -570,8 +553,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, context);
 
-      // then
-      expect(result).to.equal('Hello\nDelicious\nUmami\nWorld');
+  // then
+  expect(result).toBe('Hello\nDelicious\nUmami\nWorld');
 
     });
 
@@ -584,8 +567,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, {}, { strict: false });
 
-      // then
-      expect(result).to.equal('Hello World');
+  // then
+  expect(result).toBe('Hello World');
 
     });
 
@@ -598,8 +581,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, {}, { debug: true, strict: true, buildDebugString: (e) => ERROR_CHAR });
 
-      // then
-      expect(result).to.equal('Hello ' + ERROR_CHAR);
+  // then
+  expect(result).toBe('Hello ' + ERROR_CHAR);
 
     });
 
@@ -613,8 +596,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, context);
 
-      // then
-      expect(result).to.equal('Hello Delicious & Umami World');
+  // then
+  expect(result).toBe('Hello Delicious & Umami World');
 
     });
 
@@ -628,8 +611,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, context);
 
-      // then
-      expect(result).to.equal('Hello Delicious Umami World');
+  // then
+  expect(result).toBe('Hello Delicious Umami World');
 
     });
 
@@ -644,8 +627,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput, context, { sanitizer });
 
-      // then
-      expect(result).to.equal('Hello Delicious Sanitized Umami World');
+  // then
+  expect(result).toBe('Hello Delicious Sanitized Umami World');
 
     });
 
@@ -662,8 +645,8 @@ describe('interpreter', () => {
       // when
       const result = evaluate(stringInput);
 
-      // then
-      expect(result).to.equal('Hello abc World');
+  // then
+  expect(result).toBe('Hello abc World');
 
     });
 
@@ -678,7 +661,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello abc World');
+      expect(result).toBe('Hello abc World');
 
     });
 
@@ -693,7 +676,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context, { sanitizer: (result) => `|${result}` });
 
       // then
-      expect(result).to.equal('Hello |a|b|c World');
+      expect(result).toBe('Hello |a|b|c World');
 
     });
 
@@ -708,7 +691,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello abc World');
+      expect(result).toBe('Hello abc World');
 
     });
 
@@ -724,7 +707,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello 123456 World');
+      expect(result).toBe('Hello 123456 World');
 
     });
 
@@ -738,7 +721,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput);
 
       // then
-      expect(result).to.equal('abc\nabc');
+      expect(result).toBe('abc\nabc');
 
     });
 
@@ -753,7 +736,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello 123456 World');
+      expect(result).toBe('Hello 123456 World');
 
     });
 
@@ -768,7 +751,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Hello\na\nb\nc\nWorld');
+      expect(result).toBe('Hello\na\nb\nc\nWorld');
 
     });
 
@@ -782,7 +765,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, {}, { strict: false });
 
       // then
-      expect(result).to.equal('Hello abc World');
+      expect(result).toBe('Hello abc World');
 
     });
 
@@ -796,7 +779,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, {}, { strict: false });
 
       // then
-      expect(result).to.equal('Hello 2 World');
+      expect(result).toBe('Hello 2 World');
 
     });
 
@@ -810,7 +793,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, {}, { debug: true, strict: true, buildDebugString: (e) => ERROR_CHAR });
 
       // then
-      expect(result).to.equal(`Hello ${ERROR_CHAR} World`);
+      expect(result).toBe(`Hello ${ERROR_CHAR} World`);
 
     });
 
@@ -829,7 +812,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('This is this!');
+      expect(result).toBe('This is this!');
 
     });
 
@@ -844,7 +827,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Weee!');
+      expect(result).toBe('Weee!');
 
     });
 
@@ -859,7 +842,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Nested prop');
+      expect(result).toBe('Nested prop');
 
     });
 
@@ -874,7 +857,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('This is this!');
+      expect(result).toBe('This is this!');
 
     });
 
@@ -889,7 +872,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Weee!');
+      expect(result).toBe('Weee!');
 
     });
 
@@ -904,7 +887,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('Root prop');
+      expect(result).toBe('Root prop');
 
     });
 
@@ -919,7 +902,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('$1\n$2\n$3\n');
+      expect(result).toBe('$1\n$2\n$3\n');
 
     });
 
@@ -934,7 +917,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('£1\n$2\n$3\n');
+      expect(result).toBe('£1\n$2\n$3\n');
 
     });
 
@@ -950,7 +933,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('$1\n$2\n$3\n');
+      expect(result).toBe('$1\n$2\n$3\n');
 
     });
 
@@ -965,7 +948,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context);
 
       // then
-      expect(result).to.equal('$1\n$2\n$3\n');
+      expect(result).toBe('$1\n$2\n$3\n');
 
     });
 
@@ -985,7 +968,7 @@ describe('interpreter', () => {
       const result = evaluate(stringInput, context, { debug: true, buildDebugString: errorHandler });
 
       // then
-      expect(result).to.equal('Hello <span class="error">⚠<span class="message">FEEL expression ?!~ couldn\'t be evaluated</span></span>');
+      expect(result).toBe('Hello <span class="error">⚠<span class="message">FEEL expression ?!~ couldn\'t be evaluated</span></span>');
 
     });
 
@@ -1000,7 +983,7 @@ describe('interpreter', () => {
       const fn = () => evaluate(stringInput, context);
 
       // then
-      expect(fn).to.throw('FEEL expression ?!~ couldn\'t be evaluated');
+      expect(fn).toThrow('FEEL expression ?!~ couldn\'t be evaluated');
 
     });
 

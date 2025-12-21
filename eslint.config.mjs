@@ -1,6 +1,6 @@
 import js from '@eslint/js';
 import bpmnPlugin from 'eslint-plugin-bpmn-io';
-import mochaPlugin from 'eslint-plugin-mocha';
+import vitestPlugin from 'eslint-plugin-vitest';
 import reactPlugin from 'eslint-plugin-react';
 import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
@@ -11,7 +11,7 @@ const baseParserOptions = {
 };
 
 const bpmnRules = bpmnPlugin.configs.recommended?.rules ?? {};
-const mochaRules = bpmnPlugin.configs.mocha?.rules ?? {};
+const vitestRules = vitestPlugin.configs.recommended?.rules ?? {};
 
 export default [
   {
@@ -21,7 +21,6 @@ export default [
       'feelers-playground/dist/**',
       'src/grammar/parser*.js',
       '.github/**',
-      'karma.conf.js',
       'eslint.config.mjs'
     ]
   },
@@ -51,6 +50,7 @@ export default [
     },
     rules: {
       ...bpmnRules,
+
       'import/no-default-export': 'error',
       'import/default': 'error',
       'import/named': 'error',
@@ -70,56 +70,60 @@ export default [
   // test files
   {
     files: [
-      'test/spec/**/*.js'
+      'test/browser/**/*.js',
+      'test/node/**/*.js'
     ],
     languageOptions: {
       parserOptions: {
         ...baseParserOptions
       },
       globals: {
-        ...globals.mocha,
-        ...globals.browser,
-        sinon: 'readonly',
-        expect: 'readonly',
-        FeelEditor: 'readonly'
+        ...globals.vitest,
+        ...globals.browser
       }
     },
     plugins: {
-      mocha: mochaPlugin
+      vitest: vitestPlugin
     },
     rules: {
-      ...mochaRules,
+      ...vitestRules,
       'no-unused-vars': 'off',
-      'no-undef': 'off'
+      'no-undef': 'off',
+      'vitest/expect-expect': 'off'
+    }
+  },
+
+  // test setup files
+  {
+    files: [
+      'test/setup.js',
+      'test/testContainer.js'
+    ],
+    languageOptions: {
+      parserOptions: {
+        ...baseParserOptions
+      },
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+        document: 'readonly'
+      }
     }
   },
 
   // config files
   {
     files: [
-      'rollup.config.js'
+      'vite.config.js',
+      'vitest.config.js'
     ],
     languageOptions: {
       parserOptions: {
-        ...baseParserOptions,
-        sourceType: 'commonjs'
+        ...baseParserOptions
       },
       globals: {
-        ...globals.node
-      }
-    }
-  },
-  {
-    files: [
-      'test/testBundle.js'
-    ],
-    languageOptions: {
-      parserOptions: {
-        ...baseParserOptions,
-        sourceType: 'commonjs'
-      },
-      globals: {
-        require: 'readonly'
+        ...globals.node,
+        __dirname: 'readonly'
       }
     }
   }

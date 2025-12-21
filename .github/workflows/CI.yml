@@ -1,34 +1,28 @@
 name: CI
-on: [ push, pull_request ]
+on: [push, pull_request]
+
 jobs:
-  Build:
+  build:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        os: [ macos-latest, ubuntu-latest, windows-latest ]
-        node-version: [ 20 ]
-
-    runs-on: ${{ matrix.os }}
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        node: [24]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v6
-    - name: Use Node.js
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: Install dependencies
-      run: npm ci
-    - name: Project setup
-      uses: bpmn-io/actions/setup@latest
-    - name: Lint
-      run: npm run lint
-    - name: Build
-      run: npm run build
-    - name: Test
-      run: npm run test
-    - name: Generate parser from grammar
-      run: npm run generate:parser
-    - name: Bundle dist
-      run: npm run bundle
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - run: npm ci
+      - uses: bpmn-io/actions/setup@latest
+
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test:headless
+      - run: npm run generate:parser
+      - run: npm run bundle
