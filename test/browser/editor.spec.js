@@ -10,14 +10,11 @@ describe('FeelersEditor', function() {
   let container;
 
   beforeEach(function() {
+    TestContainer.cleanup();
     container = TestContainer.get();
   });
 
-
-  // TODO: These tests fail with Vitest due to CodeMirror module instance checking
-  // See: https://github.com/vitest-dev/vitest/issues/2806
-  // Consider using @vitest/browser mode for these tests
-  it.skip('should render', async function() {
+  it('should render', async function() {
 
     // when
     const initialValue = 'There are {{= 2 + 2}} apples in the basket.';
@@ -32,7 +29,7 @@ describe('FeelersEditor', function() {
   });
 
 
-  it.skip('should allow content attribute extensions', async function() {
+  it('should allow content attribute extensions', async function() {
 
     // when
     const initialValue = 'There are {{= 2 + 2}} apples in the basket.';
@@ -633,8 +630,6 @@ describe.skip('CodeEditor', function() {
                                   </div>`);
         feelContainer = tooltipContainer.querySelector('#feelEditor');
         container.appendChild(tooltipContainer);
-
-        tooltipContainer.scrollIntoView();
       });
 
 

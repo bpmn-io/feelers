@@ -69,7 +69,8 @@ export default [
   // test files
   {
     files: [
-      'test/spec/**/*.js'
+      'test/browser/**/*.js',
+      'test/node/**/*.js'
     ],
     languageOptions: {
       parserOptions: {

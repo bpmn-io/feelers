@@ -12,7 +12,7 @@
     "dev": "vitest watch",
     "build": "npm run generate:parser && npm run bundle",
     "lint": "eslint .",
-    "start": "vitest --ui",
+    "start": "vitest singleStart --ui",
     "build:playground": "npm run build && npm run --prefix feelers-playground build",
     "start:playground": "npm run build && npm run --prefix feelers-playground dev"
   },
@@ -21,7 +21,8 @@
     "url": "https://github.com/skaiir"
   },
   "engines": {
-    "node": "*"
+    "node": ">=20",
+    "npm": ">=10"
   },
   "keywords": [
     "FEEL",
@@ -41,7 +42,7 @@
     "@codemirror/commands": "^6.3.0",
     "@codemirror/language": "^6.9.1",
     "@codemirror/lint": "^6.4.2",
-    "@codemirror/state": "^6.3.0",
+    "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.21.3",
     "@lezer/common": "^1.1.0",
     "@lezer/highlight": "^1.1.6",
@@ -56,6 +57,7 @@
     "@lezer/generator": "^1.5.1",
     "@types/chai": "^4.3.8",
     "@types/mocha": "^10.0.2",
+    "@vitest/browser-preview": "^4.0.16",
     "@vitest/ui": "^4.0.16",
     "chai": "^4.3.10",
     "cross-env": "^10.0.0",
@@ -65,7 +67,6 @@
     "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.5.0",
-    "happy-dom": "^20.0.11",
     "jsdom": "^27.3.0",
     "mocha": "^10.2.0",
     "npm-run-all2": "^8.0.0",
