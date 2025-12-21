@@ -1,6 +1,6 @@
 import js from '@eslint/js';
 import bpmnPlugin from 'eslint-plugin-bpmn-io';
-import mochaPlugin from 'eslint-plugin-mocha';
+import vitestPlugin from 'eslint-plugin-vitest';
 import reactPlugin from 'eslint-plugin-react';
 import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
@@ -11,7 +11,7 @@ const baseParserOptions = {
 };
 
 const bpmnRules = bpmnPlugin.configs.recommended?.rules ?? {};
-const mochaRules = bpmnPlugin.configs.mocha?.rules ?? {};
+const vitestRules = vitestPlugin.configs.recommended?.rules ?? {};
 
 export default [
   {
@@ -50,6 +50,7 @@ export default [
     },
     rules: {
       ...bpmnRules,
+
       'import/no-default-export': 'error',
       'import/default': 'error',
       'import/named': 'error',
@@ -77,20 +78,18 @@ export default [
         ...baseParserOptions
       },
       globals: {
-        ...globals.mocha,
-        ...globals.browser,
-        sinon: 'readonly',
-        expect: 'readonly',
-        FeelEditor: 'readonly'
+        ...globals.vitest,
+        ...globals.browser
       }
     },
     plugins: {
-      mocha: mochaPlugin
+      vitest: vitestPlugin
     },
     rules: {
-      ...mochaRules,
+      ...vitestRules,
       'no-unused-vars': 'off',
-      'no-undef': 'off'
+      'no-undef': 'off',
+      'vitest/expect-expect': 'off'
     }
   },
 

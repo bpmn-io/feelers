@@ -15,6 +15,6 @@ it('should render', async function() {
   });
 
   // then
-  expect(editor).to.exist;
+  expect(editor).toBeDefined();
   console.log('evaluate():\n\n' + evaluate(initialTemplate, initialContext));
 });

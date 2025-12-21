@@ -1,3 +1,4 @@
+import { describe, it, beforeEach, expect, vi } from 'vitest';
 import { FeelersEditor } from '../../src';
 import TestContainer from '../testContainer';
 import { EditorSelection } from '@codemirror/state';
@@ -25,7 +26,7 @@ describe('FeelersEditor', function() {
     });
 
     // then
-    expect(editor).to.exist;
+    expect(editor).toBeDefined();
   });
 
 
@@ -40,12 +41,12 @@ describe('FeelersEditor', function() {
       contentAttributes: { 'data-foo': 'bar' }
     });
 
-    // then
-    expect(editor).to.exist;
+  // then
+  expect(editor).toBeDefined();
 
-    const content = container.querySelector('.cm-content');
-    expect(content).to.exist;
-    expect(content.getAttribute('data-foo')).to.equal('bar');
+  const content = container.querySelector('.cm-content');
+  expect(content).not.toBeNull();
+  expect(content.getAttribute('data-foo')).toBe('bar');
   });
 
 });
@@ -70,8 +71,8 @@ describe.skip('CodeEditor', function() {
     });
 
     // then
-    expect(editor).to.exist;
-    expect(editor._cmEditor.state.doc.toString()).to.equal('Hello World!');
+    expect(editor).toBeDefined();
+    expect(editor._cmEditor.state.doc.toString()).toBe('Hello World!');
   });
 
 
@@ -92,14 +93,13 @@ describe.skip('CodeEditor', function() {
       });
 
       // when
-
       const selection = editor.getSelection();
 
       // then
-      expect(selection).to.exist;
-      expect(selection.ranges).to.have.length(1);
-      expect(selection.ranges[0].from).to.equal(0);
-      expect(selection.ranges[0].to).to.equal(5);
+      expect(selection).toBeDefined();
+      expect(selection.ranges).toHaveLength(1);
+      expect(selection.ranges[0].from).toBe(0);
+      expect(selection.ranges[0].to).toBe(5);
 
     });
 
@@ -121,7 +121,7 @@ describe.skip('CodeEditor', function() {
       editor.setValue('Changed');
 
       // then
-      expect(editor._cmEditor.state.doc.toString()).to.equal('Changed');
+      expect(editor._cmEditor.state.doc.toString()).toBe('Changed');
     });
   });
 
@@ -136,13 +136,13 @@ describe.skip('CodeEditor', function() {
       });
 
       // assume
-      expect(editor._cmEditor.hasFocus).to.be.false;
+      expect(editor._cmEditor.hasFocus).toBe(false);
 
       // when
       editor.focus();
 
-      // then
-      expect(editor._cmEditor.hasFocus).to.be.true;
+  // then
+  expect(editor._cmEditor.hasFocus).toBe(true);
     });
 
 
@@ -158,7 +158,7 @@ describe.skip('CodeEditor', function() {
       editor.focus();
 
       // then
-      expect(editor._cmEditor.hasFocus).to.be.false;
+      expect(editor._cmEditor.hasFocus).toBe(false);
     });
 
 
@@ -178,15 +178,15 @@ describe.skip('CodeEditor', function() {
       });
 
       // assume
-      expect(scrollContainer.scrollTop).to.be.eql(0);
-      expect(editor._cmEditor.hasFocus).to.be.false;
+      expect(scrollContainer.scrollTop).toBe(0);
+      expect(editor._cmEditor.hasFocus).toBe(false);
 
       // when
       editor.focus();
 
       // then
-      expect(scrollContainer.scrollTop).to.be.greaterThan(0);
-      expect(editor._cmEditor.hasFocus).to.be.true;
+      expect(scrollContainer.scrollTop).toBeGreaterThan(0);
+      expect(editor._cmEditor.hasFocus).toBe(true);
     });
 
 
@@ -199,18 +199,18 @@ describe.skip('CodeEditor', function() {
       });
 
       // assume
-      expect(editor._cmEditor.hasFocus).to.be.false;
+      expect(editor._cmEditor.hasFocus).toBe(false);
 
       // when
       editor.focus(2);
 
       // then
-      expect(editor._cmEditor.hasFocus).to.be.true;
+      expect(editor._cmEditor.hasFocus).toBe(true);
 
       const selection = editor._cmEditor.state.selection;
       const range = selection.ranges[selection.mainIndex];
-      expect(range.from).to.eql(2);
-      expect(range.to).to.eql(2);
+      expect(range.from).toBe(2);
+      expect(range.to).toBe(2);
     });
 
 
@@ -223,18 +223,18 @@ describe.skip('CodeEditor', function() {
       });
 
       // assume
-      expect(editor._cmEditor.hasFocus).to.be.false;
+      expect(editor._cmEditor.hasFocus).toBe(false);
 
       // when
       editor.focus(Infinity);
 
       // then
-      expect(editor._cmEditor.hasFocus).to.be.true;
+      expect(editor._cmEditor.hasFocus).toBe(true);
 
       const selection = editor._cmEditor.state.selection;
       const range = selection.ranges[selection.mainIndex];
-      expect(range.from).to.eql(3);
-      expect(range.to).to.eql(3);
+      expect(range.from).toBe(3);
+      expect(range.to).toBe(3);
     });
 
   });
@@ -263,7 +263,7 @@ describe.skip('CodeEditor', function() {
             detail: 'Process_1'
           }
         ]);
-      }).not.to.throw();
+      }).not.toThrow();
     });
 
 
@@ -291,8 +291,8 @@ describe.skip('CodeEditor', function() {
       // then
       await expectEventually(() => {
         const completions = currentCompletions(cm.state);
-        expect(completions).to.have.length(1);
-        expect(completions[0].label).to.have.eql('foobar');
+        expect(completions).toHaveLength(1);
+        expect(completions[0].label).toBe('foobar');
       });
     });
 
@@ -319,8 +319,8 @@ describe.skip('CodeEditor', function() {
       startCompletion(cm);
       await expectEventually(() => {
         const completions = currentCompletions(cm.state);
-        expect(completions).to.have.length(1);
-        expect(completions[0].label).to.eql('foobar');
+        expect(completions).toHaveLength(1);
+        expect(completions[0].label).toBe('foobar');
       });
 
       // when
@@ -332,8 +332,8 @@ describe.skip('CodeEditor', function() {
       // then
       await expectEventually(() => {
         const completions = currentCompletions(cm.state);
-        expect(completions).to.have.length(1);
-        expect(completions[0].label).to.eql('foobaz');
+        expect(completions).toHaveLength(1);
+        expect(completions[0].label).toBe('foobaz');
       });
     });
   });
@@ -344,7 +344,7 @@ describe.skip('CodeEditor', function() {
     it('should call onChange', async function() {
 
       // given
-      const onChange = sinon.spy();
+      const onChange = vi.fn();
       const editor = new FeelEditor({
         container,
         onChange
@@ -360,15 +360,15 @@ describe.skip('CodeEditor', function() {
       });
 
       // then
-      expect(onChange).to.have.been.calledOnce;
-      expect(onChange).to.have.been.calledWith('a');
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith('a');
     });
 
 
     it('should call onKeyDown', async function() {
 
       // given
-      const onKeyDown = sinon.spy();
+      const onKeyDown = vi.fn();
       const editor = new FeelEditor({
         container,
         onKeyDown
@@ -379,8 +379,8 @@ describe.skip('CodeEditor', function() {
       editor._cmEditor.contentDOM.dispatchEvent(event);
 
       // then
-      expect(onKeyDown).to.have.been.calledOnce;
-      expect(onKeyDown).to.have.been.calledWith(event);
+      expect(onKeyDown).toHaveBeenCalledTimes(1);
+      expect(onKeyDown).toHaveBeenCalledWith(event);
     });
 
   });
@@ -404,7 +404,7 @@ describe.skip('CodeEditor', function() {
       // then
       // update done async
       setTimeout(() => {
-        expect(diagnosticCount(cm.state)).to.eql(0);
+      expect(diagnosticCount(cm.state)).toBe(0);
         done();
       }, 0);
 
@@ -427,7 +427,7 @@ describe.skip('CodeEditor', function() {
       // then
       // update done async
       setTimeout(() => {
-        expect(diagnosticCount(cm.state)).to.eql(1);
+      expect(diagnosticCount(cm.state)).toBe(1);
         done();
       }, 0);
 
@@ -450,7 +450,7 @@ describe.skip('CodeEditor', function() {
       // then
       // update done async
       setTimeout(() => {
-        expect(diagnosticCount(cm.state)).to.eql(1);
+      expect(diagnosticCount(cm.state)).toBe(1);
         done();
       }, 0);
 
@@ -459,7 +459,7 @@ describe.skip('CodeEditor', function() {
 
     it('should call onLint with errors', function(done) {
       const initalValue = '= 15';
-      const onLint = sinon.spy();
+      const onLint = vi.fn();
 
       const editor = new FeelEditor({
         container,
@@ -476,9 +476,9 @@ describe.skip('CodeEditor', function() {
       // update done async
       setTimeout(() => {
 
-        expect(onLint).to.have.been.calledOnce;
-        expect(onLint).to.have.been.calledWith(sinon.match.array);
-        expect(onLint.args[0][0]).to.have.length(1);
+        expect(onLint).toHaveBeenCalledTimes(1);
+        expect(onLint).toHaveBeenCalledWith(expect.any(Array));
+        expect(onLint.mock.calls[0][0]).toHaveLength(1);
 
         done();
       }, 0);
@@ -488,7 +488,7 @@ describe.skip('CodeEditor', function() {
 
     it('should call onLint without errors', function(done) {
       const initalValue = '15';
-      const onLint = sinon.spy();
+      const onLint = vi.fn();
 
       const editor = new FeelEditor({
         container,
@@ -505,9 +505,9 @@ describe.skip('CodeEditor', function() {
       // update done async
       setTimeout(() => {
 
-        expect(onLint).to.have.been.calledOnce;
-        expect(onLint).to.have.been.calledWith(sinon.match.array);
-        expect(onLint.args[0][0]).to.have.length(0);
+        expect(onLint).toHaveBeenCalledTimes(1);
+        expect(onLint).toHaveBeenCalledWith(expect.any(Array));
+        expect(onLint.mock.calls[0][0]).toHaveLength(0);
 
         done();
       }, 0);
@@ -544,8 +544,8 @@ describe.skip('CodeEditor', function() {
       // update done async
       expectEventually(() => {
         const completions = currentCompletions(cm.state);
-        expect(completions).to.have.length(1);
-        expect(completions[0].label).to.have.eql('foobar');
+        expect(completions).toHaveLength(1);
+        expect(completions[0].label).toBe('foobar');
         done();
       });
 
@@ -571,8 +571,8 @@ describe.skip('CodeEditor', function() {
       // update done async
       expectEventually(() => {
         const completions = currentCompletions(cm.state);
-        expect(completions).to.have.length(90);
-        expect(completions[0].label).to.have.eql('abs()');
+        expect(completions).toHaveLength(90);
+        expect(completions[0].label).toBe('abs()');
         done();
       });
 
@@ -601,7 +601,7 @@ describe.skip('CodeEditor', function() {
       // update done async
       expectEventually(() => {
         const completions = currentCompletions(cm.state);
-        expect(completions[0].label).to.have.eql('for');
+        expect(completions[0].label).toBe('for');
         done();
       });
 
@@ -658,8 +658,8 @@ describe.skip('CodeEditor', function() {
           const tooltipBB = tooltip.getBoundingClientRect();
           const containerBB = tooltipContainer.getBoundingClientRect();
 
-          expect(tooltip).to.exist;
-          expect(tooltipBB.bottom).to.be.below(containerBB.bottom);
+          expect(tooltip).not.toBeNull();
+          expect(tooltipBB.bottom).toBeLessThan(containerBB.bottom);
 
           done();
         }, 100);
@@ -692,8 +692,8 @@ describe.skip('CodeEditor', function() {
           const tooltipBB = tooltip.getBoundingClientRect();
           const containerBB = tooltipContainer.getBoundingClientRect();
 
-          expect(tooltip).to.exist;
-          expect(tooltipBB.bottom).to.be.below(containerBB.bottom);
+          expect(tooltip).not.toBeNull();
+          expect(tooltipBB.bottom).toBeLessThan(containerBB.bottom);
 
           done();
         }, 100);
@@ -724,8 +724,8 @@ describe.skip('CodeEditor', function() {
           const tooltipBB = tooltip.getBoundingClientRect();
           const containerBB = tooltipContainer.getBoundingClientRect();
 
-          expect(tooltip).to.exist;
-          expect(tooltipBB.bottom).to.be.above(containerBB.bottom);
+          expect(tooltip).not.toBeNull();
+          expect(tooltipBB.bottom).toBeGreaterThan(containerBB.bottom);
 
           done();
         }, 100);

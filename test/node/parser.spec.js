@@ -1,5 +1,4 @@
 import { buildSimpleTree, parser } from '../../src/grammar';
-import { expect } from 'chai';
 
 describe('parser', () => {
 
@@ -12,7 +11,7 @@ describe('parser', () => {
     const parseTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(parseTree,
+    expectTreeStructure(parseTree,
       ['Feelers', [
         ['SimpleTextBlock', 'hello world']
       ]]
@@ -30,7 +29,7 @@ describe('parser', () => {
     const simpleTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(simpleTree,
+    expectTreeStructure(simpleTree,
       ['Feelers', [
         ['SimpleTextBlock', 'hello {{ world']
       ]]
@@ -48,7 +47,7 @@ describe('parser', () => {
     const simpleTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(simpleTree,
+    expectTreeStructure(simpleTree,
       ['Feelers', [
         ['Feel', '1 + 2']
       ]]
@@ -66,7 +65,7 @@ describe('parser', () => {
     const simpleTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(simpleTree,
+    expectTreeStructure(simpleTree,
       ['Feelers', [
         ['SimpleTextBlock', 'hello '],
         ['Insert', [
@@ -88,7 +87,7 @@ describe('parser', () => {
     const simpleTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(simpleTree,
+    expectTreeStructure(simpleTree,
       ['Feelers', [
         ['SimpleTextBlock', 'hello '],
         ['EmptyInsert'],
@@ -108,7 +107,7 @@ describe('parser', () => {
     const simpleTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(simpleTree,
+    expectTreeStructure(simpleTree,
       ['Feelers', [
         ['SimpleTextBlock', 'hello '],
         ['Insert', [
@@ -133,7 +132,7 @@ describe('parser', () => {
     const simpleTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(simpleTree,
+    expectTreeStructure(simpleTree,
       ['Feelers', [
         ['SimpleTextBlock', 'hello '],
         ['ConditionalSpanner', [
@@ -155,7 +154,7 @@ describe('parser', () => {
     const simpleTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(simpleTree,
+    expectTreeStructure(simpleTree,
       ['Feelers', [
         ['SimpleTextBlock', 'hello '],
         ['LoopSpanner', [
@@ -177,7 +176,7 @@ describe('parser', () => {
     const simpleTree = _getSimpleTree(input);
 
     // then
-    _expectTreeStructure(simpleTree,
+    expectTreeStructure(simpleTree,
       ['Feelers', [
         ['SimpleTextBlock', 'hello '],
         ['LoopSpanner', [
@@ -195,22 +194,22 @@ describe('parser', () => {
 
 });
 
-const _expectTreeStructure = (node, structure) => {
+const expectTreeStructure = (node, structure) => {
 
   const [ name, childrenOrContent ] = structure;
-  expect(node.name, `expected node '${node.name}' to have name '${name}'`).to.equal(name);
+  expect(node.name).toBe(name);
 
   if (typeof childrenOrContent === 'string') {
 
-    // check leaf node content
-    expect(node.content, `expected node '${node.name}' to be a leaf node`).to.exist;
-    expect(node.content, `expected node '${node.name}' content '${node.content}' to equal '${childrenOrContent}'`).to.equal(childrenOrContent);
+  // check leaf node content
+  expect(node.content).toBeDefined();
+  expect(node.content).toBe(childrenOrContent);
   }
   else if (Array.isArray(childrenOrContent)) {
 
     // iterate recursively over children
     childrenOrContent.forEach((child, idx) => {
-      _expectTreeStructure(node.children[idx], child);
+      expectTreeStructure(node.children[idx], child);
     });
   }
   else if (!childrenOrContent) { /* if there is no content or children, then we have an empty node */ }
