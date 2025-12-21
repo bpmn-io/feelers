@@ -26,7 +26,7 @@ jobs:
     - name: Build
       run: npm run build
     - name: Test
-      run: npm run test
+      run: npm run test:headless
     - name: Generate parser from grammar
       run: npm run generate:parser
     - name: Bundle dist
