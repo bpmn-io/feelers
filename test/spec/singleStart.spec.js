@@ -3,7 +3,9 @@ import { FeelersEditor } from '../../src';
 import { evaluate } from '../../src/interpreter';
 import { initialContext, initialTemplate } from '../testData';
 
-const singleStart = false; // Use `vitest --ui` for interactive development
+// For interactive development, use `npm start` (vitest --ui)
+// or `npm run dev` (vitest watch) instead of this single-start mode
+const singleStart = false;
 
 describe('CodeEditor', function() {
 
