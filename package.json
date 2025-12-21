@@ -6,13 +6,13 @@
   "module": "dist/index.mjs",
   "scripts": {
     "all": "run-s lint test build",
-    "test": "karma start",
+    "test": "vitest run",
     "generate:parser": "lezer-generator src/grammar/feelers.grammar -o src/grammar/parser",
-    "bundle": "rollup -c",
-    "dev": "npm test -- --auto-watch --no-single-run",
+    "bundle": "vite build",
+    "dev": "vitest watch",
     "build": "npm run generate:parser && npm run bundle",
     "lint": "eslint .",
-    "start": "cross-env SINGLE_START=true npm run dev",
+    "start": "vitest --ui",
     "build:playground": "npm run build && npm run --prefix feelers-playground build",
     "start:playground": "npm run build && npm run --prefix feelers-playground dev"
   },
@@ -61,6 +61,7 @@
     "@rollup/plugin-json": "^6.0.1",
     "@types/chai": "^4.3.8",
     "@types/mocha": "^10.0.2",
+    "@vitest/ui": "^4.0.16",
     "chai": "^4.3.10",
     "cross-env": "^10.0.0",
     "eslint": "^9.39.1",
@@ -69,6 +70,8 @@
     "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.5.0",
+    "happy-dom": "^20.0.11",
+    "jsdom": "^27.3.0",
     "karma": "^6.4.2",
     "karma-chrome-launcher": "^3.2.0",
     "karma-debug-launcher": "^0.0.5",
@@ -84,7 +87,9 @@
     "rollup": "^4.0.0",
     "sinon": "^16.1.0",
     "sinon-chai": "^3.7.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vite": "^7.3.0",
+    "vitest": "^4.0.16"
   },
   "workspaces": {
     "packages": [

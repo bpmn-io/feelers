@@ -1,16 +1,16 @@
-import TestContainer from 'mocha-test-container-support';
+import TestContainer from '../testContainer';
 import { FeelersEditor } from '../../src';
 import { evaluate } from '../../src/interpreter';
 import { initialContext, initialTemplate } from '../testData';
 
-const singleStart = window.__env__ && window.__env__.SINGLE_START;
+const singleStart = false; // Use `vitest --ui` for interactive development
 
 describe('CodeEditor', function() {
 
   let container;
 
   beforeEach(function() {
-    container = TestContainer.get(this);
+    container = TestContainer.get();
   });
 
 
