@@ -67,8 +67,8 @@ const buildNodeEvaluator = (options) => {
       const feel = node.children[0].content;
 
       try {
-        const result = evaluateFeel(`string(${feel})`, context);
-        return sanitizer ? sanitizer(result) : result;
+        const { value } = evaluateFeel(`string(${feel})`, context);
+        return sanitizer ? sanitizer(value) : value;
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
@@ -83,8 +83,8 @@ const buildNodeEvaluator = (options) => {
       const feel = node.content;
 
       try {
-        const result = evaluateFeel(`string(${feel})`, context);
-        return sanitizer ? sanitizer(result) : result;
+        const { value } = evaluateFeel(`string(${feel})`, context);
+        return sanitizer ? sanitizer(value) : value;
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
@@ -99,7 +99,8 @@ const buildNodeEvaluator = (options) => {
       let shouldRender;
 
       try {
-        shouldRender = evaluateFeel(feel, context);
+        const { value } = evaluateFeel(feel, context);
+        shouldRender = value;
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
@@ -127,7 +128,8 @@ const buildNodeEvaluator = (options) => {
       let loopArray;
 
       try {
-        loopArray = evaluateFeel(feel, context);
+        const { value } = evaluateFeel(feel, context);
+        loopArray = value;
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
