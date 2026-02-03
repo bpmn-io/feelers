@@ -58,7 +58,7 @@
     "@eslint/js": "^9.39.1",
     "@lezer/generator": "^1.5.1",
     "@rollup/plugin-commonjs": "^29.0.0",
-    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-json": "^6.1.0",
     "@types/chai": "^4.3.8",
     "@types/mocha": "^10.0.2",
     "chai": "^4.3.10",
@@ -81,7 +81,7 @@
     "mocha-test-container-support": "^0.2.0",
     "npm-run-all2": "^8.0.0",
     "puppeteer": "^24.0.0",
-    "rollup": "^4.0.0",
+    "rollup": "^4.22.4",
     "sinon": "^16.1.0",
     "sinon-chai": "^3.7.0",
     "typescript": "^4.9.5"
