@@ -1,5 +1,5 @@
 import { parser, buildSimpleTree } from '../grammar/';
-import { evaluate as evaluateFeel } from 'feelin';
+import { evaluate as evaluateFeel } from '@bpmn-io/feelin';
 
 /**
  * @typedef {object} EvaluationOptions

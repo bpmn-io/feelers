@@ -1,4 +1,4 @@
-import { parser as feelParser } from 'lezer-feel';
+import { parser as feelParser } from '@bpmn-io/lezer-feel';
 import { parser as templateParser } from '../../grammar/parser.js';
 import { parseMixed } from '@lezer/common';
 import { LRLanguage, foldNodeProp, foldInside } from '@codemirror/language';

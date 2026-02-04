@@ -5,8 +5,8 @@
     {
       "groupName": "bpmn.io feel deps",
       "matchPackagePatterns": [
-        "^feelin$",
-        "^lezer-feel$",
+        "^@bpmn-io/feelin$",
+        "^@bpmn-io/lezer-feel$",
         "^@bpmn-io/cm-theme$",
         "^@bpmn-io/feel-lint$"
       ],
