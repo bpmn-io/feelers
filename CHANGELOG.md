@@ -6,6 +6,10 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.5.1
+
+_Correct distribution._
+
 ## 1.5.0
 
 * `DEPS`: update to `@bpmn-io/feel-lint@3.1.0`
