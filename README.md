@@ -22,8 +22,9 @@ Like [mustache](https://mustache.github.io/) / [handlebars](https://handlebarsjs
 Feelers is a string templating tool, and will return string text or error.
 
 ```js
-import { evaluate } from 'feelers'`
+import { evaluate } from 'feelers';
 ```
+
 A simple string will always be returned as-is.
 
 ```js
