@@ -6,6 +6,15 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.5.0
+
+* `DEPS`: update to `@bpmn-io/feel-lint@3.1.0`
+* `DEPS`: use `@bpmn-io/lezer-feel@2.1.0`
+* `DEPS`: use `@bpmn-io/feelin@6.1.0`
+* `DEPS`: update to `min-dom@5.2.0`
+* `DEPS`: update `codemirror/*` dependencies
+* `DEPS`: update `lezer/*` dependencies
+
 ## 1.4.0
 
 * `FEAT`: add line wrapping option ([#45](https://github.com/bpmn-io/feelers/issues/45))
