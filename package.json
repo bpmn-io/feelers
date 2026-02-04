@@ -14,7 +14,8 @@
     "lint": "eslint .",
     "start": "cross-env SINGLE_START=true npm run dev",
     "build:playground": "npm run build && npm run --prefix feelers-playground build",
-    "start:playground": "npm run build && npm run --prefix feelers-playground dev"
+    "start:playground": "npm run build && npm run --prefix feelers-playground dev",
+    "prepare": "run-s build"
   },
   "author": {
     "name": "Valentin Serra",
