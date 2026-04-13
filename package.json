@@ -13,8 +13,9 @@
     "build": "npm run generate:parser && npm run bundle",
     "lint": "eslint .",
     "start": "cross-env SINGLE_START=true npm run dev",
-    "build:playground": "npm run build && npm run --prefix feelers-playground build",
-    "start:playground": "npm run build && npm run --prefix feelers-playground dev",
+    "install:playground": "npm install --prefix feelers-playground",
+    "build:playground": "npm run build && npm run install:playground && npm run --prefix feelers-playground build",
+    "start:playground": "npm run build && npm run install:playground && npm run --prefix feelers-playground dev",
     "prepare": "run-s build"
   },
   "author": {
@@ -86,10 +87,5 @@
     "sinon": "^21.0.0",
     "sinon-chai": "^4.0.0",
     "typescript": "^4.9.5"
-  },
-  "workspaces": {
-    "packages": [
-      "feelers-playground"
-    ]
   }
 }
