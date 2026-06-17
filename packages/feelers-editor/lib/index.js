@@ -9,8 +9,7 @@ import { parser as markdownParser } from '@lezer/markdown';
 
 import { feelersLinter } from '@bpmn-io/feelers-lint';
 import { feelersLanguage } from '@bpmn-io/lang-feelers';
-
-import { lightTheme, darkTheme } from '@bpmn-io/cm-theme';
+import { feelLight, feelDark } from '@bpmn-io/cm-theme';
 
 import mitt from 'mitt';
 
@@ -141,7 +140,7 @@ export function FeelersEditor({
     feelersLinter,
     lintHandler,
     tooltipLayout,
-    darkMode ? darkTheme : lightTheme,
+    darkMode ? feelDark : feelLight,
     ...(enableGutters ? [
 
       // todo: adjust folding boundaries first foldGutter(),
