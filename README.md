@@ -5,7 +5,8 @@
 A templating solution built on top of [DMN](https://www.omg.org/spec/DMN/) FEEL.
 Like [mustache](https://mustache.github.io/) / [handlebars](https://handlebarsjs.com/) but with FEEL.
 
-![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
+![feelers editor - light theme](./packages/feelers-editor/docs/editor-light.png)
+![feelers editor - dark theme](./packages/feelers-editor/docs/editor-dark.png)
 
 ## Packages
 

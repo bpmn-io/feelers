@@ -4,7 +4,8 @@
 
 [CodeMirror 6](https://codemirror.net/) editor component for the [FEELers](https://github.com/bpmn-io/feelers) templating language.
 
-![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
+![feelers editor - light theme](./docs/editor-light.png)
+![feelers editor - dark theme](./docs/editor-dark.png)
 
 ## Usage
 
