@@ -9,11 +9,8 @@ const singleStart = process.env.SINGLE_START;
 
 const suite = coverage ? 'test/coverageBundle.js' : 'test/testBundle.js';
 
-module.exports = async function (karma) {
+module.exports = function(karma) {
 
-  // use puppeteer provided Chrome for testing
-  process.env.CHROME_BIN = await require('puppeteer').executablePath();
-  
   const config = {
 
     frameworks: [
