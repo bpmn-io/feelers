@@ -9,6 +9,7 @@ const singleStart = process.env.SINGLE_START;
 
 const suite = coverage ? 'test/coverageBundle.js' : 'test/testBundle.js';
 
+// eslint-disable-next-line import-x/no-commonjs
 module.exports = function(karma) {
 
   const config = {
@@ -23,10 +24,10 @@ module.exports = function(karma) {
     ],
 
     preprocessors: {
-      [suite]: ['webpack', 'env']
+      [suite]: [ 'webpack', 'env' ]
     },
 
-    reporters: ['tldr'].concat(coverage ? 'coverage' : []),
+    reporters: [ 'tldr' ].concat(coverage ? 'coverage' : []),
 
     coverageReporter: {
       reporters: [
@@ -67,11 +68,11 @@ module.exports = function(karma) {
               loader: 'babel-loader',
               options: {
                 plugins: [
-                  ['istanbul', {
+                  [ 'istanbul', {
                     include: [
                       'src/**'
                     ]
-                  }]
+                  } ]
                 ],
               }
             },

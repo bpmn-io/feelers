@@ -90,23 +90,23 @@ export function Playground() {
   return (
     <div className="root">
       <div className="col">
-        <div ref={containerRef} id="template" style="flex: 1; background-color: #fff; overflow: auto" ></div>
+        <div ref={ containerRef } id="template" style="flex: 1; background-color: #fff; overflow: auto"></div>
         <textarea
           id="context"
-          value={templateContext}
-          class={contextJSON ? '' : 'invalid'}
+          value={ templateContext }
+          class={ contextJSON ? '' : 'invalid' }
           onKeyDown={ (e) => onContextKeyDown(e) }
-          onInput={e => setTemplateContext(e.target.value)} />
+          onInput={ e => setTemplateContext(e.target.value) } />
       </div>
       <div className="col">
         <textarea
           id="output"
-          class={!outputIsInvalid ? '' : 'invalid'}
-          value={computedOutput}
-          readonly />
+          class={ !outputIsInvalid ? '' : 'invalid' }
+          value={ computedOutput }
+          readOnly />
       </div>
       <div className="col">
-        <Markup markup={htmlOutput} />
+        <Markup markup={ htmlOutput } />
       </div>
     </div>
   );
