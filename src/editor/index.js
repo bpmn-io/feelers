@@ -10,6 +10,7 @@ import { createFeelersLanguageSupport } from './language';
 
 import { feelersLinter } from './lint';
 import { lightTheme, darkTheme } from '@bpmn-io/cm-theme';
+import mitt from 'mitt';
 
 /**
  * Creates a Feelers editor in the supplied container.
@@ -49,6 +50,10 @@ export function FeelersEditor({
   darkMode = false
 }) {
 
+  this._events = mitt();
+
+  this.on('lint', ({ diagnostics }) => onLint(diagnostics));
+
   const changeHandler = EditorView.updateListener.of((update) => {
     if (update.docChanged) {
       onChange(update.state.doc.toString());
@@ -64,9 +69,9 @@ export function FeelersEditor({
       return;
     }
 
-    const messages = diagnosticEffects.flatMap(effect => effect.value);
+    const diagnostics = diagnosticEffects.flatMap(effect => effect.value);
 
-    onLint(messages);
+    this._events.emit('lint', { diagnostics });
   });
 
   const contentAttributesExtension = EditorView.contentAttributes.of(contentAttributes);
@@ -186,4 +191,20 @@ FeelersEditor.prototype.focus = function(position) {
  */
 FeelersEditor.prototype.getSelection = function() {
   return this._cmEditor.state.selection;
+};
+
+/**
+ * @param {string} eventName
+ * @param {Function} callback
+ */
+FeelersEditor.prototype.on = function(eventName, callback) {
+  this._events.on(eventName, callback);
+};
+
+/**
+ * @param {string} eventName
+ * @param {Function} [callback]
+ */
+FeelersEditor.prototype.off = function(eventName, callback) {
+  this._events.off(eventName, callback);
 };
