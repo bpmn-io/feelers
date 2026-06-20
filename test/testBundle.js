@@ -1,3 +1,4 @@
+/* global require */
 require('./testSetup.js');
 
 // @ts-ignore-next-line
