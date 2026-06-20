@@ -51,7 +51,6 @@
     "min-dom": "^5.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.23.0",
     "@babel/core": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
     "@lezer/generator": "^1.8.0",
