@@ -3,6 +3,7 @@ import { expect } from 'chai';
 
 const ERROR_CHAR = '⚠';
 
+
 describe('interpreter', () => {
 
   describe('simple inputs', () => {

@@ -1,9 +1,12 @@
+import { expect } from 'chai';
+
 import TestContainer from 'mocha-test-container-support';
 import { FeelersEditor } from '../../src';
 import { evaluate } from '../../src/interpreter';
 import { initialContext, initialTemplate } from '../testData';
 
 const singleStart = window.__env__ && window.__env__.SINGLE_START;
+
 
 describe('CodeEditor', function() {
 
