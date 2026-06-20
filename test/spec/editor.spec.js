@@ -8,6 +8,7 @@ import { diagnosticCount, forceLinting } from '@codemirror/lint';
 import { currentCompletions, startCompletion } from '@codemirror/autocomplete';
 import { domify } from 'min-dom';
 
+
 describe('FeelersEditor', function() {
 
   let container;
@@ -63,11 +64,12 @@ describe.skip('CodeEditor', function() {
     container = TestContainer.get(this);
   });
 
+
   it('should use supplied document', async function() {
 
     // when
     const initialValue = 'Hello World!';
-    const editor = new FeelEditor({
+    const editor = new FeelersEditor({
       container,
       value: initialValue
     });
@@ -84,7 +86,7 @@ describe.skip('CodeEditor', function() {
 
       // given
       const initialValue = '[variable1, variable2]';
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initialValue
       });
@@ -103,7 +105,6 @@ describe.skip('CodeEditor', function() {
       expect(selection.ranges).to.have.length(1);
       expect(selection.ranges[0].from).to.equal(0);
       expect(selection.ranges[0].to).to.equal(5);
-
     });
 
   });
@@ -115,7 +116,7 @@ describe.skip('CodeEditor', function() {
 
       // given
       const initialValue = 'Hello World!';
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initialValue
       });
@@ -134,7 +135,7 @@ describe.skip('CodeEditor', function() {
     it('should focus', async function() {
 
       // given
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container
       });
 
@@ -152,7 +153,7 @@ describe.skip('CodeEditor', function() {
     it('should not focus for read-only', function() {
 
       // when
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         readOnly: true
       });
@@ -176,7 +177,7 @@ describe.skip('CodeEditor', function() {
       const editorContainer = scrollContainer.querySelector('#editor-container');
       container.appendChild(scrollContainer);
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container: editorContainer
       });
 
@@ -196,7 +197,7 @@ describe.skip('CodeEditor', function() {
     it('should set caret position', async function() {
 
       // given
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: 'Foobar'
       });
@@ -220,7 +221,7 @@ describe.skip('CodeEditor', function() {
     it('should set caret to end', async function() {
 
       // given
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: 'Foo'
       });
@@ -248,7 +249,7 @@ describe.skip('CodeEditor', function() {
     it('should set variables', async function() {
 
       // given
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container
       });
 
@@ -274,7 +275,7 @@ describe.skip('CodeEditor', function() {
 
       const initalValue = 'fooba';
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue
       });
@@ -304,7 +305,7 @@ describe.skip('CodeEditor', function() {
 
       const initalValue = 'fooba';
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue,
         variables: [
@@ -348,7 +349,7 @@ describe.skip('CodeEditor', function() {
 
       // given
       const onChange = spy();
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         onChange
       });
@@ -372,7 +373,7 @@ describe.skip('CodeEditor', function() {
 
       // given
       const onKeyDown = spy();
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         onKeyDown
       });
@@ -394,7 +395,7 @@ describe.skip('CodeEditor', function() {
     it('should not highlight empty document', function(done) {
       const initalValue = '';
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue
       });
@@ -417,7 +418,7 @@ describe.skip('CodeEditor', function() {
     it('should highlight unexpected operations', function(done) {
       const initalValue = '= 15';
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue
       });
@@ -440,7 +441,7 @@ describe.skip('CodeEditor', function() {
     it('should highlight missing operations', function(done) {
       const initalValue = '15 == 15';
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue
       });
@@ -464,7 +465,7 @@ describe.skip('CodeEditor', function() {
       const initalValue = '= 15';
       const onLint = spy();
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue,
         onLint
@@ -493,7 +494,7 @@ describe.skip('CodeEditor', function() {
       const initalValue = '15';
       const onLint = spy();
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue,
         onLint
@@ -529,7 +530,7 @@ describe.skip('CodeEditor', function() {
         { name: 'baz' }
       ];
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue,
         variables
@@ -559,7 +560,7 @@ describe.skip('CodeEditor', function() {
       const initalValue = '';
       const variables = [];
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue,
         variables
@@ -586,7 +587,7 @@ describe.skip('CodeEditor', function() {
       const initalValue = 'fo';
       const variables = [];
 
-      const editor = new FeelEditor({
+      const editor = new FeelersEditor({
         container,
         value: initalValue,
         variables
@@ -627,7 +628,7 @@ describe.skip('CodeEditor', function() {
       let feelContainer;
 
 
-      beforeEach(() => {
+      beforeEach(function() {
         tooltipContainer = domify(`<div id="tooltipContainer" style="width: 500px; height: 500px; position: relative;">
                                     <div id="feelEditor" style="width: 50px; height: 20px; position: absolute; bottom: 0; right: 0;"></div>
                                   </div>`);
@@ -639,7 +640,7 @@ describe.skip('CodeEditor', function() {
 
 
       it('should position tooltips inside container', function(done) {
-        const editor = new FeelEditor({
+        const editor = new FeelersEditor({
           container: feelContainer,
 
           tooltipContainer: tooltipContainer,
@@ -673,7 +674,7 @@ describe.skip('CodeEditor', function() {
 
 
       it('should position tooltips inside container defined by CSS selector', function(done) {
-        const editor = new FeelEditor({
+        const editor = new FeelersEditor({
           container: feelContainer,
 
           tooltipContainer: '#tooltipContainer',
@@ -707,7 +708,7 @@ describe.skip('CodeEditor', function() {
 
 
       it('should use window by default', function(done) {
-        const editor = new FeelEditor({
+        const editor = new FeelersEditor({
           container: feelContainer,
           value: initalValue,
           variables

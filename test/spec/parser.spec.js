@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import { buildSimpleTree, parser } from '../../src/grammar';
 
 
-describe('parser', () => {
+describe('parser', function() {
 
-  it('should parse simple text block', () => {
+  it('should parse simple text block', function() {
 
     // given
     const input = 'hello world';
@@ -15,15 +15,15 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(parseTree,
-      ['Feelers', [
-        ['SimpleTextBlock', 'hello world']
-      ]]
+      [ 'Feelers', [
+        [ 'SimpleTextBlock', 'hello world' ]
+      ] ]
     );
   });
 
 
   // todo: support this case
-  it.skip('should parse simple text block with unclosed braces', () => {
+  it.skip('should parse simple text block with unclosed braces', function() {
 
     // given
     const input = 'hello {{ world';
@@ -33,15 +33,15 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(simpleTree,
-      ['Feelers', [
-        ['SimpleTextBlock', 'hello {{ world']
-      ]]
+      [ 'Feelers', [
+        [ 'SimpleTextBlock', 'hello {{ world' ]
+      ] ]
     );
 
   });
 
 
-  it('should parse pure FEEL expression', () => {
+  it('should parse pure FEEL expression', function() {
 
     // given
     const input = '=1 + 2';
@@ -51,15 +51,15 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(simpleTree,
-      ['Feelers', [
-        ['Feel', '1 + 2']
-      ]]
+      [ 'Feelers', [
+        [ 'Feel', '1 + 2' ]
+      ] ]
     );
 
   });
 
 
-  it('should parse text with insert', () => {
+  it('should parse text with insert', function() {
 
     // given
     const input = 'hello {{1 + 2}} world';
@@ -69,19 +69,19 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(simpleTree,
-      ['Feelers', [
-        ['SimpleTextBlock', 'hello '],
-        ['Insert', [
-          ['FeelBlock', '1 + 2']
-        ]],
-        ['SimpleTextBlock', ' world']
-      ]]
+      [ 'Feelers', [
+        [ 'SimpleTextBlock', 'hello ' ],
+        [ 'Insert', [
+          [ 'FeelBlock', '1 + 2' ]
+        ] ],
+        [ 'SimpleTextBlock', ' world' ]
+      ] ]
     );
 
   });
 
 
-  it('should parse text with empty insert', () => {
+  it('should parse text with empty insert', function() {
 
     // given
     const input = 'hello {{}} world';
@@ -91,17 +91,17 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(simpleTree,
-      ['Feelers', [
-        ['SimpleTextBlock', 'hello '],
-        ['EmptyInsert'],
-        ['SimpleTextBlock', ' world']
-      ]]
+      [ 'Feelers', [
+        [ 'SimpleTextBlock', 'hello ' ],
+        [ 'EmptyInsert' ],
+        [ 'SimpleTextBlock', ' world' ]
+      ] ]
     );
 
   });
 
 
-  it('should parse text with multiple inserts', () => {
+  it('should parse text with multiple inserts', function() {
 
     // given
     const input = 'hello {{1 + 2}} world {{3 + 4}}';
@@ -111,22 +111,22 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(simpleTree,
-      ['Feelers', [
-        ['SimpleTextBlock', 'hello '],
-        ['Insert', [
-          ['FeelBlock', '1 + 2']
-        ]],
-        ['SimpleTextBlock', ' world '],
-        ['Insert', [
-          ['FeelBlock', '3 + 4']
-        ]]
-      ]]
+      [ 'Feelers', [
+        [ 'SimpleTextBlock', 'hello ' ],
+        [ 'Insert', [
+          [ 'FeelBlock', '1 + 2' ]
+        ] ],
+        [ 'SimpleTextBlock', ' world ' ],
+        [ 'Insert', [
+          [ 'FeelBlock', '3 + 4' ]
+        ] ]
+      ] ]
     );
 
   });
 
 
-  it('should parse conditional insert', () => {
+  it('should parse conditional insert', function() {
 
     // given
     const input = 'hello {{#if true}}world{{/if}}';
@@ -136,19 +136,19 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(simpleTree,
-      ['Feelers', [
-        ['SimpleTextBlock', 'hello '],
-        ['ConditionalSpanner', [
-          ['FeelBlock', 'true'],
-          ['SimpleTextBlock', 'world']
-        ]]
-      ]]
+      [ 'Feelers', [
+        [ 'SimpleTextBlock', 'hello ' ],
+        [ 'ConditionalSpanner', [
+          [ 'FeelBlock', 'true' ],
+          [ 'SimpleTextBlock', 'world' ]
+        ] ]
+      ] ]
     );
 
   });
 
 
-  it('should parse loop spanners', () => {
+  it('should parse loop spanners', function() {
 
     // given
     const input = 'hello {{#loop [1, 2, 3]}}world{{/loop}}';
@@ -158,19 +158,19 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(simpleTree,
-      ['Feelers', [
-        ['SimpleTextBlock', 'hello '],
-        ['LoopSpanner', [
-          ['FeelBlock', '[1, 2, 3]'],
-          ['SimpleTextBlock', 'world']
-        ]]
-      ]]
+      [ 'Feelers', [
+        [ 'SimpleTextBlock', 'hello ' ],
+        [ 'LoopSpanner', [
+          [ 'FeelBlock', '[1, 2, 3]' ],
+          [ 'SimpleTextBlock', 'world' ]
+        ] ]
+      ] ]
     );
 
   });
 
 
-  it('should parse nested loop spanners', () => {
+  it('should parse nested loop spanners', function() {
 
     // given
     const input = 'hello {{#loop [1, 2, 3]}}world {{#loop [4, 5, 6]}}!{{/loop}}{{/loop}}';
@@ -180,17 +180,17 @@ describe('parser', () => {
 
     // then
     _expectTreeStructure(simpleTree,
-      ['Feelers', [
-        ['SimpleTextBlock', 'hello '],
-        ['LoopSpanner', [
-          ['FeelBlock', '[1, 2, 3]'],
-          ['SimpleTextBlock', 'world '],
-          ['LoopSpanner', [
-            ['FeelBlock', '[4, 5, 6]'],
-            ['SimpleTextBlock', '!']
-          ]]
-        ]]
-      ]]
+      [ 'Feelers', [
+        [ 'SimpleTextBlock', 'hello ' ],
+        [ 'LoopSpanner', [
+          [ 'FeelBlock', '[1, 2, 3]' ],
+          [ 'SimpleTextBlock', 'world ' ],
+          [ 'LoopSpanner', [
+            [ 'FeelBlock', '[4, 5, 6]' ],
+            [ 'SimpleTextBlock', '!' ]
+          ] ]
+        ] ]
+      ] ]
     );
 
   });

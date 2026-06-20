@@ -4,11 +4,11 @@ import { expect } from 'chai';
 const ERROR_CHAR = '⚠';
 
 
-describe('interpreter', () => {
+describe('interpreter', function() {
 
-  describe('simple inputs', () => {
+  describe('simple inputs', function() {
 
-    it('should return empty strings unchanged', () => {
+    it('should return empty strings unchanged', function() {
 
       // given
       const stringInput = '';
@@ -22,7 +22,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should return simple text unmodified', () => {
+    it('should return simple text unmodified', function() {
 
       // given
       const stringInput = 'Hello World';
@@ -36,7 +36,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should return simple text with newlines unmodified', () => {
+    it('should return simple text with newlines unmodified', function() {
 
       // given
       const stringInput = 'Hello World\nasdasdasd\nasdasdasdasdasd';
@@ -50,7 +50,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should return number strings unmodified', () => {
+    it('should return number strings unmodified', function() {
 
       // given
       const stringInput = '123';
@@ -64,7 +64,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should return addition strings unmodified', () => {
+    it('should return addition strings unmodified', function() {
 
       // given
       const stringInput = '123 + 123';
@@ -78,7 +78,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should return objects unmodified', () => {
+    it('should return objects unmodified', function() {
 
       // given
       const stringInput = '{ "a": 1, "b": 2 }';
@@ -92,7 +92,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should return function keywords unmodified', () => {
+    it('should return function keywords unmodified', function() {
 
       // given
       const stringInput = 'date';
@@ -108,9 +108,9 @@ describe('interpreter', () => {
   });
 
 
-  describe('pure FEEL', () => {
+  describe('pure FEEL', function() {
 
-    it('should interpret simple math expressions', () => {
+    it('should interpret simple math expressions', function() {
 
       // given
       const stringInput = '= 1 + 1';
@@ -124,7 +124,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should interpret more complex feel', () => {
+    it('should interpret more complex feel', function() {
 
       // given
       const stringInput = '= if (1 + 1 = 2) then "Hello World" else "Goodbye World"';
@@ -138,7 +138,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should interpret feel with context', () => {
+    it('should interpret feel with context', function() {
 
       // given
       const stringInput = '= if (a + 1 = 2) then "Hello World" else "Goodbye World"';
@@ -153,7 +153,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should interpret feel with nested context', () => {
+    it('should interpret feel with nested context', function() {
 
       // given
       const stringInput = '= if (a.b + 1 = 2) then "Hello World" else "Goodbye World"';
@@ -168,7 +168,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should error on invalid feel', () => {
+    it('should error on invalid feel', function() {
 
       // given
       const stringInput = '= iff (a + 1 = 2) then "Hello World" else "Goodbye World"';
@@ -186,7 +186,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate even when missing contextual information', () => {
+    it('should evaluate even when missing contextual information', function() {
 
       // given
       const stringInput = '= if (a + 1 = 2) then "Hello World" else "Goodbye World"';
@@ -203,7 +203,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should stringify objects', () => {
+    it('should stringify objects', function() {
 
       // given
       const stringInput = '= { "a": 1, "b": 2 }';
@@ -217,7 +217,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should stringify arrays', () => {
+    it('should stringify arrays', function() {
 
       // given
       const stringInput = '= [ 1, 2, 3 ]';
@@ -231,7 +231,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should stringify nested objects', () => {
+    it('should stringify nested objects', function() {
 
       // given
       const stringInput = '= { "a": { "b": 2 } }';
@@ -245,7 +245,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should error on function keywords', () => {
+    it('should error on function keywords', function() {
 
       // given
       const stringInput = '= date';
@@ -262,7 +262,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should sanitize according to sanitizer function', () => {
+    it('should sanitize according to sanitizer function', function() {
 
       // given
       const stringInput = '= 1 + 1';
@@ -279,9 +279,9 @@ describe('interpreter', () => {
   });
 
 
-  describe('inserts', () => {
+  describe('inserts', function() {
 
-    it('should evaluate simple inserts', () => {
+    it('should evaluate simple inserts', function() {
 
       // given
       const stringInput = 'Hello {{= 1 + 1}} World';
@@ -295,7 +295,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate simple inserts without equal sign', () => {
+    it('should evaluate simple inserts without equal sign', function() {
 
       // given
       const stringInput = 'Hello {{1+1}} World';
@@ -309,7 +309,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate simple inserts with context', () => {
+    it('should evaluate simple inserts with context', function() {
 
       // given
       const stringInput = 'Hello {{= a + 1}} World';
@@ -324,7 +324,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate simple inserts with nested context', () => {
+    it('should evaluate simple inserts with nested context', function() {
 
       // given
       const stringInput = 'Hello {{= a.b + 1}} World';
@@ -339,7 +339,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate multiple inserts', () => {
+    it('should evaluate multiple inserts', function() {
 
       // given
       const stringInput = 'Hello {{= a + 1}} World {{= a + 2}}';
@@ -353,7 +353,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate complex inserts', () => {
+    it('should evaluate complex inserts', function() {
 
       // given
       const stringInput = 'Hello {{= if (a + 1 = 2) then "Lovely" else "Cruel"}} World';
@@ -367,7 +367,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate even more complex inserts', () => {
+    it('should evaluate even more complex inserts', function() {
 
       // given
       const stringInput = 'Hello {{user_info.name}}, you are currently {{ if user_role.isAdmin then "" else "not " }}authorized to access this page.';
@@ -382,7 +382,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should stringify objects', () => {
+    it('should stringify objects', function() {
 
       // given
       const stringInput = 'Hello {{= { "a": 1, "b": 2 } }} World';
@@ -396,7 +396,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should stringify arrays', () => {
+    it('should stringify arrays', function() {
 
       // given
       const stringInput = 'Hello {{= [ 1, 2, 3 ] }} World';
@@ -410,7 +410,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should error on invalid feel', () => {
+    it('should error on invalid feel', function() {
 
       // given
       const stringInput = 'Hello {{= iff (a + 1 = 2) then "Hello World" else "Goodbye World"}} World {{iff () then "Hello World" else "Goodbye World"}}';
@@ -428,7 +428,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should error on function keywords', () => {
+    it('should error on function keywords', function() {
 
       // given
       const stringInput = 'Hello {{= date}} World';
@@ -445,7 +445,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should support builtins overrides', () => {
+    it('should support builtins overrides', function() {
 
       // given
       const stringInput = 'Hello {{= user}}, it has been {{= duration}} since your last login.';
@@ -459,7 +459,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should sanitize according to sanitizer function', () => {
+    it('should sanitize according to sanitizer function', function() {
 
       // given
       const stringInput = 'Hello {{= 1 + 1}} World';
@@ -476,9 +476,9 @@ describe('interpreter', () => {
   });
 
 
-  describe('conditional inserts', () => {
+  describe('conditional inserts', function() {
 
-    it('should evaluate true conditional inserts', () => {
+    it('should evaluate true conditional inserts', function() {
 
       // given
       const stringInput = 'Hello {{#if true}}World{{/if}}';
@@ -491,7 +491,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate false conditional inserts', () => {
+    it('should evaluate false conditional inserts', function() {
 
       // given
       const stringInput = 'Hello {{#if false}}World{{/if}}';
@@ -504,7 +504,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate simple inline conditional inserts with context', () => {
+    it('should evaluate simple inline conditional inserts with context', function() {
 
       // given
       const stringInput = 'Hello {{#if pho_exists}}Delicious {{/if}}World';
@@ -519,7 +519,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate multiple inline conditional inserts', () => {
+    it('should evaluate multiple inline conditional inserts', function() {
 
       // given
       const stringInput = 'Hello {{#if pho_exists}}Delicious {{/if}}{{#if ramen_exists}}Umami {{/if}}World';
@@ -533,7 +533,7 @@ describe('interpreter', () => {
 
     });
 
-    it('should not swallow newlines when evaluating two initial inline conditional inserts', () => {
+    it('should not swallow newlines when evaluating two initial inline conditional inserts', function() {
 
       // given
       const stringInput = '{{#if true}}Hello{{/if}}\n{{#if true}}Newline{{/if}}';
@@ -547,7 +547,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate simple multiline conditional inserts without creating extra lines', () => {
+    it('should evaluate simple multiline conditional inserts without creating extra lines', function() {
 
       // given
       const stringInput = 'Hello\n{{#if pho_exists}}\nDelicious\n{{/if}}\nWorld';
@@ -562,7 +562,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate multiple multiline conditional inserts without creating extra lines', () => {
+    it('should evaluate multiple multiline conditional inserts without creating extra lines', function() {
 
       // given
       const stringInput = 'Hello\n{{#if pho_exists}}\nDelicious\n{{/if}}\n{{#if ramen_exists}}\nUmami\n{{/if}}\nWorld';
@@ -577,7 +577,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should type coerce to boolean in non-strict mode', () => {
+    it('should type coerce to boolean in non-strict mode', function() {
 
       // given
       const stringInput = 'Hello {{#if 1}}World{{/if}}';
@@ -591,7 +591,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should not type coerce to boolean in strict mode', () => {
+    it('should not type coerce to boolean in strict mode', function() {
 
       // given
       const stringInput = 'Hello {{#if 1}}World{{/if}}';
@@ -605,7 +605,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate nested conditional inserts', () => {
+    it('should evaluate nested conditional inserts', function() {
 
       // given
       const stringInput = 'Hello {{#if pho_exists}}{{#if ramen_exists}}Delicious & Umami {{/if}}{{/if}}World';
@@ -620,7 +620,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate nested simple inserts', () => {
+    it('should evaluate nested simple inserts', function() {
 
       // given
       const stringInput = 'Hello {{#if pho_exists}}Delicious {{= ramen}} {{/if}}World';
@@ -635,7 +635,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate nested simple inserts with sanitization', () => {
+    it('should evaluate nested simple inserts with sanitization', function() {
 
       // given
       const stringInput = 'Hello {{#if pho_exists}}Delicious {{= ramen}} {{/if}}World';
@@ -653,9 +653,9 @@ describe('interpreter', () => {
   });
 
 
-  describe('loop inserts', () => {
+  describe('loop inserts', function() {
 
-    it('should evaluate simple loop inserts', () => {
+    it('should evaluate simple loop inserts', function() {
 
       // given
       const stringInput = 'Hello {{#loop ["a", "b", "c"]}}{{this}}{{/loop}} World';
@@ -669,7 +669,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate simple loop inserts with primitive array context', () => {
+    it('should evaluate simple loop inserts with primitive array context', function() {
 
       // given
       const stringInput = 'Hello {{#loop items}}{{this}}{{/loop}} World';
@@ -684,7 +684,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate simple loop inserts with primitive array context and sanitizer', () => {
+    it('should evaluate simple loop inserts with primitive array context and sanitizer', function() {
 
       // given
       const stringInput = 'Hello {{#loop items}}{{this}}{{/loop}} World';
@@ -699,7 +699,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate simple loop inserts with object array context', () => {
+    it('should evaluate simple loop inserts with object array context', function() {
 
       // given
       const stringInput = 'Hello {{#loop items}}{{name}}{{/loop}} World';
@@ -714,7 +714,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate nested loop inserts', () => {
+    it('should evaluate nested loop inserts', function() {
 
       // given
       const stringInput = 'Hello {{#loop items}}{{#loop sub_items}}{{this}}{{/loop}}{{/loop}} World';
@@ -730,7 +730,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate two inline loops without swallowing newline', () => {
+    it('should evaluate two inline loops without swallowing newline', function() {
 
       // given
       const stringInput = '{{#loop ["a", "b", "c"]}}{{this}}{{/loop}}\n{{#loop ["a", "b", "c"]}}{{this}}{{/loop}}';
@@ -744,7 +744,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate multidimentional array loops', () => {
+    it('should evaluate multidimentional array loops', function() {
 
       // given
       const stringInput = 'Hello {{#loop items}}{{#loop this}}{{this}}{{/loop}}{{/loop}} World';
@@ -759,7 +759,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate multiline loop inserts', () => {
+    it('should evaluate multiline loop inserts', function() {
 
       // given
       const stringInput = 'Hello\n{{#loop ["a", "b", "c"]}}\n{{this}}\n{{/loop}}\nWorld';
@@ -774,7 +774,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should allow non-array in non-strict mode (string)', () => {
+    it('should allow non-array in non-strict mode (string)', function() {
 
       // given
       const stringInput = 'Hello {{#loop "abc"}}{{this}}{{/loop}} World';
@@ -788,7 +788,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should allow non-array in non-strict mode (number)', () => {
+    it('should allow non-array in non-strict mode (number)', function() {
 
       // given
       const stringInput = 'Hello {{#loop 2}}{{this}}{{/loop}} World';
@@ -802,7 +802,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should not allow non-array in strict mode', () => {
+    it('should not allow non-array in strict mode', function() {
 
       // given
       const stringInput = 'Hello {{#loop "abc"}}{{this}}{{/loop}} World';
@@ -818,9 +818,9 @@ describe('interpreter', () => {
   });
 
 
-  describe('special accessors', () => {
+  describe('special accessors', function() {
 
-    it('should evaluate `this` accessor', () => {
+    it('should evaluate `this` accessor', function() {
 
       // given
       const stringInput = '{{this}}';
@@ -835,7 +835,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate property through `this` accessor', () => {
+    it('should evaluate property through `this` accessor', function() {
 
       // given
       const stringInput = '{{this.prop}}';
@@ -850,7 +850,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should let `this` accessor be overwritten if literally defined', () => {
+    it('should let `this` accessor be overwritten if literally defined', function() {
 
       // given
       const stringInput = '{{this.prop}}';
@@ -865,7 +865,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate `_this_` accessor', () => {
+    it('should evaluate `_this_` accessor', function() {
 
       // given
       const stringInput = '{{_this_}}';
@@ -880,7 +880,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate property through `_this_` accessor', () => {
+    it('should evaluate property through `_this_` accessor', function() {
 
       // given
       const stringInput = '{{_this_.prop}}';
@@ -895,7 +895,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should not let `_this_` accessor be overwritten if literally defined', () => {
+    it('should not let `_this_` accessor be overwritten if literally defined', function() {
 
       // given
       const stringInput = '{{_this_.prop}}';
@@ -910,7 +910,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate `parent` accessor', () => {
+    it('should evaluate `parent` accessor', function() {
 
       // given
       const stringInput = '{{#loop items}}\n{{parent.prefix + this}}\n{{/loop}}';
@@ -925,7 +925,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should let `parent` accessor be overwritten if literally defined', () => {
+    it('should let `parent` accessor be overwritten if literally defined', function() {
 
       // given
       const stringInput = '{{#loop items}}\n{{parent.prefix + item}}\n{{/loop}}';
@@ -940,7 +940,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should evaluate `_parent_` accessor', () => {
+    it('should evaluate `_parent_` accessor', function() {
 
       // given
       const stringInput = '{{#loop items}}\n{{_parent_.prefix + this}}\n{{/loop}}';
@@ -956,7 +956,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should not let `_parent_` accessor be overwritten if literally defined', () => {
+    it('should not let `_parent_` accessor be overwritten if literally defined', function() {
 
       // given
       const stringInput = '{{#loop items}}\n{{_parent_.prefix + item}}\n{{/loop}}';
@@ -973,9 +973,9 @@ describe('interpreter', () => {
   });
 
 
-  describe('errors', () => {
+  describe('errors', function() {
 
-    it('should output custom debug error inserts', () => {
+    it('should output custom debug error inserts', function() {
 
       // given
       const stringInput = 'Hello {{#if ?!~}}World{{/if}}';
@@ -991,7 +991,7 @@ describe('interpreter', () => {
     });
 
 
-    it('should throw in non-debug mode', () => {
+    it('should throw in non-debug mode', function() {
 
       // given
       const stringInput = 'Hello {{#if ?!~}}World{{/if}}';
