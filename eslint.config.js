@@ -10,7 +10,7 @@ const files = {
     'src/grammar/**/*.js'
   ],
   build: [
-    '*.mjs',
+    '*.cjs',
     '*.js'
   ],
   test: [
@@ -54,6 +54,16 @@ export default [
       ...config,
       ignores: [
         ...files.core,
+        ...files.build
+      ]
+    };
+  }),
+
+  // all source files
+  ...bpmnIoPlugin.configs.esm.map(config => {
+    return {
+      ...config,
+      ignores: [
         ...files.build
       ]
     };

@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 
-import { FeelersEditor } from '../../src';
+import { FeelersEditor } from '../../src/index.js';
+
 import TestContainer from 'mocha-test-container-support';
 import { EditorSelection } from '@codemirror/state';
 import { forceLinting, forEachDiagnostic } from '@codemirror/lint';

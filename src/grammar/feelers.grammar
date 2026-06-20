@@ -28,8 +28,8 @@ Insert { "{{" "="? FeelBlock "}}" }
   ConditionalSpannerCloseNl { "{{/if}}\n" }
 }
 
-@external tokens feel from "./tokens" { Feel }
-@external tokens feelBlock from "./tokens" { FeelBlock }
-@external tokens simpleTextBlock from "./tokens" { SimpleTextBlock }
+@external tokens feel from "./tokens.js" { Feel }
+@external tokens feelBlock from "./tokens.js" { FeelBlock }
+@external tokens simpleTextBlock from "./tokens.js" { SimpleTextBlock }
 
-@external propSource feelersHighlighting from "./highlight"
+@external propSource feelersHighlighting from "./highlight.js"

@@ -1,5 +1,5 @@
 import { LanguageSupport } from '@codemirror/language';
-import { createMixedLanguage } from './mixedParser';
+import { createMixedLanguage } from './mixedParser.js';
 
 /**
  * @param { import('@lezer/lr').LRParser } [hostParser=null]

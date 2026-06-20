@@ -1,7 +1,9 @@
-/* global require */
-require('./testSetup.js');
+import './testSetup.js';
 
 // @ts-ignore-next-line
-const allTests = require.context('.', true, /.spec\.js$/);
+var allTests = import.meta.webpackContext('.', {
+  recursive: true,
+  regExp: /.spec\.js$/
+});
 
 allTests.keys().forEach(allTests);
