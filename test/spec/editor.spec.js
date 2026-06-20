@@ -1,3 +1,6 @@
+import { expect } from 'chai';
+import { spy, match } from 'sinon';
+
 import { FeelersEditor } from '../../src';
 import TestContainer from 'mocha-test-container-support';
 import { EditorSelection } from '@codemirror/state';
@@ -344,7 +347,7 @@ describe.skip('CodeEditor', function() {
     it('should call onChange', async function() {
 
       // given
-      const onChange = sinon.spy();
+      const onChange = spy();
       const editor = new FeelEditor({
         container,
         onChange
@@ -368,7 +371,7 @@ describe.skip('CodeEditor', function() {
     it('should call onKeyDown', async function() {
 
       // given
-      const onKeyDown = sinon.spy();
+      const onKeyDown = spy();
       const editor = new FeelEditor({
         container,
         onKeyDown
@@ -459,7 +462,7 @@ describe.skip('CodeEditor', function() {
 
     it('should call onLint with errors', function(done) {
       const initalValue = '= 15';
-      const onLint = sinon.spy();
+      const onLint = spy();
 
       const editor = new FeelEditor({
         container,
@@ -477,7 +480,7 @@ describe.skip('CodeEditor', function() {
       setTimeout(() => {
 
         expect(onLint).to.have.been.calledOnce;
-        expect(onLint).to.have.been.calledWith(sinon.match.array);
+        expect(onLint).to.have.been.calledWith(match.array);
         expect(onLint.args[0][0]).to.have.length(1);
 
         done();
@@ -488,7 +491,7 @@ describe.skip('CodeEditor', function() {
 
     it('should call onLint without errors', function(done) {
       const initalValue = '15';
-      const onLint = sinon.spy();
+      const onLint = spy();
 
       const editor = new FeelEditor({
         container,
@@ -506,7 +509,7 @@ describe.skip('CodeEditor', function() {
       setTimeout(() => {
 
         expect(onLint).to.have.been.calledOnce;
-        expect(onLint).to.have.been.calledWith(sinon.match.array);
+        expect(onLint).to.have.been.calledWith(match.array);
         expect(onLint.args[0][0]).to.have.length(0);
 
         done();

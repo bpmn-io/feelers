@@ -1,5 +1,7 @@
-import { buildSimpleTree, parser } from '../../src/grammar';
 import { expect } from 'chai';
+
+import { buildSimpleTree, parser } from '../../src/grammar';
+
 
 describe('parser', () => {
 

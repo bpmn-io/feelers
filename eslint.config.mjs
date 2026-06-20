@@ -116,24 +116,8 @@ export default [
     languageOptions: {
       parserOptions: {
         ...baseParserOptions,
-        sourceType: 'commonjs'
       },
       globals: {
-        require: 'readonly'
-      }
-    }
-  },
-  {
-    files: [
-      'test/testSetup.js'
-    ],
-    languageOptions: {
-      parserOptions: {
-        ...baseParserOptions,
-        sourceType: 'commonjs'
-      },
-      globals: {
-        ...globals.browser,
         require: 'readonly'
       }
     }
