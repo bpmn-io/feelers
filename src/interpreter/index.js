@@ -1,4 +1,4 @@
-import { parser, buildSimpleTree } from '../grammar/';
+import { parser, buildSimpleTree } from '../grammar//index.js';
 import { evaluate as evaluateFeel } from '@bpmn-io/feelin';
 
 /**

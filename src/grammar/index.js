@@ -1,4 +1,4 @@
-export * from './parser';
+export * from './parser.js';
 
 /**
  * @typedef { {

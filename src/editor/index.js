@@ -6,9 +6,9 @@ import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, tooltips, lineNumbers } from '@codemirror/view';
 
 import { parser as markdownParser } from '@lezer/markdown';
-import { createFeelersLanguageSupport } from './language';
+import { createFeelersLanguageSupport } from './language/index.js';
 
-import { feelersLinter } from './lint';
+import { feelersLinter } from './lint/index.js';
 import { lightTheme, darkTheme } from '@bpmn-io/cm-theme';
 import mitt from 'mitt';
 
