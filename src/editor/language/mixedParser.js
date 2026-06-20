@@ -8,7 +8,12 @@ const foldMetadata = {
   LoopSpanner: foldInside
 };
 
-function createMixedLanguage(hostLanguage = null) {
+/**
+ * @param {import('@lezer/lr').LRParser} [hostParser=null]
+ *
+ * @return {LRLanguage}
+ */
+function createMixedLanguage(hostParser = null) {
   const _mixedParser = templateParser.configure({
 
     wrap: parseMixed(node => {
@@ -17,8 +22,8 @@ function createMixedLanguage(hostLanguage = null) {
         return { parser: feelParser };
       }
 
-      if (hostLanguage && node.name == 'SimpleTextBlock') {
-        return { parser: hostLanguage };
+      if (hostParser && node.name == 'SimpleTextBlock') {
+        return { parser: hostParser };
       }
 
       return null;
