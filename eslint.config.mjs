@@ -1,125 +1,82 @@
-import js from '@eslint/js';
-import bpmnPlugin from 'eslint-plugin-bpmn-io';
-import mochaPlugin from 'eslint-plugin-mocha';
-import reactPlugin from 'eslint-plugin-react';
-import importPlugin from 'eslint-plugin-import';
-import globals from 'globals';
+import bpmnIoPlugin from 'eslint-plugin-bpmn-io';
 
-const baseParserOptions = {
-  ecmaVersion: 2022,
-  sourceType: 'module'
+const files = {
+  ignored: [
+    'dist',
+    'feelers-playground/build',
+    'feelers-playground/dist',
+    'src/grammar/parser*.js'
+  ],
+  core: [
+    'src/interpreter/**/*.js',
+    'src/grammar/**/*.js'
+  ],
+  playground: [
+    'feelers-playground/**/*.js',
+  ],
+  build: [
+    '*.mjs',
+    '*.js'
+  ],
+  test: [
+    'test/**/*.js'
+  ]
 };
 
-const bpmnRules = bpmnPlugin.configs.recommended?.rules ?? {};
-const mochaRules = bpmnPlugin.configs.mocha?.rules ?? {};
 
 export default [
   {
-    ignores: [
-      'dist/**',
-      'feelers-playground/build/**',
-      'feelers-playground/dist/**',
-      'src/grammar/parser*.js',
-      '.github/**',
-      'karma.conf.js',
-      'eslint.config.mjs'
-    ]
-  },
-  js.configs.recommended,
-  
-  // source files
-  {
-    files: [
-      'src/**/*.js',
-      'feelers-playground/src/**/*.js'
-    ],
-    languageOptions: {
-      parserOptions: {
-        ...baseParserOptions,
-        ecmaFeatures: {
-          jsx: true
-        }
-      },
-      globals: {
-        ...globals.browser
-      }
-    },
-    plugins: {
-      'bpmn-io': bpmnPlugin,
-      react: reactPlugin,
-      import: importPlugin
-    },
-    rules: {
-      ...bpmnRules,
-      'import/no-default-export': 'error',
-      'import/default': 'error',
-      'import/named': 'error',
-      'react/jsx-uses-vars': 'error',
-      'react/jsx-uses-react': 'off',
-      'no-unused-vars': ['error', {
-        vars: 'all',
-        args: 'after-used',
-        ignoreRestSiblings: true,
-        varsIgnorePattern: '^_',
-        argsIgnorePattern: '^_',
-        caughtErrors: 'none'
-    }]
-    }
+    ignores: files.ignored
   },
 
-  // test files
+  // build
+  ...bpmnIoPlugin.configs.node.map(config => {
+    return {
+      ...config,
+      files: files.build
+    };
+  }),
   {
-    files: [
-      'test/spec/**/*.js'
-    ],
     languageOptions: {
       parserOptions: {
-        ...baseParserOptions
-      },
-      globals: {
-        ...globals.mocha,
-        ...globals.browser,
-        sinon: 'readonly',
-        expect: 'readonly',
-        FeelEditor: 'readonly'
+        ecmaVersion: 2025
       }
     },
-    plugins: {
-      mocha: mochaPlugin
-    },
-    rules: {
-      ...mochaRules,
-      'no-unused-vars': 'off',
-      'no-undef': 'off'
-    }
+    files: files.build
   },
 
-  // config files
-  {
-    files: [
-      'rollup.config.js'
-    ],
-    languageOptions: {
-      parserOptions: {
-        ...baseParserOptions,
-        sourceType: 'commonjs'
-      },
-      globals: {
-        ...globals.node
-      }
-    }
-  },
-  {
-    files: [
-      'test/testBundle.js'
-    ],
-    languageOptions: {
-      parserOptions: {
-        ...baseParserOptions,
-      },
-      globals: {
-        require: 'readonly'
-      }
-    }
-  }
+  // lib - core
+  ...bpmnIoPlugin.configs.recommended.map(config => {
+    return {
+      ...config,
+      files: files.core,
+    };
+  }),
+
+  // lib - browser
+  ...bpmnIoPlugin.configs.browser.map(config => {
+    return {
+      ...config,
+      ignores: [
+        ...files.core,
+        ...files.build
+      ]
+    };
+  }),
+  ...bpmnIoPlugin.configs.jsx.map(config => {
+    return {
+      ...config,
+      files: [
+        ...files.playground
+      ]
+    };
+  }),
+
+  // tests
+  ...bpmnIoPlugin.configs.mocha.map(config => {
+    return {
+      ...config,
+      files: files.test
+    };
+  })
 ];
