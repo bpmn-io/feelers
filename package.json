@@ -48,7 +48,8 @@
     "@lezer/highlight": "^1.1.6",
     "@lezer/lr": "^1.4.8",
     "@lezer/markdown": "^1.6.3",
-    "min-dom": "^5.2.0"
+    "min-dom": "^5.2.0",
+    "mitt": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",

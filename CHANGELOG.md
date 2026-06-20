@@ -6,6 +6,8 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FEAT`: turn into event emitter
+
 ## 1.5.1
 
 _Correct distribution._
