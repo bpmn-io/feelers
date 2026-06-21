@@ -1,25 +1,48 @@
 export * from './parser';
 
-export function buildSimpleTree(parseTree, templateString) {
+/**
+ * @typedef { {
+ *   name: string,
+ *   children: SimpleNode[],
+ *   content?: string,
+ *   parent?: SimpleNode
+ * } } SimpleNode
+ */
 
-  const stack = [ { children: [] } ];
-  const isLeafNode = (node) => [ 'SimpleTextBlock', 'Feel', 'FeelBlock' ].includes(node.type.name);
+/**
+ * @param { import('@lezer/common').Tree } parseTree
+ * @param { string } sourceText
+ *
+ * @return {SimpleNode}
+ */
+export function buildSimpleTree(parseTree, sourceText) {
+
+  const stack = /** @type { SimpleNode[] } */ ([ {
+    name: 'Root',
+    children: []
+  } ]);
+
+  const isLeafNode = (node) => [
+    'SimpleTextBlock',
+    'Feel',
+    'FeelBlock'
+  ].includes(node.type.name);
 
   parseTree.iterate({
-    enter: (node, _pos, _type) => {
+    enter: (node) => {
 
-      const nodeRepresentation = {
+      const nodeRepresentation = /** @type { SimpleNode } */ ({
         name: node.type.name,
         children: []
-      };
+      });
 
       if (isLeafNode(node)) {
-        nodeRepresentation.content = templateString.slice(node.from, node.to);
+        nodeRepresentation.content = sourceText.slice(node.from, node.to);
       }
 
       stack.push(nodeRepresentation);
     },
-    leave: (_node, _pos, _type) => {
+    leave: (_node) => {
       const result = stack.pop();
       const parent = stack[stack.length - 1];
       result.parent = parent;
