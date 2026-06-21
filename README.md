@@ -148,16 +148,14 @@ npm install
 Then, depending on your use-case you may run any of the following commands:
 
 ```sh
-# run all tests
-npm run test
+# build the library and run all tests
+npm run all
 
-# runs single-start test case for development
+# run the development setup
+npm run dev
+
+# spin up a simple playground for local development
 npm start
-npm run start
-
-# generate the lezer parser from its grammar definition
-npm run generate:parser
-
 ```
 
 ## Related
