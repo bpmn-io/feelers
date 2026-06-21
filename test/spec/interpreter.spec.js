@@ -1,5 +1,7 @@
-import { evaluate } from '../../lib/interpreter/index.js';
 import { expect } from 'chai';
+
+import { evaluate } from 'feelers/interpreter';
+
 
 const ERROR_CHAR = '⚠';
 

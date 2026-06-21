@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { buildSimpleTree, parser } from '../../lib/parser/index.js';
+import { buildSimpleTree, parser } from 'feelers/parser';
 
 
 describe('parser', function() {
