@@ -3,11 +3,11 @@ import bpmnIoPlugin from 'eslint-plugin-bpmn-io';
 const files = {
   ignored: [
     'dist',
-    'lib/grammar/parser*.js'
+    'lib/parser/parser*.js'
   ],
   core: [
     'lib/interpreter/**/*.js',
-    'lib/grammar/**/*.js'
+    'lib/parser/**/*.js'
   ],
   build: [
     '*.cjs',

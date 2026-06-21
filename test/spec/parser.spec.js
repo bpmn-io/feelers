@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { buildSimpleTree, parser } from '../../src/grammar/index.js';
+import { buildSimpleTree, parser } from '../../lib/parser/index.js';
 
 
 describe('parser', function() {
