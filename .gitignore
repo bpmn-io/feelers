@@ -1,6 +1,2 @@
 node_modules
 dist
-
-feelers-playground/node_modules
-feelers-playground/build
-feelers-playground/*.log

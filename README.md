@@ -14,8 +14,6 @@ Like [mustache](https://mustache.github.io/) / [handlebars](https://handlebarsjs
 * A parseMixed language definition which brings `feelers` templating, `feel` parsing and an optional host language together
 * An editor for feelers, build on top of [codemirror](https://codemirror.net/)
 * An interpreter to fill your templates with data, powered by [feelin](https://github.com/nikku/feelin)
-* A simple playground to showcase the language 
-
 
 ## Usage 
 
@@ -160,11 +158,6 @@ npm run start
 # generate the lezer parser from its grammar definition
 npm run generate:parser
 
-# build all dependencies locally and spool up playground
-npm run start:playground
-
-# build all dependencies locally and build playground
-npm run build:playground
 ```
 
 ## Related

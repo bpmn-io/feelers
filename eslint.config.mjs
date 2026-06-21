@@ -3,16 +3,11 @@ import bpmnIoPlugin from 'eslint-plugin-bpmn-io';
 const files = {
   ignored: [
     'dist',
-    'feelers-playground/build',
-    'feelers-playground/dist',
     'src/grammar/parser*.js'
   ],
   core: [
     'src/interpreter/**/*.js',
     'src/grammar/**/*.js'
-  ],
-  playground: [
-    'feelers-playground/**/*.js',
   ],
   build: [
     '*.mjs',
@@ -60,14 +55,6 @@ export default [
       ignores: [
         ...files.core,
         ...files.build
-      ]
-    };
-  }),
-  ...bpmnIoPlugin.configs.jsx.map(config => {
-    return {
-      ...config,
-      files: [
-        ...files.playground
       ]
     };
   }),
