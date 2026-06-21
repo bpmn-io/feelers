@@ -9,7 +9,6 @@ const singleStart = process.env.SINGLE_START;
 
 const suite = coverage ? 'test/coverageBundle.js' : 'test/testBundle.js';
 
-// eslint-disable-next-line import-x/no-commonjs
 module.exports = function(karma) {
 
   const config = {
