@@ -1,7 +1,7 @@
 {
   "name": "feelers",
   "version": "1.5.1",
-  "description": "FEELers grammar and editor for the Lezer parser system.",
+  "description": "FEELers templating language - parser (Lezer), interpreter and editor (CodeMirror).",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "scripts": {
