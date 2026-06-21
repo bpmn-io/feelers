@@ -22,13 +22,5 @@ jobs:
       run: npm ci
     - name: Project setup
       uses: bpmn-io/actions/setup@latest
-    - name: Lint
-      run: npm run lint
     - name: Build
-      run: npm run build
-    - name: Test
-      run: npm run test
-    - name: Generate parser from grammar
-      run: npm run generate:parser
-    - name: Bundle dist
-      run: npm run bundle
+      run: npm run all

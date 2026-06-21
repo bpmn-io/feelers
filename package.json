@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "scripts": {
-    "all": "run-s lint test build",
+    "all": "run-s build lint test",
     "test": "karma start",
     "generate:parser": "lezer-generator src/grammar/feelers.grammar -o src/grammar/parser",
     "bundle": "rollup -c",
