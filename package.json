@@ -7,7 +7,7 @@
   "scripts": {
     "all": "run-s build lint test",
     "test": "karma start karma.conf.cjs",
-    "generate:parser": "lezer-generator src/grammar/feelers.grammar -o src/grammar/parser.js",
+    "generate:parser": "lezer-generator lib/grammar/feelers.grammar -o lib/grammar/parser.js",
     "bundle": "rollup -c",
     "dev": "npm test -- --auto-watch --no-single-run",
     "build": "npm run generate:parser && npm run bundle",

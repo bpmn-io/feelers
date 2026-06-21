@@ -69,14 +69,14 @@ module.exports = function(karma) {
                 plugins: [
                   [ 'istanbul', {
                     include: [
-                      'src/**'
+                      'lib/**'
                     ]
                   } ]
                 ],
               }
             },
             enforce: 'post',
-            include: /src\.*/,
+            include: /lib\.*/,
             exclude: /node_modules/
           } : []
         )

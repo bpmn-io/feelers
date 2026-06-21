@@ -7,7 +7,7 @@ import pkg from './package.json' with { type: 'json' };
 const nonbundledDependencies = Object.keys({ ...pkg.dependencies });
 
 export default {
-  input: 'src/index.js',
+  input: 'lib/index.js',
   output: {
     file: pkg.main,
     format: 'esm'
