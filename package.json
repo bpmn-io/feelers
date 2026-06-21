@@ -3,14 +3,13 @@
   "version": "1.5.1",
   "description": "FEELers templating language - parser (Lezer), interpreter and editor (CodeMirror).",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "all": "run-s build lint test",
     "test": "karma start karma.conf.cjs",
     "generate:parser": "lezer-generator lib/parser/feelers.grammar -o lib/parser/parser.js",
-    "bundle": "rollup -c",
     "dev": "npm test -- --auto-watch --no-single-run",
-    "build": "npm run generate:parser && npm run bundle",
+    "build": "npm run generate:parser",
     "lint": "eslint .",
     "start": "cross-env SINGLE_START=true npm run dev",
     "prepare": "run-s build"
@@ -20,7 +19,12 @@
     "url": "https://github.com/skaiir"
   },
   "exports": {
-    ".": "./dist/index.js",
+    ".": "./lib/index.js",
+    "./editor": "./lib/editor/index.js",
+    "./parser": "./lib/parser/index.js",
+    "./lang": "./lib/lang/index.js",
+    "./interpreter": "./lib/interpreter/index.js",
+    "./lint": "./lib/lint/index.js",
     "./package.json": "./package.json"
   },
   "engines": {
@@ -34,7 +38,7 @@
     "Parser"
   ],
   "files": [
-    "dist"
+    "lib"
   ],
   "license": "MIT",
   "dependencies": {
@@ -59,8 +63,6 @@
     "@babel/core": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
     "@lezer/generator": "^1.8.0",
-    "@rollup/plugin-commonjs": "^29.0.0",
-    "@rollup/plugin-json": "^6.1.0",
     "@types/chai": "^5.0.0",
     "@types/mocha": "^10.0.10",
     "chai": "^6.0.0",
@@ -79,7 +81,6 @@
     "mocha": "^11.7.6",
     "mocha-test-container-support": "^0.2.0",
     "npm-run-all2": "^9.0.0",
-    "rollup": "^4.22.4",
     "sinon": "^22.0.0",
     "sinon-chai": "^4.0.0",
     "typescript": "^6.0.0"

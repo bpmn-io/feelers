@@ -3,8 +3,8 @@ import { marked } from 'marked';
 
 import { initialContext, initialTemplate } from '../testData.js';
 
-import { FeelersEditor } from '../../lib/editor/index.js';
-import { evaluate } from '../../lib/interpreter/index.js';
+import { FeelersEditor } from 'feelers/editor';
+import { evaluate } from 'feelers/interpreter';
 
 
 const singleStart = window.__env__ && window.__env__.SINGLE_START;

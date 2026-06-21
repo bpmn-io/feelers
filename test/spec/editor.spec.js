@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 
-import { FeelersEditor } from '../../lib/index.js';
+import { FeelersEditor } from 'feelers/editor';
 
 import TestContainer from 'mocha-test-container-support';
 import { EditorSelection } from '@codemirror/state';
