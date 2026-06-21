@@ -13,9 +13,6 @@
     "build": "npm run generate:parser && npm run bundle",
     "lint": "eslint .",
     "start": "cross-env SINGLE_START=true npm run dev",
-    "install:playground": "npm install --prefix feelers-playground",
-    "build:playground": "npm run build && npm run install:playground && npm run --prefix feelers-playground build",
-    "start:playground": "npm run build && npm run install:playground && npm run --prefix feelers-playground dev",
     "prepare": "run-s build"
   },
   "author": {
@@ -63,6 +60,7 @@
     "@types/chai": "^5.0.0",
     "@types/mocha": "^10.0.10",
     "chai": "^6.0.0",
+    "marked": "^18.0.5",
     "cross-env": "^10.0.0",
     "eslint": "^9.39.2",
     "eslint-plugin-bpmn-io": "^2.3.1",
