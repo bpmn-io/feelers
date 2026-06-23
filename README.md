@@ -7,7 +7,6 @@ Like [mustache](https://mustache.github.io/) / [handlebars](https://handlebarsjs
 
 ![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
 
-
 ## What is inside
 
 * A [lezer](https://lezer.codemirror.net/) grammar and consequently parser for the templating language
@@ -46,7 +45,7 @@ evaluate("I'm sorry {{user}}, I'm afraid I can't do that.", context);
 // I'm sorry Dave, I'm afraid I can't do that.
 ```
 
-## Feelers templating language features
+## Templating language features
 
 ### Inserts
 
