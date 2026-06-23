@@ -8,6 +8,8 @@ ___Note:__ Yet to be released changes appear here._
 
 ## 2.1.1
 
+* `FIX`: correct editor types
+* `FIX`: correct lint types
 * `FIX`: correct types to allow embedding into any host language ([#112](https://github.com/bpmn-io/feelers/pull/112))
 
 ## 2.1.0
