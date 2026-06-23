@@ -6,8 +6,9 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "all": "run-s build lint test",
+    "all": "run-s build lint test test:types",
     "test": "karma start karma.conf.cjs",
+    "test:types": "tsc --noEmit",
     "generate:parser": "lezer-generator lib/parser/feelers.grammar -o lib/parser/parser.js",
     "generate:types": "bio-dts -r lib",
     "dev": "npm test -- --auto-watch --no-single-run",
