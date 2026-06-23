@@ -80,7 +80,7 @@
     "marked": "^18.0.5",
     "mocha": "^11.7.6",
     "mocha-test-container-support": "^0.2.0",
-    "npm-run-all2": "^9.0.0",
+    "npm-run-all2": "^9.0.2",
     "sinon": "^22.0.0",
     "sinon-chai": "^4.0.0",
     "typescript": "^6.0.0"
