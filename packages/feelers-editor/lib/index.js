@@ -5,13 +5,25 @@ import { setDiagnosticsEffect } from '@codemirror/lint';
 import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, tooltips, lineNumbers } from '@codemirror/view';
 
+import { parseMixed } from '@lezer/common';
 import { parser as markdownParser } from '@lezer/markdown';
+import { parser as htmlParser } from '@lezer/html';
 
 import { feelersLinter } from '@bpmn-io/feelers-lint';
 import { feelersLanguage } from '@bpmn-io/lang-feelers';
 import { feelLight, feelDark } from '@bpmn-io/cm-theme';
 
 import mitt from 'mitt';
+
+// the bare @lezer/markdown parser leaves embedded HTML as an opaque `HTMLTag`
+//   node; nest the HTML parser so tags/attributes get tokenized (and themed)
+const markdownWithHtmlParser = markdownParser.configure({
+  wrap: parseMixed((node) =>
+    node.name === 'HTMLTag' || node.name === 'HTMLBlock'
+      ? { parser: htmlParser }
+      : null
+  )
+});
 
 /**
  * @typedef { import('@codemirror/lint').Diagnostic } Diagnostic
@@ -116,7 +128,7 @@ export function FeelersEditor({
   const _getHostLanguageParser = (/** @type {string} */ hostLanguage) => {
     switch (hostLanguage) {
     case 'markdown':
-      return markdownParser;
+      return markdownWithHtmlParser;
     default:
       return undefined;
     }
