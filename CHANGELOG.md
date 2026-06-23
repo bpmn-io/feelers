@@ -6,6 +6,10 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
+## 2.1.0
+
+* `FEAT`: export type definitions ([#111](https://github.com/bpmn-io/feelers/pull/111))
+
 ## 2.0.0
 
 * `FEAT`: turn into event emitter ([#107](https://github.com/bpmn-io/feelers/pull/107))
