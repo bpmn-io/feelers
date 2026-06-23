@@ -6,14 +6,18 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documen
 
 ___Note:__ Yet to be released changes appear here._
 
-* `FEAT`: turn into event emitter
-* `FEAT`: expose modules via dedicated sub-paths (`lang`, `parser`, `interpreter`, `editor`)
-* `CHORE`: turn into ES module
+## 2.0.0
+
+* `FEAT`: turn into event emitter ([#107](https://github.com/bpmn-io/feelers/pull/107))
+* `FEAT`: expose modules via dedicated sub-paths (`lang`, `parser`, `interpreter`, `editor`) ([#108](https://github.com/bpmn-io/feelers/pull/108))
+* `CHORE`: turn into ES module ([#108](https://github.com/bpmn-io/feelers/pull/108))
+* `CHORE`: drop bundling ([#108](https://github.com/bpmn-io/feelers/pull/108))
 * `CHORE`: some typing improvements
 
 ### Breaking change
 
 * This library is now an ES module and requires `Node >= 20.12` or compatible browser environments to consume.
+* The library is no longer bundled
 
 ## 1.5.1
 
