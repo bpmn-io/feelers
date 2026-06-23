@@ -135,10 +135,6 @@ evaluate(complexLoops, context);
 
 ## Build and run
 
-Build the project in a Posix environment. On Windows, that is [Git Bash](https://gitforwindows.org/) or WSL. 
-
-Note we currently support development environments with Node.js version 16 (and npm version 8). We encourage you to use a Node.js version manager (e.g., [`nvm`](https://github.com/nvm-sh/nvm) or [`n`](https://github.com/tj/n)) to set up the needed versions.
-
 Prepare the project by installing all dependencies:
 
 ```sh
