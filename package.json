@@ -1,6 +1,6 @@
 {
   "name": "feelers",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "description": "FEELers templating language - parser (Lezer), interpreter and editor (CodeMirror).",
   "type": "module",
   "main": "lib/index.js",
