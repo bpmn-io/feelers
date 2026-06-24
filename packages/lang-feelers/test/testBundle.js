@@ -1,6 +1,6 @@
 import './testSetup.js';
 
-// @ts-ignore-next-line
+// @ts-ignore
 var allTests = import.meta.webpackContext('.', {
   recursive: true,
   regExp: /.spec\.js$/
