@@ -1,6 +1,6 @@
 {
   "name": "@bpmn-io/feelers-editor",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "FEELers editor component built on CodeMirror 6.",
   "type": "module",
   "main": "lib/index.js",
