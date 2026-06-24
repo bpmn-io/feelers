@@ -20,6 +20,9 @@
     ".": "./lib/index.js",
     "./package.json": "./package.json"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "lib"
   ],
