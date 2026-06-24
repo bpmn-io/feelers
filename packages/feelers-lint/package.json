@@ -34,7 +34,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bpmn-io/feelers",
+    "url": "git+https://github.com/bpmn-io/feelers.git",
     "directory": "packages/feelers-lint"
   },
   "dependencies": {
