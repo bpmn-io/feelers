@@ -1,6 +1,6 @@
 {
   "name": "@bpmn-io/feelers-lint",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "FEELers linting support for CodeMirror 6.",
   "type": "module",
   "main": "lib/index.js",

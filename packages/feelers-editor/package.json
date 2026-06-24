@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@bpmn-io/cm-theme": "^0.1.0-alpha.2",
-    "@bpmn-io/feelers-lint": "*",
+    "@bpmn-io/feelers-lint": "^1.0.0",
     "@bpmn-io/lang-feelers": "*",
     "@codemirror/autocomplete": "^6.20.0",
     "@codemirror/commands": "^6.10.1",
