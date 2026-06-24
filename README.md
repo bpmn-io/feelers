@@ -94,27 +94,9 @@ npm run all
 
 # build / test / run a single repository (i.e. @bpmn-io/lezer-feelers)
 npm run all -w @bpmn-io/lezer-feelers
-```
 
-### Publishing
-
-Each package under `packages/` can be published independently. Packages should not be published from the monorepo root.
-
-```sh
-# publish the interpreter
-cd packages/feelers && npm publish
-
-# publish the parser
-cd packages/@bpmn-io/lezer-feelers && npm publish
-
-# publish the language support
-cd packages/lang-feelers && npm publish
-
-# publish the linter
-cd packages/feelers-lint && npm publish
-
-# publish the editor
-cd packages/feelers-editor && npm publish
+# publish the packages
+npm run publish
 ```
 
 ## Related

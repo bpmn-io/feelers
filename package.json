@@ -13,7 +13,8 @@
   "scripts": {
     "all": "npm run all --workspaces",
     "start": "npm run start -w @bpmn-io/feelers-editor",
-    "dev": "npm run dev -w @bpmn-io/feelers-editor"
+    "dev": "npm run dev -w @bpmn-io/feelers-editor",
+    "publish": "node tasks/publish.js"
   },
   "repository": {
     "type": "git",
