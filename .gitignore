@@ -1,2 +1,2 @@
 node_modules
-lib/**/*.d.ts
+**/lib/**/*.d.ts

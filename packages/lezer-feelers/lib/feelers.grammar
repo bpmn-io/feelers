@@ -1,0 +1,35 @@
+@top Feelers {
+  ( "=" Feel ) |
+  blockScope
+}
+
+blockScope { ( SimpleTextBlock | insert | spanner )* }
+
+spanner { ( ConditionalSpanner | LoopSpanner ) }
+
+ConditionalSpanner { conditionalSpannerOpen FeelBlock spannerOpenClose blockScope ( ConditionalSpannerClose | ConditionalSpannerCloseNl ) }
+
+LoopSpanner { loopSpannerOpen FeelBlock spannerOpenClose blockScope ( LoopSpannerClose | LoopSpannerCloseNl ) }
+
+insert { Insert | EmptyInsert }
+
+EmptyInsert { "{{" "="? "}}" }
+
+Insert { "{{" "="? FeelBlock "}}" }
+
+@tokens {
+  loopSpannerOpen { "{{#loop " }
+  conditionalSpannerOpen { "{{#if " }
+  spannerOpenClose { "}}" | "}}\n" }
+
+  LoopSpannerClose { "{{/loop}}"  }
+  LoopSpannerCloseNl { "{{/loop}}\n"  }
+  ConditionalSpannerClose { "{{/if}}" }
+  ConditionalSpannerCloseNl { "{{/if}}\n" }
+}
+
+@external tokens feel from "./tokens.js" { Feel }
+@external tokens feelBlock from "./tokens.js" { FeelBlock }
+@external tokens simpleTextBlock from "./tokens.js" { SimpleTextBlock }
+
+@external propSource feelersHighlighting from "./highlight.js"

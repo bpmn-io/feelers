@@ -1,0 +1,40 @@
+{
+  "name": "feelers",
+  "version": "2.1.1",
+  "description": "FEELers templating language interpreter.",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "all": "run-s build lint test test:types",
+    "build": "run-s generate:types",
+    "generate:types": "bio-dts -r lib",
+    "lint": "eslint .",
+    "test": "mocha --recursive test",
+    "test:types": "tsc --noEmit",
+    "dev": "npm test -- --auto-watch --no-single-run",
+    "prepare": "run-s build"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "FEEL",
+    "FEELers",
+    "interpreter"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bpmn-io/feelers",
+    "directory": "packages/feelers"
+  },
+  "dependencies": {
+    "@bpmn-io/feelin": "^6.1.0",
+    "@bpmn-io/lezer-feelers": "*"
+  }
+}

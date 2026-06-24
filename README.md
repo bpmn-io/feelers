@@ -2,47 +2,42 @@
 
 [![CI](https://github.com/bpmn-io/feelers/actions/workflows/CI.yml/badge.svg)](https://github.com/bpmn-io/feelers/actions/workflows/CI.yml)
 
-A templating solution built on top of [DMN](https://www.omg.org/spec/DMN/) FEEL. 
+A templating solution built on top of [DMN](https://www.omg.org/spec/DMN/) FEEL.
 Like [mustache](https://mustache.github.io/) / [handlebars](https://handlebarsjs.com/) but with FEEL.
 
 ![image](https://user-images.githubusercontent.com/17801113/222329383-c3e63077-e288-41e0-832d-7e71e331d76a.png)
 
-## What is inside
+## Packages
 
-* A [lezer](https://lezer.codemirror.net/) grammar and consequently parser for the templating language
-* A parseMixed language definition which brings `feelers` templating, `feel` parsing and an optional host language together
-* An editor for feelers, build on top of [codemirror](https://codemirror.net/)
-* An interpreter to fill your templates with data, powered by [feelin](https://github.com/nikku/feelin)
+| Package | Description |
+|---------|-------------|
+| [feelers](packages/feelers) | FEELers interpreter — evaluate templates against a data context |
+| [@bpmn-io/lezer-feelers](packages/lezer-feelers) | Lezer parser and grammar for the FEELers templating language |
+| [@bpmn-io/lang-feelers](packages/lang-feelers) | CodeMirror 6 language support for FEELers |
+| [@bpmn-io/feelers-lint](packages/feelers-lint) | CodeMirror 6 linting for FEELers |
+| [@bpmn-io/feelers-editor](packages/feelers-editor) | CodeMirror 6 editor component for FEELers |
 
-## Usage 
+## Usage
 
-Feelers is a string templating tool, and will return string text or error.
+Evaluate FEELers templates using the interpreter:
 
 ```js
 import { evaluate } from 'feelers';
+
+evaluate("Hello {{name}}!", { name: "Dave" });
+// "Hello Dave!"
 ```
 
-A simple string will always be returned as-is.
+Embed the editor into your application:
 
 ```js
-evaluate("My simple string");
-// "My simple string"
-```
+import { FeelersEditor } from '@bpmn-io/feelers-editor';
 
-If your string is prefixed with an =, it will be evaluated as a single FEEL expression wrapped in a string conversion function.
-
-```js
-const context = { secondNumber: 12 };
-evaluate("= 2 + secondNumber", context);
-// "14"
-```
-
-Finally, if your string features feelers language features, the templating engine takes over.
-
-```js
-const context = { user: "Dave" };
-evaluate("I'm sorry {{user}}, I'm afraid I can't do that.", context);
-// I'm sorry Dave, I'm afraid I can't do that.
+const editor = new FeelersEditor({
+  container: document.querySelector('#editor'),
+  value: 'Hello {{name}}!',
+  onChange: (value) => console.log(value)
+});
 ```
 
 ## Language features
@@ -91,14 +86,35 @@ npm install
 Then, depending on your use-case you may run any of the following commands:
 
 ```sh
-# build the library and run all tests
+# spin up simple playground
+npm start
+
+# build and run all packages
 npm run all
 
-# run the development setup
-npm run dev
+# build / test / run a single repository (i.e. @bpmn-io/lezer-feelers)
+npm run all -w @bpmn-io/lezer-feelers
+```
 
-# spin up a simple playground for local development
-npm start
+### Publishing
+
+Each package under `packages/` can be published independently. Packages should not be published from the monorepo root.
+
+```sh
+# publish the interpreter
+cd packages/feelers && npm publish
+
+# publish the parser
+cd packages/@bpmn-io/lezer-feelers && npm publish
+
+# publish the language support
+cd packages/lang-feelers && npm publish
+
+# publish the linter
+cd packages/feelers-lint && npm publish
+
+# publish the editor
+cd packages/feelers-editor && npm publish
 ```
 
 ## Related

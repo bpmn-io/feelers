@@ -1,93 +1,40 @@
 {
-  "name": "feelers",
-  "version": "2.1.1",
-  "description": "FEELers templating language - parser (Lezer), interpreter and editor (CodeMirror).",
-  "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "name": "feelers-builder",
+  "version": "0.0.0",
+  "description": "FEELers monorepo - builds and validates all packages.",
+  "private": true,
+  "workspaces": [
+    "packages/lezer-feelers",
+    "packages/feelers",
+    "packages/lang-feelers",
+    "packages/feelers-lint",
+    "packages/feelers-editor"
+  ],
   "scripts": {
-    "all": "run-s build lint test test:types",
-    "test": "karma start karma.conf.cjs",
-    "test:types": "tsc --noEmit",
-    "generate:parser": "lezer-generator lib/parser/feelers.grammar -o lib/parser/parser.js",
-    "generate:types": "bio-dts -r lib",
-    "dev": "npm test -- --auto-watch --no-single-run",
-    "build": "run-s generate:parser generate:types",
-    "lint": "eslint .",
-    "start": "cross-env SINGLE_START=true npm run dev",
-    "prepare": "run-s build"
+    "all": "npm run all --workspaces",
+    "start": "npm run start -w @bpmn-io/feelers-editor",
+    "dev": "npm run dev -w @bpmn-io/feelers-editor"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/bpmn-io/feelers"
   },
-  "author": {
-    "name": "Valentin Serra",
-    "url": "https://github.com/skaiir"
-  },
-  "exports": {
-    ".": "./lib/index.js",
-    "./editor": "./lib/editor/index.js",
-    "./parser": "./lib/parser/index.js",
-    "./lang": "./lib/lang/index.js",
-    "./interpreter": "./lib/interpreter/index.js",
-    "./lint": "./lib/lint/index.js",
-    "./package.json": "./package.json"
-  },
-  "engines": {
-    "node": "*"
-  },
-  "keywords": [
-    "FEEL",
-    "FEELers",
-    "Lezer",
-    "Grammer",
-    "Parser"
-  ],
-  "files": [
-    "lib"
-  ],
   "license": "MIT",
-  "dependencies": {
-    "@bpmn-io/cm-theme": "^0.1.0-alpha.2",
-    "@bpmn-io/feel-lint": "^3.1.0",
-    "@bpmn-io/feelin": "^6.1.0",
-    "@bpmn-io/lezer-feel": "^3.0.0",
-    "@codemirror/autocomplete": "^6.20.0",
-    "@codemirror/commands": "^6.10.1",
-    "@codemirror/language": "^6.12.1",
-    "@codemirror/lint": "^6.9.3",
-    "@codemirror/state": "^6.5.4",
-    "@codemirror/view": "^6.39.12",
-    "@lezer/common": "^1.5.1",
-    "@lezer/highlight": "^1.1.6",
-    "@lezer/lr": "^1.4.8",
-    "@lezer/markdown": "^1.6.3",
-    "min-dom": "^5.2.0",
-    "mitt": "^3.0.1"
-  },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@babel/preset-env": "^7.29.7",
-    "@lezer/generator": "^1.8.0",
     "@types/chai": "^5.0.0",
     "@types/mocha": "^10.0.10",
     "bio-dts": "^0.15.3",
     "chai": "^6.0.0",
-    "cross-env": "^10.0.0",
     "eslint": "^9.39.2",
     "eslint-plugin-bpmn-io": "^2.3.1",
     "karma": "^6.4.4",
     "karma-chrome-launcher-2": "^3.3.0",
     "karma-debug-launcher": "^0.0.5",
     "karma-env-preprocessor": "^0.1.1",
-    "karma-firefox-launcher": "^2.1.3",
     "karma-mocha": "^2.0.1",
     "karma-tldr-reporter": "^0.0.2",
     "karma-webpack": "^5.0.1",
-    "marked": "^18.0.5",
     "mocha": "^11.7.6",
-    "mocha-test-container-support": "^0.2.0",
     "npm-run-all2": "^9.0.2",
     "sinon": "^22.0.0",
     "sinon-chai": "^4.0.0",

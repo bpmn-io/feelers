@@ -1,0 +1,43 @@
+{
+  "name": "@bpmn-io/lang-feelers",
+  "version": "0.0.0",
+  "description": "FEELers language support for CodeMirror 6.",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "all": "run-s build lint test test:types",
+    "build": "run-s generate:types",
+    "generate:types": "bio-dts -r lib",
+    "lint": "eslint .",
+    "test": "karma start karma.conf.cjs",
+    "test:types": "tsc --noEmit",
+    "dev": "npm test -- --auto-watch --no-single-run",
+    "prepare": "run-s build"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "FEEL",
+    "FEELers",
+    "CodeMirror",
+    "language"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bpmn-io/feelers",
+    "directory": "packages/lang-feelers"
+  },
+  "dependencies": {
+    "@bpmn-io/lezer-feelers": "*",
+    "@bpmn-io/lezer-feel": "^3.0.0",
+    "@codemirror/language": "^6.12.1",
+    "@lezer/common": "^1.5.1"
+  }
+}
