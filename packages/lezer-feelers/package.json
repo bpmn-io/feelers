@@ -1,0 +1,46 @@
+{
+  "name": "@bpmn-io/lezer-feelers",
+  "version": "0.0.0",
+  "description": "FEELers parser definition for the Lezer parser system.",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "all": "run-s build lint test test:types",
+    "build": "run-s generate:parser generate:types",
+    "generate:parser": "lezer-generator lib/feelers.grammar -o lib/parser.js",
+    "generate:types": "bio-dts -r lib",
+    "lint": "eslint .",
+    "test": "mocha test --recursive",
+    "test:types": "tsc --noEmit",
+    "prepare": "run-s build"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "FEEL",
+    "FEELers",
+    "Lezer",
+    "Grammar",
+    "Parser"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bpmn-io/feelers",
+    "directory": "packages/lezer-feelers"
+  },
+  "dependencies": {
+    "@lezer/common": "^1.5.1",
+    "@lezer/highlight": "^1.1.6",
+    "@lezer/lr": "^1.4.8"
+  },
+  "devDependencies": {
+    "@lezer/generator": "^1.8.0"
+  }
+}

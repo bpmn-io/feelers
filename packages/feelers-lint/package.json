@@ -1,0 +1,42 @@
+{
+  "name": "@bpmn-io/feelers-lint",
+  "version": "0.0.0",
+  "description": "FEELers linting support for CodeMirror 6.",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "all": "run-s build lint test test:types",
+    "build": "run-s generate:types",
+    "generate:types": "bio-dts -r lib",
+    "lint": "eslint .",
+    "test": "karma start karma.conf.cjs",
+    "test:types": "tsc --noEmit",
+    "dev": "npm test -- --auto-watch --no-single-run",
+    "prepare": "run-s build"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "FEEL",
+    "FEELers",
+    "CodeMirror",
+    "lint"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bpmn-io/feelers",
+    "directory": "packages/feelers-lint"
+  },
+  "dependencies": {
+    "@bpmn-io/feel-lint": "^3.1.0",
+    "@codemirror/language": "^6.12.1",
+    "@codemirror/lint": "^6.9.3"
+  }
+}
