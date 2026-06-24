@@ -1,6 +1,6 @@
 {
   "name": "@bpmn-io/lezer-feelers",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "FEELers parser definition for the Lezer parser system.",
   "type": "module",
   "main": "lib/index.js",

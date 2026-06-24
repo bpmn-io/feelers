@@ -38,7 +38,7 @@
     "directory": "packages/lang-feelers"
   },
   "dependencies": {
-    "@bpmn-io/lezer-feelers": "*",
+    "@bpmn-io/lezer-feelers": "^1.0.0",
     "@bpmn-io/lezer-feel": "^3.0.0",
     "@codemirror/language": "^6.12.1",
     "@lezer/common": "^1.5.1"

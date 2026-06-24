@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "@bpmn-io/feelin": "^6.1.0",
-    "@bpmn-io/lezer-feelers": "*"
+    "@bpmn-io/lezer-feelers": "^1.0.0"
   }
 }
