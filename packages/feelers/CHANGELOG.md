@@ -1,10 +1,21 @@
 # Changelog
 
-All notable changes to [feelers](https://github.com/bpmn-io/feelers) are documented here. We use [semantic versioning](http://semver.org/) for releases.
+All notable changes to [feelers](https://github.com/bpmn-io/feelers/tree/main/packages/feelers) are documented here. We use [semantic versioning](http://semver.org/) for releases.
 
 ## Unreleased
 
 ___Note:__ Yet to be released changes appear here._
+
+## 3.0.0
+
+_Trims down to only offer only core interpreter._
+
+* `CHORE`: drop grammar exports ([#113](https://github.com/bpmn-io/feelers/pull/113))
+* `CHORE`: drop editor exports ([#113](https://github.com/bpmn-io/feelers/pull/113))
+
+### Breaking Changes
+
+* Other features (editor, grammar) moved to dedicated packages ([#113](https://github.com/bpmn-io/feelers/pull/113))
 
 ## 2.1.1
 
