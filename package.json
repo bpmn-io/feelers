@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "FEELers monorepo - builds and validates all packages.",
   "private": true,
+  "type": "module",
   "workspaces": [
     "packages/lezer-feelers",
     "packages/feelers",
