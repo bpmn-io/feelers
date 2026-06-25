@@ -6,6 +6,10 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers/tree/main/pa
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.1.0
+
+* `FEAT`: expose used parse utilities ([#114](https://github.com/bpmn-io/feelers/pull/114))
+
 ## 3.0.0
 
 _Trims down to only offer only core interpreter._
