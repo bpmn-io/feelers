@@ -107,6 +107,20 @@ describe('interpreter', function() {
 
     });
 
+
+    it('should handle null context', function() {
+
+      // given
+      const stringInput = 'Hello World';
+
+      // when
+      const result = evaluate(stringInput, null);
+
+      // then
+      expect(result).to.equal('Hello World');
+
+    });
+
   });
 
 
@@ -772,6 +786,21 @@ describe('interpreter', function() {
 
       // then
       expect(result).to.equal('Hello\na\nb\nc\nWorld');
+
+    });
+
+
+    it('should allow loop over array with null elements', function() {
+
+      // given
+      const stringInput = 'Hello {{#loop items}}{{this}}{{/loop}} World';
+      const context = { items: [ null, 'a', null ] };
+
+      // when
+      const result = evaluate(stringInput, context);
+
+      // then
+      expect(result).to.equal('Hello a World');
 
     });
 
