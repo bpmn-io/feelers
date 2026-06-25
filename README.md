@@ -96,6 +96,9 @@ npm run all
 # build / test / run a single repository (i.e. @bpmn-io/lezer-feelers)
 npm run all -w @bpmn-io/lezer-feelers
 
+# test a single repository (i.e. feelers)
+npm test -w feelers
+
 # publish the packages
 npm run publish
 ```
