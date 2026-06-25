@@ -1,6 +1,6 @@
 {
   "name": "feelers",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "FEELers templating language interpreter.",
   "type": "module",
   "main": "lib/index.js",
