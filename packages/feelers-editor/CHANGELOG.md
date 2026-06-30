@@ -6,6 +6,8 @@ All notable changes to [@bpmn-io/feelers-editor](https://github.com/bpmn-io/feel
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FIX`: restore syntax highlighting with `@bpmn-io/cm-theme@0.2.1+` ([#117](https://github.com/bpmn-io/feelers/pull/117))
+
 ## 1.1.0
 
 * `FEAT`: syntax highlight HTML in markdown mode ([#110](https://github.com/bpmn-io/feelers/pull/110))
