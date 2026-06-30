@@ -15,7 +15,7 @@
     "all": "npm run all --workspaces",
     "start": "npm run start -w @bpmn-io/feelers-editor",
     "dev": "npm run dev -w @bpmn-io/feelers-editor",
-    "release": "node tasks/release.js"
+    "release": "npx @bpmn-io/release"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@bpmn-io/release": "^0.1.0",
     "@types/chai": "^5.0.0",
     "@types/mocha": "^10.0.10",
     "bio-dts": "^0.15.3",
@@ -41,5 +42,8 @@
     "sinon": "^22.0.0",
     "sinon-chai": "^4.0.0",
     "typescript": "^6.0.0"
+  },
+  "releaseConfig": {
+    "strategy": "independent"
   }
 }
