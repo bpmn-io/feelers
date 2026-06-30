@@ -5,7 +5,13 @@
  *
  * Phase 1 — Detect: find packages with changes since their last publish tag.
  * Phase 2 — Plan:   ask for a semver bump per changed package (or skip).
- * Phase 3 — Execute (headless): build, test, publish, tag.
+ * Phase 3 — Execute (headless): apply every version bump in a single update,
+ *           commit it once, then publish and tag each library on that commit.
+ *
+ * Versions are computed once and applied together, following lerna's release
+ * strategy: one `chore: new release` commit bumps all libraries to their
+ * release versions, and every released library gets a tag pointing at that
+ * same commit — so the releases are visibly part of one swoop, not independent.
  */
 
 import { execSync } from 'child_process';
@@ -174,39 +180,53 @@ if (skipped.length) {
 
 // ─── phase 3: execute ───────────────────────────────────────────────────────
 
-for (const { dir, name, newVersion } of plan) {
-  console.log(`\n${name}@${newVersion}`);
+// Map of every library being released to its target version.
+const releasing = new Map(plan.map(p => [ p.name, p.newVersion ]));
 
-  // Bump this package's version.
+// Apply all version bumps + dependency pins in a single update, so every
+// library moves to its release version together (lerna-style), rather than
+// one commit per package.
+const stagedPaths = new Set([ 'package-lock.json' ]);
+
+for (const { dir, newVersion } of plan) {
   exec(`npm version ${newVersion} --no-git-tag-version`, { cwd: join(ROOT, 'packages', dir) });
+  stagedPaths.add(`packages/${dir}/package.json`);
+}
 
-  // Pin the new version in every workspace package that depends on this one.
-  const stagedPaths = [ `packages/${dir}/package.json` ];
-  for (const otherDir of PACKAGES) {
-    if (otherDir === dir) continue;
-    const pkgPath = join(ROOT, 'packages', otherDir, 'package.json');
-    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
-    let dirty = false;
+// Pin the new versions in every workspace package that depends on a released one.
+for (const dir of PACKAGES) {
+  const pkgPath = join(ROOT, 'packages', dir, 'package.json');
+  const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+  let dirty = false;
 
-    for (const field of [ 'dependencies', 'devDependencies', 'peerDependencies' ]) {
-      if (!pkg[field] || !(name in pkg[field])) continue;
+  for (const field of [ 'dependencies', 'devDependencies', 'peerDependencies' ]) {
+    if (!pkg[field]) continue;
+    for (const [ name, newVersion ] of releasing) {
+      if (!(name in pkg[field])) continue;
       pkg[field][name] = `^${newVersion}`;
       dirty = true;
     }
-
-    if (dirty) {
-      writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
-      stagedPaths.push(`packages/${otherDir}/package.json`);
-    }
   }
 
-  // Install to resolve the updated ranges and update the lockfile.
-  exec(`npm install`, { cwd: ROOT, stdio: 'inherit' });
+  if (dirty) {
+    writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+    stagedPaths.add(`packages/${dir}/package.json`);
+  }
+}
 
-  // Commit version bump + dependency pins + lockfile together.
-  for (const p of stagedPaths) exec(`git add ${p}`);
-  exec(`git add package-lock.json`);
-  exec(`git commit -m "chore: release ${name}@${newVersion}"`);
+// Install once to resolve the updated ranges and refresh the lockfile.
+exec(`npm install`, { cwd: ROOT, stdio: 'inherit' });
+
+// Commit the whole release as a single update.
+for (const p of stagedPaths) exec(`git add ${p}`);
+exec(`git commit -m "chore(packages): release"`);
+
+// Build, test, publish, and tag each library against that single commit.
+// Tags all point to the release commit, so every release is part of one swoop.
+const tags = [];
+
+for (const { dir, name, newVersion } of plan) {
+  console.log(`\n${name}@${newVersion}`);
 
   // Build and test against the committed state.
   exec(`npm run all`, { cwd: join(ROOT, 'packages', dir), stdio: 'inherit' });
@@ -216,9 +236,14 @@ for (const { dir, name, newVersion } of plan) {
 
   const tag = `${name}@${newVersion}`;
   exec(`git tag ${tag}`);
-  exec(`git push origin ${tag}`);
+  tags.push(tag);
   console.log(`  tagged ${tag}`);
 }
 
+// Push the release commit and all tags together.
 exec(`git push origin HEAD`);
+for (const tag of tags) {
+  exec(`git push origin ${tag}`);
+}
+
 console.log('\nDone.');
