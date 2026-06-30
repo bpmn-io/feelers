@@ -55,12 +55,12 @@
     "mitt": "^3.0.1"
   },
   "devDependencies": {
-    "@bpmn-io/cm-theme": "0.2.0",
+    "@bpmn-io/cm-theme": "^0.2.2",
     "cross-env": "^10.1.0",
     "marked": "^18.0.5",
     "mocha-test-container-support": "^0.2.0"
   },
   "peerDependencies": {
-    "@bpmn-io/cm-theme": "^0.2.0"
+    "@bpmn-io/cm-theme": "^0.2.1"
   }
 }
