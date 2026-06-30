@@ -64,6 +64,12 @@ function hasChangesSince(tag, relativeDir) {
   return exec(`git log ${tag}..HEAD -- ${relativeDir}`).length > 0;
 }
 
+function commitsSince(tag, relativeDir) {
+  if (!tag) return [];
+  const out = exec(`git log ${tag}..HEAD --pretty=format:%s -- ${relativeDir}`);
+  return out ? out.split('\n') : [];
+}
+
 function bumpVersion(version, bump) {
   const [ major, minor, patch ] = version.split('.').map(Number);
   if (bump === 'major') return `${major + 1}.0.0`;
@@ -89,11 +95,12 @@ for (const dir of PACKAGES) {
   const npmVersion = getNpmVersion(name);
 
   let reason = null;
+  let tag = null;
 
   if (!npmVersion) {
     reason = 'not yet published';
   } else {
-    const tag = findPublishTag(name, npmVersion);
+    tag = findPublishTag(name, npmVersion);
 
     if (!tag) {
       console.warn(`  warning: ${name}@${npmVersion} — no git tag found, skipping`);
@@ -116,7 +123,7 @@ for (const dir of PACKAGES) {
   }
 
   if (reason) {
-    changed.push({ dir, name, currentVersion: npmVersion || '0.0.0', reason });
+    changed.push({ dir, name, currentVersion: npmVersion || '0.0.0', reason, tag });
     changingNames.add(name);
   }
 }
@@ -140,7 +147,7 @@ console.log('\nHow should each package be bumped? [patch / minor / major / skip]
 const plan = [];
 
 for (const pkg of changed) {
-  const { name, currentVersion } = pkg;
+  const { name, currentVersion, reason, tag, dir } = pkg;
   const bumps = {
     patch: bumpVersion(currentVersion, 'patch'),
     minor: bumpVersion(currentVersion, 'minor'),
@@ -148,9 +155,20 @@ for (const pkg of changed) {
   };
   const hint = `patch=${bumps.patch} minor=${bumps.minor} major=${bumps.major}`;
 
+  // Summarize the commits that touched this library, so the bump can be chosen
+  // with the actual changes in view.
+  const commits = commitsSince(tag, `packages/${dir}`);
+
+  console.log(`\n  ${name}@${currentVersion} — ${reason}`);
+  if (commits.length) {
+    for (const subject of commits) console.log(`    • ${subject}`);
+  } else {
+    console.log('    • (no direct commits)');
+  }
+
   let bump;
   while (true) {
-    const answer = await ask(rl, `  ${name} (${hint}): `);
+    const answer = await ask(rl, `  bump ${name} [patch / minor / major / skip] (${hint}): `);
     if ([ 'patch', 'minor', 'major', 'skip' ].includes(answer)) {
       bump = answer;
       break;
