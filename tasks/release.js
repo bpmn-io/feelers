@@ -84,6 +84,11 @@ function ask(rl, question) {
 
 // ─── phase 1: detect ────────────────────────────────────────────────────────
 
+if (exec('git status --porcelain').length > 0) {
+  console.error('Working tree has uncommitted changes. Commit or stash them before releasing.');
+  process.exit(1);
+}
+
 console.log('Detecting changes...\n');
 
 const changed = [];
