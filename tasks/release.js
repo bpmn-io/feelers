@@ -135,14 +135,14 @@ if (changed.length === 0) {
 
 console.log('Changed packages:');
 for (const { name, currentVersion, reason } of changed) {
-  console.log(`  ${name}@${currentVersion} — ${reason}`);
+  console.log(`  ${name} — ${reason}`);
 }
 
 // ─── phase 2: plan ──────────────────────────────────────────────────────────
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
-console.log('\nHow should each package be bumped? [patch / minor / major / skip]\n');
+console.log('\nHow should each package be bumped?');
 
 const plan = [];
 
@@ -159,12 +159,13 @@ for (const pkg of changed) {
   // with the actual changes in view.
   const commits = commitsSince(tag, `packages/${dir}`);
 
-  console.log(`\n  ${name}@${currentVersion} — ${reason}`);
+  console.log(`\n  ${name} — ${reason}`);
   if (commits.length) {
     for (const subject of commits) console.log(`    • ${subject}`);
   } else {
     console.log('    • (no direct commits)');
   }
+  console.log('');
 
   let bump;
   while (true) {
