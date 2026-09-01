@@ -6,6 +6,8 @@ All notable changes to [@bpmn-io/feelers-editor](https://github.com/bpmn-io/feel
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.2.0
+
 * `DEPS`: add `@bpmn-io/cm-theme` as direct dependency ([#119](https://github.com/bpmn-io/feelers/pull/119))
 
 ## 1.1.1
