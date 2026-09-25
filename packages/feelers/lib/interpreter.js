@@ -65,13 +65,14 @@ const buildNodeEvaluator = (options) => {
    * @param {string} expression
    * @param {Record<string, unknown>} [context]
    * @param {boolean} [throwOnInvalidArguments=false]
+   * @param {string} [displayExpression=expression]
    * @returns {unknown}
    */
-  const evaluateFeelValue = (expression, context = {}, throwOnInvalidArguments = false) => {
+  const evaluateFeelValue = (expression, context = {}, throwOnInvalidArguments = false, displayExpression = expression) => {
     const { value, warnings = [] } = evaluateFeel(expression, context);
 
     if (throwOnInvalidArguments && warnings.some(({ type }) => type === INVALID_ARGUMENTS_WARNING)) {
-      throw new Error(`FEEL expression ${expression} couldn't be evaluated`);
+      throw new Error(`FEEL expression ${displayExpression} couldn't be evaluated`);
     }
 
     return value;
@@ -93,7 +94,7 @@ const buildNodeEvaluator = (options) => {
       const feel = /** @type {string} */ (node.children[0].content);
 
       try {
-        const value = evaluateFeelValue(`string(${feel})`, context, true);
+        const value = evaluateFeelValue(`string(${feel})`, context, true, feel);
         return /** @type {string} */ (sanitizer ? sanitizer(value) : value);
       }
       catch {
@@ -109,7 +110,7 @@ const buildNodeEvaluator = (options) => {
       const feel = /** @type {string} */ (node.content);
 
       try {
-        const value = evaluateFeelValue(`string(${feel})`, context, true);
+        const value = evaluateFeelValue(`string(${feel})`, context, true, feel);
         return /** @type {string} */ (sanitizer ? sanitizer(value) : value);
       }
       catch {
