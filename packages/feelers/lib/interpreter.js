@@ -68,11 +68,7 @@ const buildNodeEvaluator = (options) => {
   const evaluateFeelValue = (expression, context = {}, throwOnInvalidArguments = false) => {
     const { value, warnings = [] } = evaluateFeel(expression, context);
 
-    if (
-      throwOnInvalidArguments &&
-      value == null &&
-      warnings.some(({ type }) => type === 'INVALID_ARGUMENTS')
-    ) {
+    if (throwOnInvalidArguments && warnings.some(({ type }) => type === 'INVALID_ARGUMENTS')) {
       throw new Error(`FEEL expression ${expression} couldn't be evaluated`);
     }
 
