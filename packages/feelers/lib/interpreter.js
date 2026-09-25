@@ -2,6 +2,8 @@ import { parseToSimpleTree } from './parser.js';
 
 import { evaluate as evaluateFeel } from '@bpmn-io/feelin';
 
+const INVALID_ARGUMENTS_WARNING = 'INVALID_ARGUMENTS';
+
 /**
  * @typedef {import('@bpmn-io/lezer-feelers').SimpleNode} SimpleNode
  */
@@ -68,7 +70,7 @@ const buildNodeEvaluator = (options) => {
   const evaluateFeelValue = (expression, context = {}, throwOnInvalidArguments = false) => {
     const { value, warnings = [] } = evaluateFeel(expression, context);
 
-    if (throwOnInvalidArguments && warnings.some(({ type }) => type === 'INVALID_ARGUMENTS')) {
+    if (throwOnInvalidArguments && warnings.some(({ type }) => type === INVALID_ARGUMENTS_WARNING)) {
       throw new Error(`FEEL expression ${expression} couldn't be evaluated`);
     }
 
