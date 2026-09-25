@@ -60,6 +60,21 @@ const buildNodeEvaluator = (options) => {
   };
 
   /**
+   * @param {string} expression
+   * @param {Record<string, unknown>} [context]
+   * @returns {unknown}
+   */
+  const evaluateFeelValue = (expression, context = {}) => {
+    const { value, warnings = [] } = evaluateFeel(expression, context);
+
+    if (warnings.some(({ type }) => type === 'INVALID_ARGUMENTS')) {
+      throw new Error(`FEEL expression ${expression} couldn't be evaluated`);
+    }
+
+    return value;
+  };
+
+  /**
    * @param {SimpleNode} node
    * @param {Record<string, unknown>} [context]
    * @returns {string | undefined}
@@ -75,7 +90,7 @@ const buildNodeEvaluator = (options) => {
       const feel = /** @type {string} */ (node.children[0].content);
 
       try {
-        const { value } = evaluateFeel(`string(${feel})`, context);
+        const value = evaluateFeelValue(`string(${feel})`, context);
         return /** @type {string} */ (sanitizer ? sanitizer(value) : value);
       }
       catch {
@@ -91,7 +106,7 @@ const buildNodeEvaluator = (options) => {
       const feel = /** @type {string} */ (node.content);
 
       try {
-        const { value } = evaluateFeel(`string(${feel})`, context);
+        const value = evaluateFeelValue(`string(${feel})`, context);
         return /** @type {string} */ (sanitizer ? sanitizer(value) : value);
       }
       catch {
@@ -107,8 +122,7 @@ const buildNodeEvaluator = (options) => {
       let shouldRender;
 
       try {
-        const { value } = evaluateFeel(feel, context);
-        shouldRender = value;
+        shouldRender = evaluateFeelValue(feel, context);
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
@@ -136,8 +150,7 @@ const buildNodeEvaluator = (options) => {
       let loopArray;
 
       try {
-        const { value } = evaluateFeel(feel, context);
-        loopArray = value;
+        loopArray = evaluateFeelValue(feel, context);
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
