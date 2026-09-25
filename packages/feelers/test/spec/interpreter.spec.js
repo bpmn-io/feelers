@@ -1067,6 +1067,23 @@ describe('interpreter', function() {
 
     });
 
+
+    it('should output custom debug errors for malformed temporal conditionals', function() {
+
+      // given
+      const stringInput = 'Hello {{#if date("foo")}}World{{/if}}';
+
+      // when
+      const result = evaluate(stringInput, {}, {
+        debug: true,
+        buildDebugString: (e) => ERROR_CHAR
+      });
+
+      // then
+      expect(result).to.equal(`Hello ${ERROR_CHAR}`);
+
+    });
+
   });
 
 });
