@@ -461,23 +461,6 @@ describe('interpreter', function() {
     });
 
 
-    it('should error on malformed temporal inserts', function() {
-
-      // given
-      const stringInput = 'Hello {{= date("foo")}} World';
-
-      // when
-      const result = evaluate(stringInput, {}, {
-        debug: true,
-        buildDebugString: (e) => ERROR_CHAR
-      });
-
-      // then
-      expect(result).to.equal(`Hello ${ERROR_CHAR} World`);
-
-    });
-
-
     it('should support builtins overrides', function() {
 
       // given
@@ -1050,37 +1033,6 @@ describe('interpreter', function() {
 
       // then
       expect(fn).to.throw('FEEL expression ?!~ couldn\'t be evaluated');
-
-    });
-
-
-    it('should throw on malformed temporal conditionals in non-debug mode', function() {
-
-      // given
-      const stringInput = 'Hello {{#if date("foo")}}World{{/if}}';
-
-      // when
-      const fn = () => evaluate(stringInput, {});
-
-      // then
-      expect(fn).to.throw('FEEL expression date("foo") couldn\'t be evaluated');
-
-    });
-
-
-    it('should output custom debug errors for malformed temporal conditionals', function() {
-
-      // given
-      const stringInput = 'Hello {{#if date("foo")}}World{{/if}}';
-
-      // when
-      const result = evaluate(stringInput, {}, {
-        debug: true,
-        buildDebugString: (e) => ERROR_CHAR
-      });
-
-      // then
-      expect(result).to.equal(`Hello ${ERROR_CHAR}`);
 
     });
 

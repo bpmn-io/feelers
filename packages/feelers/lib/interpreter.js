@@ -2,8 +2,6 @@ import { parseToSimpleTree } from './parser.js';
 
 import { evaluate as evaluateFeel } from '@bpmn-io/feelin';
 
-const INVALID_ARGUMENTS_WARNING = 'INVALID_ARGUMENTS';
-
 /**
  * @typedef {import('@bpmn-io/lezer-feelers').SimpleNode} SimpleNode
  */
@@ -62,23 +60,6 @@ const buildNodeEvaluator = (options) => {
   };
 
   /**
-   * @param {string} expression
-   * @param {Record<string, unknown>} [context]
-   * @param {boolean} [throwOnInvalidArguments=false]
-   * @param {string} [displayExpression=expression]
-   * @returns {unknown}
-   */
-  const evaluateFeelValue = (expression, context = {}, throwOnInvalidArguments = false, displayExpression = expression) => {
-    const { value, warnings = [] } = evaluateFeel(expression, context);
-
-    if (throwOnInvalidArguments && warnings.some(({ type }) => type === INVALID_ARGUMENTS_WARNING)) {
-      throw new Error(`FEEL expression ${displayExpression} couldn't be evaluated`);
-    }
-
-    return value;
-  };
-
-  /**
    * @param {SimpleNode} node
    * @param {Record<string, unknown>} [context]
    * @returns {string | undefined}
@@ -94,7 +75,7 @@ const buildNodeEvaluator = (options) => {
       const feel = /** @type {string} */ (node.children[0].content);
 
       try {
-        const value = evaluateFeelValue(`string(${feel})`, context, true, feel);
+        const { value } = evaluateFeel(`string(${feel})`, context);
         return /** @type {string} */ (sanitizer ? sanitizer(value) : value);
       }
       catch {
@@ -110,7 +91,7 @@ const buildNodeEvaluator = (options) => {
       const feel = /** @type {string} */ (node.content);
 
       try {
-        const value = evaluateFeelValue(`string(${feel})`, context, true, feel);
+        const { value } = evaluateFeel(`string(${feel})`, context);
         return /** @type {string} */ (sanitizer ? sanitizer(value) : value);
       }
       catch {
@@ -126,7 +107,8 @@ const buildNodeEvaluator = (options) => {
       let shouldRender;
 
       try {
-        shouldRender = evaluateFeelValue(feel, context, true);
+        const { value } = evaluateFeel(feel, context);
+        shouldRender = value;
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
@@ -154,7 +136,8 @@ const buildNodeEvaluator = (options) => {
       let loopArray;
 
       try {
-        loopArray = evaluateFeelValue(feel, context);
+        const { value } = evaluateFeel(feel, context);
+        loopArray = value;
       }
       catch {
         return errorHandler(new Error(`FEEL expression ${feel} couldn't be evaluated`));
