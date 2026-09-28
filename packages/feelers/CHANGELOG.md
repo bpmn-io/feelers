@@ -6,6 +6,10 @@ All notable changes to [feelers](https://github.com/bpmn-io/feelers/tree/main/pa
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.2.0
+
+* `DEPS`: update to `@bpmn-io/feelin@7`
+
 ## 3.1.0
 
 * `FEAT`: expose used parse utilities ([#114](https://github.com/bpmn-io/feelers/pull/114))
